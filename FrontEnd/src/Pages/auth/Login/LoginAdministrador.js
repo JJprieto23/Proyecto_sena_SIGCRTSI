@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Logins.css";
 import myImg from "../../../img/logo2.png";
 import { useUser } from "../../../userContext";
+import Fondo1 from "../../../img/fondo1.png"; /* Importación de la imagen de fondo */
 
 const LoginAdministrador = () => {
   const [Username, setUsername] = useState("");
@@ -40,9 +41,20 @@ const LoginAdministrador = () => {
     }
   };
   return (
-    <div className="login-administrador">
-      <div className="login-page">
-        <div className="login-box">
+    <div
+      className="login-administrador"
+      style={{
+        backgroundImage: `url(${Fondo1})`, // Imagen de fondo importada
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh", // Ajustar a la altura completa de la ventana
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        filter: "brightness(90%)", // Oscurecer la imagen de fondo
+      }}
+    >
+        <div className="login-box rounded-4 ">
           <div className="d-flex align-items-center flex-sm-column my-3">
             <div className="w-25">
               <Link to="/" className="text-decoration-none">
@@ -114,7 +126,6 @@ const LoginAdministrador = () => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };
