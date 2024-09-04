@@ -56,7 +56,7 @@ const Tabla = ({ item, apiS }) => {
   };
 
   return (
-    <div className="w-100 h-100">
+    <div className="w-100 h-100" style={{ marginLeft: "3%" }}>
       <div className="card m-0 h-100">
         <div className="card-body">
           <div

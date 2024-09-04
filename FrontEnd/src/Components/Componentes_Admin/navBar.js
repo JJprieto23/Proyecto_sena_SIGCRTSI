@@ -4,71 +4,110 @@ import { useUser } from "../../userContext";
 import { useState } from "react";
 import Tabla from "./tabla";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCar } from "@fortawesome/free-solid-svg-icons";
+import { faChampagneGlasses } from "@fortawesome/free-solid-svg-icons";
+import { faHandshake } from "@fortawesome/free-solid-svg-icons";
+import { faPersonMilitaryPointing } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faHouse);
+library.add(faUser);
+library.add(faCar);
+library.add(faChampagneGlasses);
+library.add(faHandshake);
+library.add(faPersonMilitaryPointing);
+library.add(faXmark);
+
 export function NavBar() {
   const { setUser: setContextUser } = useUser();
   const [currentTable, setCurrentTable] = useState("Apartamentos");
+  const [showSideBar, setShowSideBar] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [currentDropMenu, setCurrentDropMenu] = useState("Acción");
 
   return (
-    <div className="d-flex flex-column vh-100">
+    <div className="d-flex flex-column justify-content-start h-100 ">
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark w-100 bg-dark">
-          <div className="container px-lg-5">
-            <Link className="text-warning navbar-brand" to="#">
+        {/* NavBar */}
+        <nav className="navbar navbar-expand-lg navbar-dark py-2 bg-dark">
+          <div className="container px-lg-5 d-flex flex-row justify-content-between">
+            <div>
+              <button
+                class="btn"
+                type="button"
+                onClick={() => {
+                  showSideBar === true
+                    ? setShowSideBar(false)
+                    : setShowSideBar(true);
+                }}
+              >
+                . . .
+              </button>
+            </div>
+
+            <div>
               <img
                 src={myImg}
                 style={{ width: 70, height: 70 }}
                 alt="Icon"
               ></img>
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navConetent"
-              aria-controls="navConetent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navConetent">
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li className="nav-item mx-3">
+            </div>
+
+            <div className="btn-group">
+              <button
+                type="button"
+                className="btn btn-outline-light dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {currentDropMenu}
+              </button>
+              <ul className="dropdown-menu">
+                <li>
                   <Link
-                    className={
-                      currentTable === "Solicitudes"
-                        ? "btn btn-light active"
-                        : "btn btn-light"
-                    }
+                    className="dropdown-item text-primary"
                     aria-current="page"
                     to="#"
-                    onClick={() => setCurrentTable("Solicitudes")}
+                    onClick={() => {
+                      setCurrentTable("Solicitudes");
+                      setCurrentDropMenu("Solicitudes");
+                    }}
                   >
                     Solicitudes
                   </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li>
                   <Link
-                    className="btn btn-light"
+                    className="dropdown-item text-primary"
                     to="#"
-                    onClick={() => setCurrentTable("Informacion")}
+                    onClick={() => {
+                      setCurrentTable("Informacion");
+                      setCurrentDropMenu("Informacion");
+                    }}
                   >
                     Enviar información
                   </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li>
                   <Link
-                    className="btn btn-light"
+                    className="dropdown-item text-primary"
                     to="#"
-                    onClick={() => setCurrentTable("Reporte")}
+                    onClick={() => {
+                      setCurrentTable("Reporte");
+                      setCurrentDropMenu("Reporte");
+                    }}
                   >
                     Generar reporte
                   </Link>
                 </li>
-                <li className="nav-item mx-3">
+                <li>
                   <Link
                     onClick={() => setContextUser(null)}
-                    className="btn btn-light"
+                    className="dropdown-item text-danger"
                     to="/"
                   >
                     Cerrar Sesion
@@ -81,131 +120,195 @@ export function NavBar() {
       </div>
       <div className="h-100">
         <div className="d-flex flex-row h-100">
-          <div>
-            <div
-              className="d-flex flex-column p-3 text-white bg-dark h-100"
-              style={{ width: 280 }}
-            >
+          {/* SideBar */}
+          <div
+            class="offcanvas offcanvas-start show"
+            data-bs-scroll="true"
+            data-bs-backdrop="false"
+            tabindex="-1"
+            id="offcanvasScrolling"
+            aria-labelledby="offcanvasScrollingLabel"
+            onMouseEnter={() => {
+              setIsHovered(true);
+              setShowSideBar(true);
+            }}
+            onMouseLeave={() => {
+              setIsHovered(false);
+              setShowSideBar(false);
+            }}
+            style={{
+              transform:
+                showSideBar === false
+                  ? "translateX(-83%)"
+                  : isHovered
+                  ? "translateX(0%)"
+                  : "translateX(0%)",
+              transition: "transform 0.3s ease-in-out",
+            }}
+          >
+            <div className="d-flex flex-column p-3 text-white bg-dark h-100">
+              <div
+                style={{
+                  transform:
+                    showSideBar === true ? "translateX(44%)" : "translateX(0%)",
+                  transition: "transform 0.3s ease-in-out",
+                }}
+              >
+                <Link className="text-white">
+                  <FontAwesomeIcon
+                    onClick={() => setShowSideBar(false)}
+                    icon={faXmark}
+                  />
+                </Link>
+              </div>
               <hr />
               <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item">
                   <Link
-                    onClick={() => setCurrentTable("Apartamentos")}
+                    onClick={() => {
+                      setCurrentTable("Apartamentos");
+                      setCurrentDropMenu("Acción");
+                    }}
                     id="myLink"
                     href="#"
                     className={
                       currentTable === "Apartamentos"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
                     aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#home" />
-                    </svg>
-                    Viviendas
+                    <div className="w-100">Viviendas</div>
+                    <div>
+                      <FontAwesomeIcon icon={faHouse} />
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    onClick={() => setCurrentTable("Propietarios")}
+                    onClick={() => {
+                      setCurrentTable("Propietarios");
+                      setCurrentDropMenu("Acción");
+                    }}
                     href="#"
                     className={
                       currentTable === "Propietarios"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
+                    aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#speedometer2" />
-                    </svg>
-                    Propietarios
+                    <div className="w-100">Propietarios</div>
+                    <div>
+                      <FontAwesomeIcon icon={faUser} />
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    onClick={() => setCurrentTable("Parqueadero")}
+                    onClick={() => {
+                      setCurrentTable("Parqueadero");
+                      setCurrentDropMenu("Acción");
+                    }}
                     href="#"
                     className={
                       currentTable === "Parqueadero"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
+                    aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#table" />
-                    </svg>
-                    Parqueadero
+                    <div className="w-100">Parqueadero</div>
+                    <div>
+                      <FontAwesomeIcon icon={faCar} />
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    onClick={() => setCurrentTable("Invitados")}
+                    onClick={() => {
+                      setCurrentTable("Invitados");
+                      setCurrentDropMenu("Acción");
+                    }}
                     href="#"
                     className={
                       currentTable === "Invitados"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
+                    aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#grid" />
-                    </svg>
-                    Invitados
+                    <div className="w-100">Invitados</div>
+                    <div>
+                      <FontAwesomeIcon icon={faHouse} />
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    onClick={() => setCurrentTable("ReservaSalon")}
+                    onClick={() => {
+                      setCurrentTable("ReservaSalon");
+                      setCurrentDropMenu("Acción");
+                    }}
                     href="#"
                     className={
                       currentTable === "ReservaSalon"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
+                    aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#people-circle" />
-                    </svg>
-                    Salon Comunal
+                    <div className="w-100">Salon Comunal</div>
+                    <div>
+                      <FontAwesomeIcon icon={faChampagneGlasses} />
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    onClick={() => setCurrentTable("Reuniones")}
+                    onClick={() => {
+                      setCurrentTable("Reuniones");
+                      setCurrentDropMenu("Acción");
+                    }}
                     href="#"
                     className={
                       currentTable === "Reuniones"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
+                    aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#people-circle" />
-                    </svg>
-                    Reuniones
+                    <div className="w-100">Reuniones</div>
+                    <div>
+                      <FontAwesomeIcon icon={faHandshake} />
+                    </div>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    onClick={() => setCurrentTable("Porteros")}
+                    onClick={() => {
+                      setCurrentTable("Porteros");
+                      setCurrentDropMenu("Acción");
+                    }}
                     href="#"
                     className={
                       currentTable === "Porteros"
-                        ? "nav-link active"
-                        : "nav-link text-white"
+                        ? "nav-link active d-flex flex-row justify-content-between"
+                        : "nav-link text-white d-flex flex-row justify-content-between"
                     }
+                    aria-current="page"
                   >
-                    <svg className="bi me-2" width={16} height={16}>
-                      <use xlinkHref="#people-circle" />
-                    </svg>
-                    Porteros
+                    <div className="w-100">Porteros</div>
+                    <div>
+                      <FontAwesomeIcon icon={faPersonMilitaryPointing} />
+                    </div>
                   </Link>
                 </li>
               </ul>
               <hr />
             </div>
           </div>
+          {/* Tabla de contenido */}
           <Tabla
             item={
               currentTable === "Apartamentos"
@@ -248,11 +351,7 @@ export function NavBar() {
                 : currentTable === "Informacion"
                 ? []
                 : currentTable === "Reporte"
-                ? [
-                    "Codigo de vivienda",
-                    "Nombre",
-                    "Saldo de deuda",
-                  ]
+                ? ["Codigo de vivienda", "Nombre", "Saldo de deuda"]
                 : null
             }
             apiS={currentTable}

@@ -153,12 +153,25 @@
       "Nombre": "Joan",
       "Teléfono": 123456,
       "Correo": "joan@gmail.com",
-      "EstadoEnvio": "",
+      "EstadoEnvio": "Enviado",
       "NumeroDocumento": 1019763603,
       "MesesAtrasados": 0,
-      "EspacioParqueadero": 0,
+      "EspacioParqueadero": 11,
       "User": "joan",
       "Pass": "27h"
+    },
+    {
+      "id": "3b6c",
+      "CodigoVivienda": "1101",
+      "Nombre": "Joan David",
+      "Teléfono": "3224003265",
+      "Correo": "joan@gmail.com",
+      "NumeroDocumento": "1019763603",
+      "MesesAtrasados": 0,
+      "EspacioParqueadero": 0,
+      "User": "Joan1019763603",
+      "Pass": "1019763603",
+      "EstadoEnvio": "Enviado"
     }
   ],
   "Parqueadero": [
@@ -225,7 +238,7 @@
     {
       "NumeroEspacio": 11,
       "TipoEspacio": "Moto",
-      "Estado": "Disponible",
+      "Estado": "Ocupado",
       "id": "46c8"
     },
     {
@@ -683,6 +696,16 @@
       "NumeroParqueadero": "1",
       "Costo": "30000",
       "CodigoVivienda": "1101"
+    },
+    {
+      "id": "b781",
+      "Nombre": "Julian",
+      "NumeroDocumento": "302654987",
+      "Teléfono": "3142142104",
+      "Correo": "julian@gmail.com",
+      "NumeroParqueadero": "5",
+      "Costo": "30000",
+      "CodigoVivienda": "1101"
     }
   ],
   "ReservaSalon": [
@@ -696,6 +719,17 @@
       "HoraFin": "01:31",
       "Motivo": "Fiesta",
       "Fecha": "2024-08-30"
+    },
+    {
+      "id": "20ee",
+      "Nombre": "Joan",
+      "NumeroDocumento": "1019763603",
+      "Telefono": "3224005398",
+      "CodigoVivienda": "1101",
+      "HoraInicio": "13:49",
+      "HoraFin": "08:52",
+      "Motivo": "Mi cumpleaños",
+      "Fecha": "2024-08-31"
     }
   ],
   "Reuniones": [
@@ -1186,15 +1220,5 @@
       "id": "a7ce"
     }
   ],
-  "Solicitudes": [
-    {
-      "id": "321",
-      "Nombre": "321",
-      "Apellido": "654",
-      "NumeroDocumento": "321",
-      "Teléfono": "321",
-      "Correo": "kjh@lkjn",
-      "CodigoVivienda": "1101"
-    }
-  ]
+  "Solicitudes": []
 }

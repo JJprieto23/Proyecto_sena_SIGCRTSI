@@ -123,7 +123,7 @@ const LoginPropietario = () => {
             </p>
             <hr className="hr-line" />
             <p className="mb-0">
-              ¿No tienes una cuenta?{" "}
+              ¿No tiene una cuenta?{" "}
               <Link to="/RegisterPropietario" className="text-center">
                 Enviar solicitud para creación de cuenta
               </Link>
