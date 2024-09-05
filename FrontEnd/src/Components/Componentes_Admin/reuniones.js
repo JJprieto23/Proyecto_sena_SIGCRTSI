@@ -5,13 +5,20 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 /* Añadir iconos a la libraria */
 library.add(faTrash);
 library.add(faPenToSquare);
 library.add(faSquarePlus);
+library.add(faXmark);
+library.add(faCheck);
 
 const Reunion = ({ item, currentRecords, apiS }) => {
   const [accion, setAccion] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [status, setStatus] = useState("");
+  const [eliminarRecord, setEliminarRecord] = useState("");
 
   const [reuniones, setReuniones] = useState({
     NumeroReunion: "",
@@ -37,13 +44,18 @@ const Reunion = ({ item, currentRecords, apiS }) => {
               NumeroReunion: reuniones.NumeroReunion,
               Motivo: reuniones.Motivo,
               Fecha: reuniones.Fecha,
-              Horario: reuniones.Horario,
+              HoraInicio: reuniones.HoraInicio,
+              HoraFin: reuniones.HoraFin,
               id: reuniones.id,
             }
           );
           console.log(response.status);
           if (response.status === 200) {
-            alert("Registro actualizado exitosamente");
+            setStatus(response.status);
+            setAccion("");
+            setTimeout(() => {
+              setStatus("");
+            }, 5000);
             setReuniones((prevUsuario) => ({
               ...prevUsuario,
               id: "",
@@ -57,8 +69,15 @@ const Reunion = ({ item, currentRecords, apiS }) => {
           );
           console.log(response.status);
           if (response.status === 200) {
-            alert("Registro eliminado exitosamente exitosamente");
+            setShowAlert(false);
+            setStatus(response.status);
+            setAccion("");
+            setTimeout(() => {
+              setStatus("");
+            }, 5000);
           }
+        } else {
+          setShowAlert(false);
         }
       } else if (accion === "Insertar") {
         const response = await axios.post(`http://localhost:4000/${apiS}`, {
@@ -70,12 +89,20 @@ const Reunion = ({ item, currentRecords, apiS }) => {
         });
         console.log(response.status);
         if (response.status === 201) {
-          alert("Registro exitoso");
+          setStatus(response.status);
+          setAccion("");
+          setTimeout(() => {
+            setStatus("");
+          }, 5000);
         }
       }
     } catch (error) {
       console.error(error);
-      alert("Ocurrió un error al realizar la operación");
+      setAccion("");
+      setStatus("err");
+      setTimeout(() => {
+        setStatus("");
+      }, 5000);
     }
   };
 
@@ -84,16 +111,13 @@ const Reunion = ({ item, currentRecords, apiS }) => {
   };
 
   const eliminar = (record) => {
-    const confir = window.confirm("¿ Desea eliminar este registro ?");
-    if (confir) {
-      if (apiS === "Reuniones") {
-        setReuniones((prevSalon) => ({
-          ...prevSalon,
-          id: record,
-        }));
-      }
-      setAccion(() => "Eliminar");
+    if (apiS === "Reuniones") {
+      setReuniones((prevSalon) => ({
+        ...prevSalon,
+        id: record,
+      }));
     }
+    setAccion(() => "Eliminar");
   };
 
   const fetchFilteredRecords = async (term) => {
@@ -121,6 +145,67 @@ const Reunion = ({ item, currentRecords, apiS }) => {
 
   return (
     <>
+      {showAlert === true ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-warning alert-dismissible fade show w-25 z-1 position-absolute px-4 py-4"
+            role="alert"
+          >
+            Esta seguro de eliminar este registro ?
+            <form className="p-0" onSubmit={enviar}>
+              <div className="d-flex flex-row mt-3 justify-content-end">
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-danger p-0 m-0"
+                    onClick={() => {
+                      eliminar();
+                    }}
+                    style={{ width: "30px", height: "30px" }}
+                  >
+                    <FontAwesomeIcon icon={faXmark} />
+                  </button>
+                </div>
+
+                <div className="ms-3">
+                  <button
+                    type="submit"
+                    class="btn btn-success p-0 m-0"
+                    onClick={() => {
+                      eliminar(eliminarRecord);
+                    }}
+                    style={{ width: "30px", height: "30px" }}
+                  >
+                    <FontAwesomeIcon icon={faCheck} />
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : status === 200 ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show"
+            role="alert"
+          >
+            <div className="d-flex flex-row align-items-center">
+              <div className="me-3">Operación completada</div>
+            </div>
+          </div>
+        </div>
+      ) : status === 201 ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show"
+            role="alert"
+          >
+            <div className="d-flex flex-row align-items-center">
+              <div className="me-3">Operación completada</div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
         <input
           className="form-control me-2"
@@ -141,14 +226,14 @@ const Reunion = ({ item, currentRecords, apiS }) => {
       </form>
       <table
         id="example2"
-        className="table table-bordered table-hover dataTable dtr-inline"
+        className="table table-bordered table-hover table-sm"
         aria-describedby="example2_info"
       >
         <thead>
           <tr>
             {item.map((item, index) => (
               <th
-                className="sorting"
+                className="sorting sorting text-light bg-dark"
                 tabIndex="0"
                 aria-controls="example2"
                 rowSpan="1"
@@ -160,7 +245,7 @@ const Reunion = ({ item, currentRecords, apiS }) => {
               </th>
             ))}
             <th
-              className="sorting"
+              className="sorting sorting text-light bg-dark"
               tabIndex="0"
               aria-controls="example2"
               rowSpan="1"
@@ -183,15 +268,15 @@ const Reunion = ({ item, currentRecords, apiS }) => {
                   <td>
                     <div className="d-flex flex-row">
                       <div className="mx-2">
-                        <form className="p-0" onSubmit={enviar}>
-                          <button
-                            onClick={() => eliminar(record.id)}
-                            type="submit"
-                            class="btn btn-danger px-2"
-                          >
-                            <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                        </form>
+                        <button
+                          onClick={() => {
+                            setShowAlert(true);
+                            setEliminarRecord(record.id);
+                          }}
+                          class="btn btn-danger px-2"
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
                       </div>
                       <div className="mx-2">
                         <button
@@ -353,12 +438,13 @@ const Reunion = ({ item, currentRecords, apiS }) => {
                                 Cerrar
                               </button>
                               <button
+                                data-bs-dismiss="modal"
                                 type="submit"
                                 className={
                                   accion === "Actualizar"
                                     ? "btn btn-warning"
                                     : accion === "Insertar"
-                                    ? "btn btn-success w-25 m-0"
+                                    ? "btn btn-success w-25 m-0 ms-1 h-100"
                                     : null
                                 }
                               >
@@ -574,8 +660,8 @@ const Reunion = ({ item, currentRecords, apiS }) => {
         </tbody>
         <tfoot>
           <tr>
-            <th colSpan="5"></th>
-            <th rowSpan="1" colSpan="1">
+            <th colSpan="5" className="sorting text-light bg-dark"></th>
+            <th rowSpan="1" colSpan="1" className="sorting text-light bg-dark">
               <button
                 type="button"
                 className="btn btn-success p-0 m-0 w-50"
