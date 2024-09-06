@@ -1,8 +1,23 @@
 {
   "Apartamentos": [
     {
+      "CodigoVivienda": 1101,
+      "NumeroParqueadero": "2",
+      "id": "c3b5"
+    },
+    {
+      "CodigoVivienda": 1102,
+      "NumeroParqueadero": 3,
+      "id": "d4c8"
+    },
+    {
+      "CodigoVivienda": 1104,
+      "NumeroParqueadero": 4,
+      "id": "e5d9"
+    },
+    {
       "CodigoVivienda": 1105,
-      "NumeroParqueadero": "4",
+      "NumeroParqueadero": 5,
       "id": "f6ea"
     },
     {
@@ -29,6 +44,11 @@
       "CodigoVivienda": 1110,
       "NumeroParqueadero": 10,
       "id": "k1jf"
+    },
+    {
+      "CodigoVivienda": 1111,
+      "NumeroParqueadero": 11,
+      "id": "l2kg"
     },
     {
       "CodigoVivienda": 1112,
@@ -121,13 +141,8 @@
       "id": "d0cy"
     },
     {
-      "id": "66d6",
-      "CodigoVivienda": "1130",
-      "NumeroParqueadero": "30"
-    },
-    {
-      "id": "7cf2",
-      "CodigoVivienda": "1130",
+      "id": "c451",
+      "CodigoVivienda": 1130,
       "NumeroParqueadero": "0"
     }
   ],
@@ -136,27 +151,15 @@
       "id": "7c2a",
       "CodigoVivienda": 1101,
       "Nombre": "Joan",
-      "Teléfono": 123456,
-      "Correo": "joan@gmail.com",
-      "EstadoEnvio": "",
+      "Teléfono": "3138755960",
+      "Correo": "joan230@gmail.com",
+      "EstadoEnvio": "Enviado",
       "NumeroDocumento": 1019763603,
       "MesesAtrasados": 0,
-      "EspacioParqueadero": "12",
       "User": "joan",
-      "Pass": "27h"
-    },
-    {
-      "id": "927d",
-      "CodigoVivienda": "1102",
-      "Nombre": "Denys",
-      "Teléfono": "3224008917",
-      "Correo": "samm@gmail.com",
-      "EstadoEnvio": "",
-      "NumeroDocumento": "102365489",
-      "MesesAtrasados": "12",
-      "EspacioParqueadero": "2",
-      "User": "sammy",
-      "Pass": "soysam123"
+      "Pass": "27h",
+      "espacioMoto": 9,
+      "espacioCarro": null
     }
   ],
   "Parqueadero": [
@@ -211,19 +214,19 @@
     {
       "NumeroEspacio": 9,
       "TipoEspacio": "Moto",
-      "Estado": "Disponible",
+      "Estado": "Ocupado",
       "id": "aac5"
     },
     {
       "NumeroEspacio": 10,
       "TipoEspacio": "Carro",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "2f15"
     },
     {
       "NumeroEspacio": 11,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "46c8"
     },
     {
@@ -235,7 +238,7 @@
     {
       "NumeroEspacio": 13,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "d6c1"
     },
     {
@@ -247,7 +250,7 @@
     {
       "NumeroEspacio": 15,
       "TipoEspacio": "Moto",
-      "Estado": "Disponible",
+      "Estado": "Ocupado",
       "id": "daa4"
     },
     {
@@ -265,7 +268,7 @@
     {
       "NumeroEspacio": 18,
       "TipoEspacio": "Carro",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "94fb"
     },
     {
@@ -295,7 +298,7 @@
     {
       "NumeroEspacio": 23,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "e0f4"
     },
     {
@@ -325,11 +328,11 @@
     {
       "NumeroEspacio": 28,
       "TipoEspacio": "Carro",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "c575"
     },
     {
-      "NumeroEspacio": "45",
+      "NumeroEspacio": 29,
       "TipoEspacio": "Moto",
       "Estado": "Disponible",
       "id": "113d"
@@ -349,7 +352,7 @@
     {
       "NumeroEspacio": 32,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "a1b3"
     },
     {
@@ -365,15 +368,9 @@
       "id": "a1b5"
     },
     {
-      "id": "b453",
+      "id": "fd99",
       "NumeroEspacio": "35",
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado"
-    },
-    {
-      "id": "e3a9",
-      "NumeroEspacio": "36",
-      "TipoEspacio": "Carro",
       "Estado": "Ocupado"
     }
   ],
@@ -659,7 +656,7 @@
       "id": "1fb1"
     },
     {
-      "Nombre": "Juan Rodrigues",
+      "Nombre": "Juan Gómez",
       "NumeroDocumento": 1548952164,
       "Teléfono": 326654321,
       "Correo": "juan.gomez@gmail.com",
@@ -689,20 +686,31 @@
       "CodigoVivienda": "1101"
     },
     {
-      "id": "9509",
-      "Nombre": "Mateo",
-      "NumeroDocumento": "1023458795",
-      "Teléfono": "3220648795",
-      "Correo": "mateo@gmail.com",
-      "NumeroParqueadero": "12",
+      "id": "b781",
+      "Nombre": "Julian",
+      "NumeroDocumento": "302654987",
+      "Teléfono": "3142142104",
+      "Correo": "julian@gmail.com",
+      "NumeroParqueadero": "5",
       "Costo": "30000",
-      "CodigoVivienda": "1102"
+      "CodigoVivienda": "1101"
     }
   ],
   "ReservaSalon": [
     {
-      "id": "20ee",
+      "id": "1cef",
       "Nombre": "David",
+      "NumeroDocumento": "1019763603",
+      "Telefono": "322409875",
+      "CodigoVivienda": "1101",
+      "HoraInicio": "22:28",
+      "HoraFin": "01:31",
+      "Motivo": "Fiesta",
+      "Fecha": "2024-08-30"
+    },
+    {
+      "id": "20ee",
+      "Nombre": "Joan",
       "NumeroDocumento": "1019763603",
       "Telefono": "3224005398",
       "CodigoVivienda": "1101",
@@ -893,17 +901,17 @@
       "NumeroReunion": 24,
       "Motivo": "Revisión de políticas de uso de espacios comunes",
       "Fecha": "2024-12-08",
-      "HoraInicio": "14:30",
+      "HoraInicio": "13:30:00",
       "HoraFin": "18:45:00",
       "id": "0171"
     },
     {
-      "id": "93b6",
-      "NumeroReunion": "25",
-      "Motivo": "Dia de la emergencia ",
-      "Fecha": "2024-09-19",
-      "HoraInicio": "12:19",
-      "HoraFin": "14:18"
+      "id": "554e",
+      "NumeroReunion": "1",
+      "Motivo": "Dia de la emergencia",
+      "Fecha": "2024-08-01",
+      "HoraInicio": "00:20",
+      "HoraFin": "16:23"
     }
   ],
   "Porteros": [
@@ -1169,7 +1177,7 @@
     },
     {
       "id": "9f51",
-      "Nombre": "Flea",
+      "Nombre": "Jonathan",
       "NumeroDocumento": "125784521",
       "Teléfono": "3224407852",
       "Correo": "jojo@gmail.com",
@@ -1178,14 +1186,14 @@
       "Pass": "passWork"
     },
     {
-      "id": "cd79",
-      "Nombre": "Chad",
-      "NumeroDocumento": "1024587985",
-      "Teléfono": "0326587541",
-      "Correo": "chad@gmail.com",
-      "TipoTurno": "Diurno",
-      "User": "chadSmith123",
-      "Pass": "rhcpBsSm"
+      "id": "8e82",
+      "Nombre": "Mateo",
+      "NumeroDocumento": "132654987",
+      "Teléfono": "32256469",
+      "Correo": "mateo@gmail.com",
+      "TipoTurno": "Nocturno",
+      "User": "Mateo",
+      "Pass": "PassMateo"
     }
   ],
   "Administrador": [
@@ -1200,5 +1208,15 @@
       "id": "a7ce"
     }
   ],
-  "Solicitudes": []
+  "Solicitudes": [
+    {
+      "id": "123456",
+      "Nombre": "rgth",
+      "Apellido": "sdf1234513",
+      "NumeroDocumento": "123456",
+      "Teléfono": "654321",
+      "Correo": "vcdsghty@erfg",
+      "CodigoVivienda": "1234"
+    }
+  ]
 }
