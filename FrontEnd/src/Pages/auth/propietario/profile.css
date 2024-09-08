@@ -1,24 +1,24 @@
 .profile-container {
     background-color: #f8f9fa; 
     padding: 20px;
-    border-radius: 40px; 
-    border: 1px solid blue; 
+    border-radius: 20px; /* Ajustado para un radio más sutil */
+    border: 1px solid #007bff; /* Color azul más suave */
     max-width: 800px;
     margin: 100px auto; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    text-align: center; /* Centra todo el texto en el contenedor */
 }
 
 .profile-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px; 
-    color: #343a40; 
+    color: #007bff; /* Color azul para el título */
     font-weight: bold; 
 }
 
 .profile-info {
     padding: 10px; 
-    text-align: center;
 }
 
 .profile-info p {
@@ -33,10 +33,26 @@
     color: #212529; 
 }
 
-.d-flex {
-    text-align: center;
+.profile-info .profile-parkings {
     display: flex;
-    justify-content: center; 
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro de la columna */
+}
+
+.profile-info .profile-parkings div {
+    margin: 5px 0; /* Espaciado entre las líneas */
+}
+
+.edit-icon {
+    color: #007bff; /* Color azul del ícono */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+    font-size: 20px; /* Tamaño del ícono */
+    margin-left: 10px; /* Espaciado entre el texto y el ícono */
+    transition: color 0.3s; /* Transición suave para el cambio de color */
+}
+
+.edit-icon:hover {
+    color: #0056b3; /* Azul más oscuro para hover */
 }
 
 .profile-header {
@@ -47,9 +63,9 @@
 }
 
 .btn-secondary {
-    background-color: #ffffff; 
-    color: #000000; 
-    border: 1px solid blue; 
+    background-color: #007bff; /* Azul de fondo */
+    color: #ffffff; /* Texto blanco */
+    border: 1px solid #007bff; 
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -58,8 +74,8 @@
 }
 
 .btn-secondary:hover {
-    background-color: #6e6e6e62; 
-    color: #000000; 
+    background-color: #0056b3; /* Azul más oscuro para hover */
+    color: #ffffff; 
 }
 
 /* Estilos para dispositivos móviles */
@@ -71,5 +87,14 @@
 
     .profile-title {
         font-size: 20px; 
+    }
+
+    .profile-info p {
+        font-size: 14px; /* Tamaño de fuente ajustado para dispositivos móviles */
+    }
+
+    .btn-secondary {
+        font-size: 14px; /* Tamaño de fuente ajustado para dispositivos móviles */
+        padding: 8px 16px; /* Ajuste del padding para dispositivos móviles */
     }
 }

@@ -151,15 +151,39 @@
       "id": "7c2a",
       "CodigoVivienda": 1101,
       "Nombre": "Joan",
-      "Teléfono": "3138755960",
-      "Correo": "joan230@gmail.com",
+      "Teléfono": "2456",
+      "Correo": "vgas@asbd",
       "EstadoEnvio": "Enviado",
       "NumeroDocumento": 1019763603,
       "MesesAtrasados": 0,
       "User": "joan",
       "Pass": "27h",
-      "espacioMoto": 9,
+      "espacioMoto": 25,
       "espacioCarro": null
+    },
+    {
+      "id": "70f7",
+      "CodigoVivienda": "1102",
+      "Nombre": "Valery Zambrano",
+      "Teléfono": "3118482726",
+      "Correo": "valery@gmail.com",
+      "NumeroDocumento": "1014667051",
+      "MesesAtrasados": 0,
+      "EspacioParqueadero": 0,
+      "User": "Valery1014667051",
+      "Pass": "1014667051"
+    }
+  ],
+  "ReservaSalon": [
+    {
+      "id": "8130",
+      "Nombre": "Denys Fontecha",
+      "Telefono": "123467",
+      "CodigoVivienda": "12",
+      "HoraInicio": "22:00",
+      "HoraFin": "02:00",
+      "Motivo": "reunion",
+      "Fecha": "2024-09-19"
     }
   ],
   "Parqueadero": [
@@ -178,7 +202,7 @@
     {
       "NumeroEspacio": 3,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "4eb4"
     },
     {
@@ -250,7 +274,7 @@
     {
       "NumeroEspacio": 15,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "daa4"
     },
     {
@@ -310,7 +334,7 @@
     {
       "NumeroEspacio": 25,
       "TipoEspacio": "Moto",
-      "Estado": "Disponible",
+      "Estado": "Ocupado",
       "id": "766d"
     },
     {
@@ -364,14 +388,14 @@
     {
       "NumeroEspacio": 34,
       "TipoEspacio": "Carro",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "a1b5"
     },
     {
       "id": "fd99",
       "NumeroEspacio": "35",
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado"
+      "Estado": "Disponible"
     }
   ],
   "Invitados": [
@@ -696,224 +720,6 @@
       "CodigoVivienda": "1101"
     }
   ],
-  "ReservaSalon": [
-    {
-      "id": "1cef",
-      "Nombre": "David",
-      "NumeroDocumento": "1019763603",
-      "Telefono": "322409875",
-      "CodigoVivienda": "1101",
-      "HoraInicio": "22:28",
-      "HoraFin": "01:31",
-      "Motivo": "Fiesta",
-      "Fecha": "2024-08-30"
-    },
-    {
-      "id": "20ee",
-      "Nombre": "Joan",
-      "NumeroDocumento": "1019763603",
-      "Telefono": "3224005398",
-      "CodigoVivienda": "1101",
-      "HoraInicio": "13:49",
-      "HoraFin": "08:52",
-      "Motivo": "Mi cumpleaños",
-      "Fecha": "2024-08-31"
-    }
-  ],
-  "Reuniones": [
-    {
-      "NumeroReunion": 2,
-      "Motivo": "Revisión de contratos de alquiler",
-      "Fecha": "2024-12-30",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "f05b"
-    },
-    {
-      "NumeroReunion": 3,
-      "Motivo": "Evaluación de costos de mantenimiento",
-      "Fecha": "2024-12-29",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "7d0a"
-    },
-    {
-      "NumeroReunion": 4,
-      "Motivo": "Actualización de reglamentos internos",
-      "Fecha": "2024-12-28",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "4ba9"
-    },
-    {
-      "NumeroReunion": 5,
-      "Motivo": "Planificación de eventos comunitarios",
-      "Fecha": "2024-12-27",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "3802"
-    },
-    {
-      "NumeroReunion": 6,
-      "Motivo": "Discusión sobre mejoras en seguridad",
-      "Fecha": "2024-12-26",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "4a69"
-    },
-    {
-      "NumeroReunion": 7,
-      "Motivo": "Revisión de solicitudes de reparación",
-      "Fecha": "2024-12-25",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "d5ea"
-    },
-    {
-      "NumeroReunion": 8,
-      "Motivo": "Ajustes en el presupuesto anual",
-      "Fecha": "2024-12-24",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "e1fe"
-    },
-    {
-      "NumeroReunion": 9,
-      "Motivo": "Análisis de nuevos proyectos",
-      "Fecha": "2024-12-23",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "3b9c"
-    },
-    {
-      "NumeroReunion": 10,
-      "Motivo": "Preparación para auditoría interna",
-      "Fecha": "2024-12-22",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "3c38"
-    },
-    {
-      "NumeroReunion": 11,
-      "Motivo": "Revisión de políticas de seguridad",
-      "Fecha": "2024-12-21",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "bb7d"
-    },
-    {
-      "NumeroReunion": 12,
-      "Motivo": "Estudio de satisfacción de residentes",
-      "Fecha": "2024-12-20",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "a39e"
-    },
-    {
-      "NumeroReunion": 13,
-      "Motivo": "Discusión sobre contratos de proveedores",
-      "Fecha": "2024-12-19",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "2793"
-    },
-    {
-      "NumeroReunion": 14,
-      "Motivo": "Planificación de renovaciones",
-      "Fecha": "2024-12-18",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "b3c8"
-    },
-    {
-      "NumeroReunion": 15,
-      "Motivo": "Evaluación de riesgos y seguridad",
-      "Fecha": "2024-12-17",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "792e"
-    },
-    {
-      "NumeroReunion": 16,
-      "Motivo": "Actualización de la política de reciclaje",
-      "Fecha": "2024-12-16",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "d222"
-    },
-    {
-      "NumeroReunion": 17,
-      "Motivo": "Coordinación de actividades para el próximo año",
-      "Fecha": "2024-12-15",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "5363"
-    },
-    {
-      "NumeroReunion": 18,
-      "Motivo": "Revisión de informes financieros",
-      "Fecha": "2024-12-14",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "6a90"
-    },
-    {
-      "NumeroReunion": 19,
-      "Motivo": "Análisis de propuestas de nuevos servicios",
-      "Fecha": "2024-12-13",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "2b58"
-    },
-    {
-      "NumeroReunion": 20,
-      "Motivo": "Evaluación de políticas de atención al cliente",
-      "Fecha": "2024-12-12",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "3b69"
-    },
-    {
-      "NumeroReunion": 21,
-      "Motivo": "Revisión de avances en proyectos en curso",
-      "Fecha": "2024-12-11",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "586f"
-    },
-    {
-      "NumeroReunion": 22,
-      "Motivo": "Preparación de informes de fin de año",
-      "Fecha": "2024-12-10",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "3591"
-    },
-    {
-      "NumeroReunion": 23,
-      "Motivo": "Discusión sobre mejoras en el servicio de mantenimiento",
-      "Fecha": "2024-12-09",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "b6e0"
-    },
-    {
-      "NumeroReunion": 24,
-      "Motivo": "Revisión de políticas de uso de espacios comunes",
-      "Fecha": "2024-12-08",
-      "HoraInicio": "13:30:00",
-      "HoraFin": "18:45:00",
-      "id": "0171"
-    },
-    {
-      "id": "554e",
-      "NumeroReunion": "1",
-      "Motivo": "Dia de la emergencia",
-      "Fecha": "2024-08-01",
-      "HoraInicio": "00:20",
-      "HoraFin": "16:23"
-    }
-  ],
   "Porteros": [
     {
       "Nombre": "Lucía Gómez",
@@ -1208,15 +1014,5 @@
       "id": "a7ce"
     }
   ],
-  "Solicitudes": [
-    {
-      "id": "123456",
-      "Nombre": "rgth",
-      "Apellido": "sdf1234513",
-      "NumeroDocumento": "123456",
-      "Teléfono": "654321",
-      "Correo": "vcdsghty@erfg",
-      "CodigoVivienda": "1234"
-    }
-  ]
+  "Solicitudes": []
 }

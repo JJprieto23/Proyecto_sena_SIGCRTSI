@@ -1,141 +1,200 @@
-.calendario-container {
-  font-family: Arial, sans-serif;
-}
 
-.calendario-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  color: #070707;
-  font-family: Arial, sans-serif;
-}
-.calendario-nav button {
-  background-color: #007bff;
-  color: white; 
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.calendario-nav button:hover {
-  background-color: #0056b3; 
-}
-
-.calendario-header {
-  margin: 0;
-  font-size: 1.2em;
-}
-
-.calendario-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-}
-
-.calendario-day {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: 1px solid blue; /* Agregado borde azul */
-}
-
-.calendario-day.default {
-  background-color: #ffffff;
-}
-
-.calendario-day.green {
-  background-color: #63d87e;
-  color: #155724;
-}
-
-.calendario-day.red {
-  background-color: #e2414ed8;
-  color: #721c24;
-}
-
-.calendario-day:hover {
-  background-color: #ccc6c6;
-}
-
-.calendario-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+.react-calendar {
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 1000px;
+  margin: 60px auto;
+  overflow: auto;
+  border: 1px solid #007bff; /* Añade borde para definir el calendario */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto flotante */
 }
 
-.calendario-modal-content {
-  background: #fff;
+/* Encabezado del Calendario */
+.calendario-header {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 5rem;
+  margin: 20px auto;
+  color: #000000; /* Color del texto */
+}
+
+/* Indicadores de Reservas */
+.indicator {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 2px auto;
+}
+
+.indicator.green {
+  background-color: rgb(55, 221, 91);
+}
+
+.indicator.red {
+  background-color: red;
+}
+
+/* Modal de Reservas */
+/* Calendario.css */
+
+/* Estilos para el contenedor principal del calendario */
+.calendario-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
-  border-radius: 5px; 
-  width: 80%; 
-  max-width: 400px; 
-  max-height: 80%; 
-  overflow-y: auto; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
 }
 
-.form-group {
-  margin-bottom: 15px;
+/* Estilos para el encabezado del calendario */
+.calendario-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #000000; /* Azul oscuro */
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
+/* Estilos para la alerta */
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 1000;
+}
+
+/* Estilos para el modal */
+/* Calendario.css */
+
+/* Estilos para el contenedor principal del calendario */
+.calendario-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Fondo claro */
+  border-radius: 15px;
+  border: 1px solid #2d83da; /* Azul oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el encabezado del calendario */
+.calendario-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #000000; /* Azul oscuro */
+}
+
+/* Estilos para la alerta */
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 1000;
+  border-radius: 8px;
+  border: 1px solid #003366; /* Azul oscuro */
+}
+
+/* Estilos para el modal */
+.custom-modal .modal-content {
+  border-radius: 8px;
+  border: 1px solid #003366; /* Azul oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-modal-title {
+  color: #000000; /* Azul oscuro */
   font-weight: bold;
+}
+
+/* Estilos para el botón del modal */
+.custom-modal .btn-primary {
+  background-color: #007bff; /* Azul oscuro */
+  border: 1px solid #296eb3; /* Azul oscuro */
+  color: white;
+}
+
+.custom-modal .btn-primary:hover {
+  background-color: #002244; /* Azul más oscuro */
+  border-color: #002244; /* Azul más oscuro */
+}
+
+/* Estilos para los indicadores en el calendario */
+.indicator {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 2px auto;
+}
+
+.indicator.green {
+  background-color: #00cc99; /* Verde menta */
+}
+
+.indicator.red {
+  background-color: #ff6666; /* Rojo claro */
+}
+
+/* Estilos para el overlay del modal */
+.calendario-modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para el contenido del modal */
+.calendario-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #003366; /* Azul oscuro */
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los campos del formulario */
+.form-group label {
+  color: #003366; /* Azul oscuro */
 }
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #003366; /* Azul oscuro */
   border-radius: 4px;
+  padding: 0.5rem;
+  transition: border-color 0.3s;
 }
 
-.form-group textarea {
-  resize: vertical;
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #00509e; /* Azul medio */
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 80, 158, 0.2); /* Azul claro */
 }
 
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
+/* Estilos para el botón de confirmación */
 .modal-buttons button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  border: 1px solid #003366; /* Azul oscuro */
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .modal-buttons button[type="submit"] {
-  background-color: #2d8642ee;
+  background-color: #003366; /* Azul oscuro */
   color: white;
 }
 
 .modal-buttons button[type="submit"]:hover {
-  background-color: #0da12d;
+  background-color: #002244; /* Azul más oscuro */
 }
 
 .modal-buttons button[type="button"] {
-  background-color: #dc3545;
-  color: white;
+  background-color: #f1f1f1; /* Fondo claro */
+  color: #003366; /* Azul oscuro */
 }
 
 .modal-buttons button[type="button"]:hover {
-  background-color: #c82333;
+  background-color: #e0e0e0; /* Fondo más oscuro */
 }

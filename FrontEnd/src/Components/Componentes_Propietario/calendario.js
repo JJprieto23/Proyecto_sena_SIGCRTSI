@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import './Calendario.css';
 import axios from 'axios';
 
 const Calendario = () => {
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [showModal, setShowModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [formData, setFormData] = useState({
@@ -17,6 +18,15 @@ const Calendario = () => {
     Motivo: ''
   });
   const [reservas, setReservas] = useState([]);
+  const [formErrors, setFormErrors] = useState({
+    Nombre: '',
+    NumeroDocumento: '',
+    Telefono: '',
+    CodigoVivienda: '',
+    Motivo: ''
+  });
+
+  const propietarioActual = formData.NumeroDocumento;
 
   useEffect(() => {
     const fetchReservas = async () => {
@@ -29,14 +39,22 @@ const Calendario = () => {
         setReservas(formattedReservas);
       } catch (error) {
         console.error('Error al obtener las reservas', error);
+        setFormErrors(prev => ({ ...prev, global: "Error al obtener las reservas" }));
       }
     };
     fetchReservas();
-  }, [currentMonth, currentYear]);
+  }, []);
 
-  const handleDayClick = (day) => {
-    const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    setSelectedDate(dateStr);
+  const handleDateChange = (date) => {
+    const formattedDate = date.toISOString().split('T')[0];
+    const existingReservation = reservas.some(res => res.Fecha === formattedDate);
+    
+    if (existingReservation) {
+      setFormErrors(prev => ({ ...prev, global: "Este día ya está reservado." }));
+      return;
+    }
+    
+    setSelectedDate(formattedDate);
     setShowModal(true);
   };
 
@@ -44,7 +62,35 @@ const Calendario = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
+    let isValid = true;
+    let errorMessage = '';
+
+    if (name === "Nombre" && !/^[a-zA-Z\s]*$/.test(value)) {
+      errorMessage = "El nombre solo puede contener letras y espacios.";
+      isValid = false;
+    }
+
+    if ((name === "NumeroDocumento" || name === "Telefono" || name === "CodigoVivienda") && !/^\d*$/.test(value)) {
+      errorMessage = "Este campo solo puede contener números.";
+      isValid = false;
+    }
+
+    if (name === "Motivo" && !/^[\w\s.,!?]*$/.test(value)) {
+      errorMessage = "El motivo solo puede contener letras, números y puntuación básica.";
+      isValid = false;
+    }
+
+    setFormErrors(prev => ({
+      ...prev,
+      [name]: errorMessage
+    }));
+
+    if (isValid) {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
   };
 
   const handleFormSubmit = async (e) => {
@@ -52,7 +98,7 @@ const Calendario = () => {
     const existingReservation = reservas.some(res => res.Fecha === selectedDate);
 
     if (existingReservation) {
-      alert('Este día ya está reservado.');
+      setFormErrors(prev => ({ ...prev, global: "Este día ya está reservado." }));
       return;
     }
 
@@ -68,103 +114,187 @@ const Calendario = () => {
       }]);
 
       handleModalClose();
-      alert('¡Reserva realizada con éxito!');
+      setFormErrors(prev => ({ ...prev, global: "¡Reserva realizada con éxito!" }));
     } catch (error) {
       console.error('Error detallado:', error);
-      alert(`Error al realizar la reserva: ${error.response?.data.message || 'Por favor, intente de nuevo.'}`);
+      setFormErrors(prev => ({
+        ...prev,
+        global: `Error al realizar la reserva: ${error.response?.data.message || 'Por favor, intente de nuevo.'}`
+      }));
     }
   };
 
-  const getDayStatus = (day) => {
-    const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    const reservasEnFecha = reservas.filter(res => res.Fecha === dateStr);
-    if (reservasEnFecha.length > 0) {
-      return reservasEnFecha.some(res => res.NumeroDocumento === formData.NumeroDocumento) ? 'green' : 'red';
+  const tileContent = ({ date, view }) => {
+    if (view === 'month') {
+      const dateStr = date.toISOString().split('T')[0];
+      const reserva = reservas.find(res => res.Fecha === dateStr);
+      if (reserva) {
+        const colorClass = reserva.NumeroDocumento === propietarioActual ? 'green' : 'red';
+        return <div className={`indicator ${colorClass}`}></div>;
+      }
     }
-    return 'default';
+    return null;
   };
 
-  const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
-
-  const generateDaysArray = (month, year) => Array.from({ length: daysInMonth(month, year) }, (_, i) => i + 1);
-
-  const days = generateDaysArray(currentMonth, currentYear);
-  const meses = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-  ];
+  const tileDisabled = ({ date, view }) => {
+    if (view === 'month') {
+      const today = new Date();
+      return date < today;
+    }
+    return false;
+  };
 
   return (
-    <div className="calendario-container">
-      <div className="calendario-nav">
-        <button onClick={() => setCurrentMonth(prev => (prev === 0 ? 11 : prev - 1))}>
-          Anterior
-        </button>
-        <h3 className="calendario-header">{meses[currentMonth]} {currentYear}</h3>
-        <button onClick={() => setCurrentMonth(prev => (prev === 11 ? 0 : prev + 1))}>
-          Siguiente
-        </button>
-      </div>
-      <div className="calendario-grid">
-        {days.map(day => (
+    <div>
+      <div>
+        <h3 className="calendario-header">Reservar Salón Comunal</h3>
+        {formErrors.global && (
           <div
-            key={day}
-            className={`calendario-day ${getDayStatus(day)}`}
-            onClick={() => getDayStatus(day) !== 'red' && handleDayClick(day)}
+            className={`alert ${formErrors.global.includes("éxito") ? "alert-success" : "alert-danger"} alert-dismissible fade show`}
+            role="alert"
+            style={{
+              position: "fixed",
+              top: "1rem",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "80%",
+              maxWidth: "500px",
+              zIndex: 1050,
+              borderRadius: "0.375rem",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+            }}
           >
-            {day}
+            {formErrors.global}
           </div>
-        ))}
+        )}
+        
+        <Calendar
+          onChange={handleDateChange}
+          tileContent={tileContent}
+          tileDisabled={tileDisabled}
+        />
       </div>
+      <Modal
+        show={showModal}
+        onHide={handleModalClose}
+        centered
+        backdrop="static"
+        keyboard={false}
+        className="custom-modal"
+      >
+        <Modal.Header closeButton className="border-0">
+          <Modal.Title className="custom-modal-title">Reserva del Salón para el {selectedDate}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleFormSubmit}>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="Nombre">
+                  <Form.Label>Nombre</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="Nombre"
+                    placeholder="Ingrese su nombre"
+                    value={formData.Nombre}
+                    onChange={handleChange}
+                    required
+                  />
+                  {formErrors.Nombre && <div className="error-message">{formErrors.Nombre}</div>}
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="NumeroDocumento">
+                  <Form.Label>Número de Documento</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="NumeroDocumento"
+                    placeholder="Ingrese su documento"
+                    value={formData.NumeroDocumento}
+                    onChange={handleChange}
+                    required
+                  />
+                  {formErrors.NumeroDocumento && <div className="error-message">{formErrors.NumeroDocumento}</div>}
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="Telefono">
+                  <Form.Label>Teléfono</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="Telefono"
+                    placeholder="Ingrese su teléfono"
+                    value={formData.Telefono}
+                    onChange={handleChange}
+                    required
+                  />
+                  {formErrors.Telefono && <div className="error-message">{formErrors.Telefono}</div>}
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="CodigoVivienda">
+                  <Form.Label>Código de Vivienda</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="CodigoVivienda"
+                    placeholder="Ingrese su código de vivienda"
+                    value={formData.CodigoVivienda}
+                    onChange={handleChange}
+                    required
+                  />
+                  {formErrors.CodigoVivienda && <div className="error-message">{formErrors.CodigoVivienda}</div>}
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="HoraInicio">
+                  <Form.Label>Hora de Inicio</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="HoraInicio"
+                    value={formData.HoraInicio}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="HoraFin">
+                  <Form.Label>Hora de Fin</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="HoraFin"
+                    value={formData.HoraFin}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Form.Group className="mb-3" controlId="Motivo">
+              <Form.Label>Motivo de la Reserva</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="Motivo"
+                placeholder="Escriba el motivo de la reserva"
+                value={formData.Motivo}
+                onChange={handleChange}
+                required
+              />
+              {formErrors.Motivo && <div className="error-message">{formErrors.Motivo}</div>}
+            </Form.Group>
 
-      {showModal && (
-        <div className="calendario-modal-overlay">
-          <div className="calendario-modal-content">
-            <h2>Reservar para el {selectedDate}</h2>
-            <form onSubmit={handleFormSubmit}>
-              <div className="form-group">
-                <label htmlFor="Nombre">Nombre:</label>
-                <input type="text" id="Nombre" name="Nombre" value={formData.Nombre} onChange={handleChange} required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="NumeroDocumento">Número de Documento:</label>
-                <input type="text" id="NumeroDocumento" name="NumeroDocumento" value={formData.NumeroDocumento} onChange={handleChange} required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="Telefono">Teléfono:</label>
-                <input type="text" id="Telefono" name="Telefono" value={formData.Telefono} onChange={handleChange} required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="CodigoVivienda">Código de Vivienda:</label>
-                <input type="text" id="CodigoVivienda" name="CodigoVivienda" value={formData.CodigoVivienda} onChange={handleChange} required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="HoraInicio">Hora de Inicio:</label>
-                <input type="time" id="HoraInicio" name="HoraInicio" value={formData.HoraInicio} onChange={handleChange} required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="HoraFin">Hora de Fin:</label>
-                <input type="time" id="HoraFin" name="HoraFin" value={formData.HoraFin} onChange={handleChange} required />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="Motivo">Motivo de la Reserva:</label>
-                <textarea id="Motivo" name="Motivo" rows="3" value={formData.Motivo} onChange={handleChange} required />
-              </div>
-
-              <div className="modal-buttons">
-                <button type="submit">Reservar</button>
-                <button type="button" onClick={handleModalClose}>Cerrar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+            <div className="d-flex justify-content-end">
+              <Button variant="primary" type="submit">
+                Confirmar Reserva
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

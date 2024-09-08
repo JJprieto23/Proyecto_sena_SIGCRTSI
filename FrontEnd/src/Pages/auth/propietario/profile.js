@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import './profile.css';
 
-
 const Profile = () => {
   const { user } = useUser();
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const Profile = () => {
   const [correo, setCorreo] = useState('');
   const [isEditingTelefono, setIsEditingTelefono] = useState(false);
   const [isEditingCorreo, setIsEditingCorreo] = useState(false);
-  const [showAlert, setShowAlert] = useState(false); // Estado para mostrar la alerta
+  const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
   useEffect(() => {
@@ -29,7 +28,7 @@ const Profile = () => {
     if (showAlert) {
       const timer = setTimeout(() => {
         setShowAlert(false);
-      }, 3000); // La alerta desaparecerá después de 3 segundos
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -76,8 +75,9 @@ const Profile = () => {
     );
   }
 
-  const espacioMoto = Array.isArray(user.espacioMoto) ? user.espacioMoto : [];
-  const espacioCarro = Array.isArray(user.espacioCarro) ? user.espacioCarro : [];
+  //Muestra 0 si no hay espacios reservados
+  const espacioMoto = user.espacioMoto || 0;
+  const espacioCarro = user.espacioCarro || 0;
 
   return (
     <>
@@ -140,35 +140,13 @@ const Profile = () => {
             <strong>Meses Atrasados:</strong> {user.MesesAtrasados}
           </p>
           <p>
-            <strong>Espacios Parqueadero:</strong>
-            <div>
-              <h3>Moto</h3>
-              <ul>
-                {espacioMoto.length > 0 ? (
-                  espacioMoto.map((espacio, index) => (
-                    <li key={index}>
-                      <strong>Espacio:</strong> {espacio.NumeroEspacio} -{" "}
-                      {espacio.TipoEspacio}
-                    </li>
-                  ))
-                ) : (
-                  <li>No tienes espacios de moto rentados</li>
-                )}
-              </ul>
-              <h3>Carro</h3>
-              <ul>
-                {espacioCarro.length > 0 ? (
-                  espacioCarro.map((espacio, index) => (
-                    <li key={index}>
-                      <strong>Espacio:</strong> {espacio.NumeroEspacio} -{" "}
-                      {espacio.TipoEspacio}
-                    </li>
-                  ))
-                ) : (
-                  <li>No tienes espacios de carro rentados</li>
-                )}
-              </ul>
-            </div>
+            <strong>Espacios Parqueadero</strong>
+          </p>
+          <p>
+            <strong>Moto:</strong> {espacioMoto}
+          </p>
+          <p>
+            <strong>Carro:</strong> {espacioCarro}
           </p>
           <p>
             <strong>Código Vivienda:</strong> {user.CodigoVivienda}
@@ -179,9 +157,7 @@ const Profile = () => {
       {showAlert && (
         <div
           className={`alert ${
-            alertMessage.includes("correctamente")
-              ? "alert-success"
-              : "alert-danger"
+            alertMessage.includes("correctamente") ? "alert-success" : "alert-danger"
           } alert-dismissible fade show`}
           role="alert"
           style={{
