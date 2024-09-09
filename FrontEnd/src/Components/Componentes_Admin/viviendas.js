@@ -18,7 +18,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
   const [accion, setAccion] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [status, setStatus] = useState("");
-  const [eliminarRecord, setEliminarRecord] = useState("")
+  const [eliminarRecord, setEliminarRecord] = useState("");
 
   const [apartamentos, setApartamentos] = useState({
     CodigoVivienda: "",
@@ -44,7 +44,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
           );
           if (response.status === 200) {
             setStatus(response.status);
-            setAccion("")
+            setAccion("");
             setTimeout(() => {
               setStatus("");
             }, 5000);
@@ -62,7 +62,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
           console.log(response.status);
           if (response.status === 200) {
             setShowAlert(false);
-            setStatus(response.status)
+            setStatus(response.status);
             setAccion("");
             setTimeout(() => {
               setStatus("");
@@ -91,7 +91,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
     } catch (error) {
       console.error(error);
       setAccion("");
-      setStatus("err")
+      setStatus("err");
       setTimeout(() => {
         setStatus("");
       }, 5000);
@@ -103,13 +103,13 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
   };
 
   const eliminar = (record) => {
-      if (apiS === "Apartamentos") {
-        setApartamentos((prevApartamento) => ({
-          ...prevApartamento,
-          id: record,
-        }));
-      }
-      setAccion(() => "Eliminar");
+    if (apiS === "Apartamentos") {
+      setApartamentos((prevApartamento) => ({
+        ...prevApartamento,
+        id: record,
+      }));
+    }
+    setAccion(() => "Eliminar");
   };
 
   const fetchFilteredRecords = async (term) => {
@@ -142,6 +142,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
           <div
             className="alert alert-warning alert-dismissible fade show w-25 z-1 position-absolute px-4 py-4"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
             Esta seguro de eliminar este registro ?
             <form className="p-0" onSubmit={enviar}>
@@ -178,25 +179,22 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
       ) : status === 200 ? (
         <div className="d-flex justify-content-center">
           <div
-          className="alert alert-success alert-dismissible z-1 position-absolute fade show"
-          role="alert"
-        >
-          <div className="d-flex flex-row align-items-center">
-            <div className="me-3">Operación completada</div>
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Operación completada
           </div>
         </div>
-        </div>
-        
       ) : status === 201 ? (
-          <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <div
-          className="alert alert-success alert-dismissible z-1 position-absolute fade show"
-          role="alert"
-        >
-          <div className="d-flex flex-row align-items-center">
-            <div className="me-3">Operación completada</div>
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Operación completada
           </div>
-        </div>
         </div>
       ) : null}
       <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
@@ -211,7 +209,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
         />
         <button
           onClick={() => setCurrentAccion("Consultar")}
-          className="btn btn-outline-success"
+          className="btn btn-success py-1"
           type="submit"
         >
           Search
@@ -256,14 +254,14 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
                   <td>{record.CodigoVivienda}</td>
                   <td>{record.NumeroParqueadero}</td>
                   <td>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row justify-content-center">
                       <div className="mx-2">
                         <button
                           onClick={() => {
                             setShowAlert(true);
                             setEliminarRecord(record.id);
                           }}
-                          class="btn btn-danger px-2"
+                          class="btn btn-danger p-2"
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
@@ -271,7 +269,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
                       <div className="mx-2">
                         <button
                           type="button"
-                          className="btn btn-warning px-2 py-1"
+                          className="btn btn-warning p-2"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
                           onClick={() => {

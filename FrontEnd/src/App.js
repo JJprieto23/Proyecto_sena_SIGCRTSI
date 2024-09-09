@@ -8,9 +8,8 @@ import LoginPropietario from "./Pages/auth/Login/LoginPropietario";
 import MainPropietario from "./Pages/auth/propietario/mainPropietario";
 import MainPortero from "./Pages/auth/portero/mainPortero.";
 import RegisterPropietario from "./Pages/auth/Login/RegisterPropietario";
-import InsertForm from "./Pages/auth/admin/insertForm";
-import Profile from "./Pages/auth/propietario/profile";
 import Tabla from "./Components/Componentes_Propietario/tabla"; // Asegúrate de la ruta correcta
+import Profile from "./Components/Componentes_Propietario/profile";
 
 function App() {
   return (
@@ -28,7 +27,6 @@ function App() {
           <Route path="LoginPropietario" exact element={<LoginPropietario />}></Route>
           <Route path="MainPropietario" exact element={<MainPropietario />}></Route>
           <Route path="/profile" exact element={<Profile />} />
-          <Route path="InsertForm" exact element={<InsertForm />}></Route>
         </Routes>
       </Router>
     </Fragment>

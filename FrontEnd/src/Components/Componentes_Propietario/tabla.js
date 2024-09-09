@@ -145,26 +145,26 @@ const Tabla = ({ apiS }) => {
 
   return (
     <div className="w-100 h-100">
-  {showAlert && (
-    <div
-      className={`alert ${
-        alertMessage.includes("exitosamente")
-          ? "alert-success"
-          : "alert-danger"
-      } alert-dismissible fade show`}
-      role="alert"
-      style={{
-        position: "fixed",
-        top: "10%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "30%",
-        zIndex: 1000,
-        textAlign: "center",
-      }}
-    >
-      {alertMessage}
-    </div>
+      {showAlert && (
+        <div
+          className={`alert ${
+            alertMessage.includes("exitosamente")
+              ? "alert-success"
+              : "alert-danger"
+          } alert-dismissible fade show`}
+          role="alert"
+          style={{
+            position: "fixed",
+            top: "10%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "30%",
+            zIndex: 1000,
+            textAlign: "center",
+          }}
+        >
+          {alertMessage}
+        </div>
       )}
 
       <div className="card m-0 h-100">
@@ -179,7 +179,7 @@ const Tabla = ({ apiS }) => {
                   placeholder="Buscar"
                   aria-label="Buscar"
                 />
-                <button className="btn btn-outline-success" type="submit">
+                <button className="btn btn-success py-1" type="submit">
                   Buscar
                 </button>
               </form>
@@ -190,7 +190,9 @@ const Tabla = ({ apiS }) => {
                     key={index}
                     className="d-flex flex-column border border-primary rounded-4 w-25 p-2"
                   >
-                    <span className="fs-3 fw-bolder">{record.NumeroEspacio}</span>
+                    <span className="fs-3 fw-bolder">
+                      {record.NumeroEspacio}
+                    </span>
                     <button
                       type="button"
                       className="btn bg-success btn-sm p-1"
@@ -254,7 +256,9 @@ const Tabla = ({ apiS }) => {
                           ))}
                           <li
                             className={`paginate_button page-item next ${
-                              currentPageMoto === totalPagesMoto ? "disabled" : ""
+                              currentPageMoto === totalPagesMoto
+                                ? "disabled"
+                                : ""
                             }`}
                           >
                             <Link
@@ -284,7 +288,7 @@ const Tabla = ({ apiS }) => {
                   placeholder="Buscar"
                   aria-label="Buscar"
                 />
-                <button className="btn btn-outline-success" type="submit">
+                <button className="btn btn-success py-1" type="submit">
                   Buscar
                 </button>
               </form>
@@ -295,7 +299,9 @@ const Tabla = ({ apiS }) => {
                     key={index}
                     className="d-flex flex-column border border-primary rounded-4 w-25 p-2"
                   >
-                    <span className="fs-3 fw-bolder">{record.NumeroEspacio}</span>
+                    <span className="fs-3 fw-bolder">
+                      {record.NumeroEspacio}
+                    </span>
                     <button
                       type="button"
                       className="btn bg-success btn-sm p-1"
@@ -359,7 +365,9 @@ const Tabla = ({ apiS }) => {
                           ))}
                           <li
                             className={`paginate_button page-item next ${
-                              currentPageCarro === totalPagesCarro ? "disabled" : ""
+                              currentPageCarro === totalPagesCarro
+                                ? "disabled"
+                                : ""
                             }`}
                           >
                             <Link

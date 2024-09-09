@@ -25,8 +25,6 @@ const RegisterPropietario = () => {
 
   const [status, setStatus ] = useState("")
 
-  const [userRed, setUserRed] = useState("")
-
   const navigate = useNavigate();
 
   const enviar = async (e) => {
@@ -90,17 +88,19 @@ const RegisterPropietario = () => {
     >
       {showAlert === true ? (
         <div
-          className="alert alert-warning alert-dismissible fade show"
+          className="alert alert-warning alert-dismissible fade show w-25 text-center"
           role="alert"
+          style={{ marginInlineEnd: "35%" }}
         >
           Porfavor, seleccióne un archivo de verificación
         </div>
       ) : status === 201 ? (
         <div
-          className="alert alert-success alert-dismissible fade show"
+          className="alert alert-success alert-dismissible fade show w-25"
           role="alert"
+          style={{ marginInlineEnd: "35%" }}
         >
-          <div className="d-flex flex-row align-items-center">
+          <div className="d-flex flex-row align-items-center text-center">
             <div className="me-3">
               Solicitud enviada, espere la confirmación del administrador
             </div>
@@ -116,21 +116,21 @@ const RegisterPropietario = () => {
           </div>
         </div>
       ) : null}
-      <div className="login-box rounded-4 p-5 bg-dark bg-opacity-75">
+      <div className="login-box rounded-4 p-5 bg-white">
         <div className="d-flex flex-row w-100">
           <div className="me-5 w-50">
             <div className="login-logo d-flex justify-content-start">
               <img src={myImg} alt="Logo" className="logo" />
             </div>
-            <p className="login-box-msg p-0 text-white text-start fs-1">
+            <p className="login-box-msg p-0 text-start fs-1">
               Enviar solicitud para creación de cuenta
             </p>
           </div>
           <div className="ms-5">
-            <div className="card-body login-card-body bg-dark bg-opacity-10">
+            <div className="card-body login-card-body">
               <form onSubmit={enviar}>
                 {/* Nombre y Apellido */}
-                <div className="d-flex flex-row mb-2">
+                <div className="d-flex flex-row">
                   <div className="me-4 w-50">
                     <input
                       type="text"
@@ -227,7 +227,7 @@ const RegisterPropietario = () => {
                     Adjuntar Foto del Contrato de Propiedad o Certificado de
                     Tradicion y Libertad
                   </label>
-                  <div className="d-flex flex-row align-items-center">
+                  <div className="d-flex flex-row align-items-center mb-2">
                     <div className="me-3">
                       <button
                         type="button"

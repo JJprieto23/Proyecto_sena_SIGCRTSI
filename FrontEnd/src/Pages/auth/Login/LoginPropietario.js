@@ -11,6 +11,7 @@ const LoginPropietario = () => {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const { setUser: setContextUser } = useUser();
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const enviar = async (e) => {
@@ -26,14 +27,13 @@ const LoginPropietario = () => {
         const usuario = response.data[0];
 
         if (usuario.Pass === Password) {
-          alert("Éxito al iniciar sesión");
           setContextUser(usuario); // Actualizar el contexto con el usuario
           navigate("/MainPropietario");
         } else {
-          alert("Contraseña incorrecta");
+          setShowAlert("pass");
         }
       } else {
-        alert("Usuario no encontrado");
+        setShowAlert("user");
       }
     } catch (error) {
       console.error(error);
@@ -42,100 +42,118 @@ const LoginPropietario = () => {
   };
 
   return (
-    <div
-      className="login-page"
-      style={{
-        backgroundImage: `url(${Fondo1})`, // Imagen de fondo importada
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh", // Ajustar a la altura completa de la ventana
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        filter: "brightness(90%)", // Oscurecer la imagen de fondo
-      }}
-    >
-      <div className="login-box">
-        <div className="d-flex align-items-center flex-sm-column my-3">
-          <div className="w-25">
-            <Link to="/" className="text-decoration-none">
-              <img src={myImg} alt="Logo" className="logo" />
-              <span className="fs-6">Volver al inicio</span>
+    <>
+      <div
+        className="login-page"
+        style={{
+          backgroundImage: `url(${Fondo1})`, // Imagen de fondo importada
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh", // Ajustar a la altura completa de la ventana
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          filter: "brightness(90%)", // Oscurecer la imagen de fondo
+        }}
+      >
+        {showAlert === "pass" ? (
+          <div
+            className="alert alert-warning alert-dismissible fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Contraseña incorrecta
+          </div>
+        ) : showAlert === "user" ? (
+          <div
+            className="alert alert-warning alert-dismissible fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Usuario no encontrado
+          </div>
+        ) : null}
+        <div className="login-box rounded-4 p-5 bg-white w-50">
+          <div className="login-logo d-flex flex-column align-items-center">
+            <Link
+              to="/"
+              className="text-decoration-none link-body-emphasis w-25 link-opacity-25-hover"
+            >
+              <div>
+                <img src={myImg} alt="Logo" className="logo" />
+              </div>
+              <div className="fs-5">Volver al inicio</div>
             </Link>
           </div>
-        </div>
-        <div className="card">
+          <p className="login-box-msg p-0 text-center mb-2 fs-2">
+            Ingrese como propietario
+          </p>
           <div className="card-body login-card-body">
-            <p className="login-box-msg">LOGIN PROPIETARIO</p>
-
             <form onSubmit={enviar}>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Usuario"
-                  name="Username"
-                  required
-                  value={Username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-user"></span>
-                  </div>
+              {/* Nombre y Apellido */}
+              <div className="d-flex flex-row">
+                <div className="me-4 w-50">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Usuario"
+                    name="Username"
+                    required
+                    value={Username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className="w-50">
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Contraseña"
+                    name="Pass"
+                    required
+                    value={Password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </div>
               </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Contraseña"
-                  name="Pass"
-                  required
-                  value={Password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-8">
-                  <div className="icheck-primary">
-                    <input type="checkbox" id="remember" />
-                    <label htmlFor="remember">Recuerdame</label>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12">
-                  <button type="submit" className="btn btn-success btn-block">
+              <div>
+                <div>
+                  <button
+                    type="submit"
+                    className="btn btn-success btn-block p-2 mt-2"
+                  >
                     Ingresar
                   </button>
                 </div>
               </div>
             </form>
-
-            <p className="mb-1">
-              <Link to="/forgot-password">¿Has olvidado tu contraseña?</Link>
-            </p>
             <hr className="hr-line" />
             <p className="mb-0">
               ¿No tiene una cuenta?{" "}
-              <Link to="/RegisterPropietario" className="text-center">
+              <Link
+                to="/RegisterPropietario"
+                className="text-center text-decoration-none fw-bold"
+              >
                 Enviar solicitud para creación de cuenta
               </Link>
             </p>
             <p className="mb-0">
-              ¿Desea ingresar como <Link to="/LoginPortero">Portero</Link> o{" "}
-              <Link to="/LoginAdministrador">Administrador</Link>?
+              ¿Desea ingresar como{" "}
+              <Link to="/LoginPortero" className="text-decoration-none fw-bold">
+                Portero
+              </Link>{" "}
+              o{" "}
+              <Link
+                to="/LoginAdministrador"
+                className="text-decoration-none fw-bold"
+              >
+                Administrador
+              </Link>
+              ?
             </p>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

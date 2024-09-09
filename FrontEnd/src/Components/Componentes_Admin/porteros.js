@@ -156,6 +156,7 @@ const Porteros = ({ item, currentRecords, apiS }) => {
           <div
             className="alert alert-warning alert-dismissible fade show w-25 z-1 position-absolute px-4 py-4"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
             Esta seguro de eliminar este registro ?
             <form className="p-0" onSubmit={enviar}>
@@ -192,23 +193,21 @@ const Porteros = ({ item, currentRecords, apiS }) => {
       ) : status === 200 ? (
         <div className="d-flex justify-content-center">
           <div
-            className="alert alert-success alert-dismissible z-1 position-absolute fade show"
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
-            <div className="d-flex flex-row align-items-center">
-              <div className="me-3">Operación completada</div>
-            </div>
+            Operación completada
           </div>
         </div>
       ) : status === 201 ? (
         <div className="d-flex justify-content-center">
           <div
-            className="alert alert-success alert-dismissible z-1 position-absolute fade show"
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
-            <div className="d-flex flex-row align-items-center">
-              <div className="me-3">Operación completada</div>
-            </div>
+            Operación completada
           </div>
         </div>
       ) : null}
@@ -224,7 +223,7 @@ const Porteros = ({ item, currentRecords, apiS }) => {
         />
         <button
           onClick={() => setCurrentAccion("Consultar")}
-          className="btn btn-outline-success"
+          className="btn btn-success py-1"
           type="submit"
         >
           Search
@@ -272,14 +271,14 @@ const Porteros = ({ item, currentRecords, apiS }) => {
                   <td>{record.Correo}</td>
                   <td>{record.TipoTurno}</td>
                   <td>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row justify-content-center">
                       <div className="mx-2">
                         <button
                           onClick={() => {
                             setShowAlert(true);
                             setEliminarRecord(record.id);
                           }}
-                          class="btn btn-danger px-2"
+                          class="btn btn-danger p-2"
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
@@ -287,7 +286,7 @@ const Porteros = ({ item, currentRecords, apiS }) => {
                       <div className="mx-2">
                         <button
                           type="button"
-                          className="btn btn-warning px-2 py-1"
+                          className="btn btn-warning p-2"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
                           onClick={() => {

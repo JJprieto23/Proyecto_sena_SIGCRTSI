@@ -16,6 +16,9 @@ const Solicitudes = ({ currentRecords, length }) => {
     id: "",
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [status, setStatus] = useState("");
+
   const enviar = async (e) => {
     e.preventDefault();
 
@@ -38,7 +41,10 @@ const Solicitudes = ({ currentRecords, length }) => {
       );
       console.log(response1.status, response2.status);
       if (response1.status === 201 && response2.status === 200) {
-        alert("Solicitud aprobada");
+        setStatus(response1.status);
+        setTimeout(() => {
+          setStatus("");
+        }, 5000);
       }
     } catch (error) {
       console.error(error);
@@ -55,7 +61,10 @@ const Solicitudes = ({ currentRecords, length }) => {
       );
       console.log(response.status);
       if (response.status === 200) {
-        alert("Solicitud cancelada");
+        setStatus(response.status);
+        setTimeout(() => {
+          setStatus("");
+        }, 5000);
       }
     } catch (error) {
       console.error(error);
@@ -65,8 +74,29 @@ const Solicitudes = ({ currentRecords, length }) => {
 
   return (
     <div className="accordion" id="accordionExample">
+      {status === 201 ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Solicitud aprobada
+          </div>
+        </div>
+      ) : status === 200 ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Solicitud cancelada
+          </div>
+        </div>
+      ) : null}
       {length === 0 ? (
-        <div className="accordion-item">
+        <div className="accordion-item mb-3">
           <h2 className="accordion-header">
             <button
               className="accordion-button"
@@ -87,7 +117,7 @@ const Solicitudes = ({ currentRecords, length }) => {
         </div>
       ) : (
         currentRecords.map((record, index) => (
-          <div key={index} className="accordion-item">
+          <div key={index} className="accordion-item mb-3">
             <h2 className="accordion-header">
               <button
                 className="accordion-button"

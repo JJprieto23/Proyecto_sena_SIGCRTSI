@@ -119,7 +119,7 @@ const Reporte = ({item, currentRecords, apiS}) => {
       <div className="my-2 w-25">
         <button
           type="button"
-          className="btn btn-success p-0 m-0"
+          className="btn btn-success  m-0"
           onClick={() => generatePDF(currentRecords, total(currentRecords))}
         >
           Generar reporte <FontAwesomeIcon icon={faSquarePlus} />

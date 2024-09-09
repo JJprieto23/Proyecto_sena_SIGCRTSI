@@ -131,6 +131,7 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
           <div
             className="alert alert-warning alert-dismissible fade show w-25 z-1 position-absolute px-4 py-4"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
             Esta seguro de eliminar este registro ?
             <form className="p-0" onSubmit={enviar}>
@@ -167,23 +168,21 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
       ) : status === 200 ? (
         <div className="d-flex justify-content-center">
           <div
-            className="alert alert-success alert-dismissible z-1 position-absolute fade show"
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
-            <div className="d-flex flex-row align-items-center">
-              <div className="me-3">Operación completada</div>
-            </div>
+            Operación completada
           </div>
         </div>
       ) : status === 201 ? (
         <div className="d-flex justify-content-center">
           <div
-            className="alert alert-success alert-dismissible z-1 position-absolute fade show"
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
             role="alert"
+            style={{ marginInlineEnd: "35%" }}
           >
-            <div className="d-flex flex-row align-items-center">
-              <div className="me-3">Operación completada</div>
-            </div>
+            Operación completada
           </div>
         </div>
       ) : null}

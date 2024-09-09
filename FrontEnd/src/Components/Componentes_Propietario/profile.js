@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useUser } from '../../../userContext';
-import { NavBar } from '../../../Components/Componentes_Propietario/navBar';
+import { useUser } from '../../userContext';
 import { useNavigate } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import './profile.css';
@@ -81,14 +80,7 @@ const Profile = () => {
 
   return (
     <>
-      <NavBar />
       <div className="profile-container">
-        <div className="profile-header">
-          <h1 className="profile-title">Mi Perfil</h1>
-          <button className="btn btn-secondary" onClick={handleGoBack}>
-            Volver
-          </button>
-        </div>
         <div className="profile-info">
           <p>
             <strong>Nombre:</strong> {user.Nombre}

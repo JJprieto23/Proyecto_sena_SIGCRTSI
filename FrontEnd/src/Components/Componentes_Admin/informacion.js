@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const Info = ({ currentRecords, apiS, data }) => {
   const [estado, setEstado] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [status, setStatus] = useState("");
 
   const [propietarios, setPropietarios] = useState({
     EstadoEnvio: "",
@@ -28,7 +30,10 @@ const Info = ({ currentRecords, apiS, data }) => {
         });
 
         if (update && badUpdate) {
-          alert("Correos enviados");
+          setStatus(response.status);
+           setTimeout(() => {
+             setStatus("");
+           }, 5000);
         }
       } else if (estado === "Reenviar") {
         const response = await axios.patch(
@@ -38,7 +43,10 @@ const Info = ({ currentRecords, apiS, data }) => {
           }
         );
         if (response.status === 200) {
-          alert("Correo reenviado");
+           setStatus(response.status);
+           setTimeout(() => {
+             setStatus("");
+           }, 5000);
           setPropietarios((prevUsuario) => ({
             ...prevUsuario,
             id: "",
@@ -61,6 +69,27 @@ const Info = ({ currentRecords, apiS, data }) => {
 
   return (
     <div className="d-flex flex-column w-100 h-50">
+      {status === 200 ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Correos enviados
+          </div>
+        </div>
+      ) : status === 201 ? (
+        <div className="d-flex justify-content-center">
+          <div
+            className="alert alert-success alert-dismissible z-1 position-absolute fade show w-25 text-center"
+            role="alert"
+            style={{ marginInlineEnd: "35%" }}
+          >
+            Operación completada
+          </div>
+        </div>
+      ) : null}
       <form className=" w-100 mb-2">
         <div className=" d-flex flex-column justify-content-end">
           <div className="d-flex flex-column justify-content-start">

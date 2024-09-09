@@ -150,7 +150,7 @@ export function NavBar() {
               <div
                 style={{
                   transform:
-                    showSideBar === true ? "translateX(44%)" : "translateX(0%)",
+                    showSideBar === true ? "translateX(92%)" : "translateX(0%)",
                   transition: "transform 0.3s ease-in-out",
                 }}
               >
