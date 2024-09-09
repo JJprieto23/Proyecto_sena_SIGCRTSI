@@ -10,6 +10,7 @@ import MainPortero from "./Pages/auth/portero/mainPortero.";
 import RegisterPropietario from "./Pages/auth/Login/RegisterPropietario";
 import Tabla from "./Components/Componentes_Propietario/tabla"; // Asegúrate de la ruta correcta
 import Profile from "./Components/Componentes_Propietario/profile";
+import InvitadoDetalle from './Pages/auth/portero/InvitadoDetalles.js';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="LoginPropietario" exact element={<LoginPropietario />}></Route>
           <Route path="MainPropietario" exact element={<MainPropietario />}></Route>
           <Route path="/profile" exact element={<Profile />} />
+          <Route path="/invitado/:id" exact element={<InvitadoDetalle />} />
         </Routes>
       </Router>
     </Fragment>

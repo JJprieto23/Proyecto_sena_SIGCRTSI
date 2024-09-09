@@ -7,6 +7,7 @@ import axios from "axios";
 import './FilterButtons.css';
 import AddGuestModal from './AddGuestModal'; // Importar el modal de agregar
 import EditGuestModal from './EditGuestModal'; // Importar el modal de editar
+import { useNavigate } from "react-router-dom";
 
 library.add(faTrash, faPenToSquare, faClock);
 
@@ -19,6 +20,7 @@ const Tabla = ({ item, apiS }) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [guestToEdit, setGuestToEdit] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +33,10 @@ const Tabla = ({ item, apiS }) => {
     }
     fetchData();
   }, [apiS]);
+  
+  const handleClockClick = (guestId) => {
+    navigate(`/invitado/${guestId}`);
+  };  
 
   const filterData = () => {
     let filteredData = data;
@@ -171,7 +177,12 @@ const Tabla = ({ item, apiS }) => {
                         <td>{record.Costo}</td>
                         <td>{record.CodigoVivienda}</td>
                         <td className="text-center">
-                          <FontAwesomeIcon icon={faClock} className="text-info" role="button" />
+                          <FontAwesomeIcon 
+                            icon={faClock} 
+                            className="text-info" 
+                            role="button"
+                            onClick={() => handleClockClick(record.id)}  // Redirige con el ID del invitado
+                          />
                         </td>
                         <td className="text-center">
                           <FontAwesomeIcon 
