@@ -356,7 +356,7 @@ const Porteros = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputEmail1"
                                   className="form-label"
                                 >
-                                  Numero de Documento
+                                  Número de Documento
                                 </label>
                                 <input
                                   type="number"

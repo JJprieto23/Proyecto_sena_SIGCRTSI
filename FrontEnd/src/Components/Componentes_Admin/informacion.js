@@ -153,7 +153,7 @@ const Info = ({ currentRecords, apiS, data }) => {
               colSpan="1"
               aria-label="Platform(s): activate to sort column ascending"
             >
-              Estado de envio
+              Estado de envío
             </th>
           </tr>
         </thead>

@@ -167,7 +167,7 @@ const RegisterPropietario = () => {
                     type="number"
                     className="input-group form-control"
                     required
-                    placeholder="Numero Documento"
+                    placeholder="Número Documento"
                     value={propietario.NumeroDocumento}
                     onChange={(e) =>
                       setPropietario((prevUsuario) => ({
@@ -182,7 +182,7 @@ const RegisterPropietario = () => {
                     type="number"
                     className="input-group form-control"
                     required
-                    placeholder="Numero Telefonico"
+                    placeholder="Número Telefónico"
                     value={propietario.Teléfono}
                     onChange={(e) =>
                       setPropietario((prevUsuario) => ({
@@ -197,7 +197,7 @@ const RegisterPropietario = () => {
                     type="email"
                     className="input-group form-control"
                     required
-                    placeholder="Correo Elecctronico"
+                    placeholder="Correo Electrónico"
                     value={propietario.Correo}
                     onChange={(e) =>
                       setPropietario((prevUsuario) => ({
@@ -212,7 +212,7 @@ const RegisterPropietario = () => {
                     type="number"
                     className="input-group form-control"
                     required
-                    placeholder="Codigo de Vivienda"
+                    placeholder="Código de Vivienda"
                     value={propietario.CodigoVivienda}
                     onChange={(e) =>
                       setPropietario((prevUsuario) => ({
@@ -225,7 +225,7 @@ const RegisterPropietario = () => {
                 <div>
                   <label for="inputGroupFile04" className="icon-link-hover">
                     Adjuntar Foto del Contrato de Propiedad o Certificado de
-                    Tradicion y Libertad
+                    Tradición y Libertad
                   </label>
                   <div className="d-flex flex-row align-items-center mb-2">
                     <div className="me-3">
@@ -266,7 +266,7 @@ const RegisterPropietario = () => {
                   to="/LoginPropietario"
                   className="text-center text-decoration-none fw-bold"
                 >
-                  Iniciar Sesion
+                  Iniciar Sesión
                 </Link>
               </p>
               <p className="mb-0">

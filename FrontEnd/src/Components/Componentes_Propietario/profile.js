@@ -126,7 +126,7 @@ const Profile = () => {
             )}
           </p>
           <p>
-            <strong>Numero Documento:</strong> {user.NumeroDocumento}
+            <strong>Número Documento:</strong> {user.NumeroDocumento}
           </p>
           <p>
             <strong>Meses Atrasados:</strong> {user.MesesAtrasados}

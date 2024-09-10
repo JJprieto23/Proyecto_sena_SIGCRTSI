@@ -110,7 +110,7 @@ export function NavBar() {
                     className="dropdown-item text-danger"
                     to="/"
                   >
-                    Cerrar Sesion
+                    Cerrar Sesión
                   </Link>
                 </li>
               </ul>
@@ -312,33 +312,33 @@ export function NavBar() {
           <Tabla
             item={
               currentTable === "Apartamentos"
-                ? ["Codigo de vivienda", "Numero de parquedadero"]
+                ? ["Código de vivienda", "Número de parqueadero"]
                 : currentTable === "Propietarios"
                 ? [
-                    "Codigo de vivienda",
+                    "Código de vivienda",
                     "Nombre",
                     "Teléfono",
                     "Correo",
-                    "Numero de Documento",
+                    "Número de Documento",
                     "Meses Atrasados",
                   ]
                 : currentTable === "Parqueadero"
-                ? ["Numero de Espacio", "Tipo de Espacio", "Estado"]
+                ? ["Número de Espacio", "Tipo de Espacio", "Estado"]
                 : currentTable === "Invitados"
                 ? [
                     "Nombre",
-                    "Numero de Documento",
+                    "Número de Documento",
                     "Teléfono",
                     "Correo",
-                    "Numero de parqueadero",
+                    "Número de parqueadero",
                     "Costo",
-                    "Codigo de Vivienda",
+                    "Código de Vivienda",
                   ]
                 : currentTable === "ReservaSalon"
                 ? []
                 : currentTable === "Reuniones"
                 ? [
-                    "Numero de Reunion",
+                    "Número de Reunión",
                     "Motivo",
                     "Fecha",
                     "Hora Inicio",
@@ -347,7 +347,7 @@ export function NavBar() {
                 : currentTable === "Porteros"
                 ? [
                     "Nombre",
-                    "Numero de Documento",
+                    "Número de Documento",
                     "Teléfono",
                     "Correo",
                     "Tipo de Turno",
@@ -357,7 +357,7 @@ export function NavBar() {
                 : currentTable === "Informacion"
                 ? []
                 : currentTable === "Reporte"
-                ? ["Codigo de vivienda", "Nombre", "Saldo de deuda"]
+                ? ["Código de vivienda", "Nombre", "Saldo de deuda"]
                 : null
             }
             apiS={currentTable}
