@@ -16,10 +16,12 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:4000/Propietarios/{user.id}"
+        if(user){
+          const response = await axios.get(
+          `http://localhost:4000/Propietarios/${user.id}`
         ); // Actualiza con el ID correcto
         setUser(response.data);
+        }
       } catch (error) {
         console.error("Error al obtener el usuario:", error);
       }

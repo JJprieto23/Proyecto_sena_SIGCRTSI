@@ -31,8 +31,8 @@ export function NavBar() {
 
   return (
     <div className="d-flex flex-column justify-content-start h-100 ">
+      {/* NavBar */}
       <div>
-        {/* NavBar */}
         <nav className="navbar navbar-expand-lg navbar-dark py-2 bg-dark">
           <div className="container px-lg-5 d-flex flex-row justify-content-between">
             <div>
@@ -337,7 +337,13 @@ export function NavBar() {
                 : currentTable === "ReservaSalon"
                 ? []
                 : currentTable === "Reuniones"
-                ? ["Numero de Reunion", "Motivo", "Fecha", "Hora Inicio", "Hora Finalización"]
+                ? [
+                    "Numero de Reunion",
+                    "Motivo",
+                    "Fecha",
+                    "Hora Inicio",
+                    "Hora Finalización",
+                  ]
                 : currentTable === "Porteros"
                 ? [
                     "Nombre",

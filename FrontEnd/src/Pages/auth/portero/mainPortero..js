@@ -1,8 +1,9 @@
 /* Importación de paquetes necesarios */
-import React, { useEffect } from "react"; /* Paquete necesario para manipular el estado del componente de clase MainAdmin */
+import React, {
+  useEffect,
+} from "react"; /* Paquete necesario para manipular el estado del componente de clase MainAdmin */
 /* Importación de iconos */
 import { NavBar } from "../../../Components/Componentes_Portero/navBar";
-import SideBar from "../../../Components/Componentes_Portero/sideBar";
 import { useUser } from "../../../userContext";
 import { useNavigate } from "react-router-dom";
 
@@ -15,16 +16,9 @@ export function MainPortero() {
       navigate("/LoginPortero");
     }
   });
-    return (
+  return (
     <>
-      <div className="d-flex flex-column vh-100">
-        <div>
-          <NavBar />
-        </div>
-        <div className="h-100">
-          <SideBar />
-        </div>
-      </div>
+      <NavBar />
     </>
   );
 }

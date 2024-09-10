@@ -6,11 +6,11 @@ import './InvitadoDetalle.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faStop, faRedo } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from "../../../userContext";
+import { useTable } from "../../../Components/Componentes_Portero/navBar"; 
 
-const InvitadoDetalle = () => {
-  const { id } = useParams(); // Obtener el ID del invitado desde la URL
+const InvitadoDetalle = ({id}) => {
   const navigate = useNavigate(); // Hook para navegar
-  const [guest, setGuest] = useState(null);
+  const [guest, setGuest] = useState("");
   
   const {
     hours,
@@ -29,10 +29,14 @@ const InvitadoDetalle = () => {
     isPaused
   } = useUser();
 
+  const { invitado } = useTable();
+
   useEffect(() => {
     const fetchGuestDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/Invitados/${id}`);
+        const response = await axios.get(
+          `http://localhost:4000/Invitados/${invitado}`
+        );
         setGuest(response.data);
       } catch (error) {
         console.error("Error al obtener los detalles del invitado:", error);
@@ -40,20 +44,19 @@ const InvitadoDetalle = () => {
     };
 
     fetchGuestDetails();
-  }, [id]);
+  }, [invitado]);
 
   const handleGoBack = () => {
     navigate(-1); // Navega a la página anterior
   };
 
-  if (!guest) {
+  if (!invitado) {
     return <div className="loading">Cargando detalles del invitado...</div>;
   }
 
   return (
     <>
       <div className="container">
-        <NavBar />
         <div className="details-container">
           <div className="headerr">
             <h2>Detalles del Invitado</h2>
