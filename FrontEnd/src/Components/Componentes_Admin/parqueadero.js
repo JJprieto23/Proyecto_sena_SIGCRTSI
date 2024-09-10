@@ -332,7 +332,7 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputEmail1"
                                   className="form-label"
                                 >
-                                  Numero de Espacio
+                                  Número de Espacio
                                 </label>
                                 <input
                                   type="text"

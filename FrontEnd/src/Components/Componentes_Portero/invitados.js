@@ -272,10 +272,9 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                   <td>{record.CodigoVivienda}</td>
                   <td>
                     <div className="d-flex flex-row justify-content-center">
-                      <div className="mx-2">
+                      <div className="mx-2 btn btn-info p-2">
                         <FontAwesomeIcon
                           icon={faClock}
-                          className="text-info"
                           role="button"
                           onClick={() => {
                             setContextInvitado(() => (record.id));
@@ -367,7 +366,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Numero de Documento
+                                  Número de Documento
                                 </label>
                                 <input
                                   type="number"
@@ -430,7 +429,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Numero de Parqueadero
+                                  Número de Parqueadero
                                 </label>
                                 <input
                                   type="number"
@@ -472,7 +471,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Codigo de Vivienda
+                                  Código de Vivienda
                                 </label>
                                 <input
                                   type="number"

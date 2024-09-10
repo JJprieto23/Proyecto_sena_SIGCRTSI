@@ -316,7 +316,7 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Numero de documento
+                                  Número de documento
                                 </label>
                                 <input
                                   type="number"
@@ -337,7 +337,7 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Telénofo
+                                  Teléfono
                                 </label>
                                 <input
                                   type="number"
@@ -358,7 +358,7 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Codigo de vivienda
+                                  Código de vivienda
                                 </label>
                                 <input
                                   type="number"

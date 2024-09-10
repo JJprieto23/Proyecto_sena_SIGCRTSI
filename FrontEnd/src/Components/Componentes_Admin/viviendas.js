@@ -313,7 +313,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputEmail1"
                                   className="form-label"
                                 >
-                                  Codigo de Vivienda
+                                  Código de Vivienda
                                 </label>
                                 <input
                                   type="text"
@@ -334,7 +334,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputPassword1"
                                   className="form-label"
                                 >
-                                  Numero de Parqueadero
+                                  Número de Parqueadero
                                 </label>
                                 <input
                                   type="number"
@@ -447,7 +447,7 @@ const Vivienda = ({ item, currentRecords, apiS }) => {
                         htmlFor="exampleInputEmail1"
                         className="form-label"
                       >
-                        Codigo de Vivienda
+                        Código de Vivienda
                       </label>
                       <input
                         type="text"

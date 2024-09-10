@@ -327,7 +327,7 @@ const Reunion = ({ item, currentRecords, apiS }) => {
                                   htmlFor="exampleInputEmail1"
                                   className="form-label"
                                 >
-                                  Numero de Reunion
+                                  Número de Reunión
                                 </label>
                                 <input
                                   type="number"
@@ -530,7 +530,7 @@ const Reunion = ({ item, currentRecords, apiS }) => {
                         htmlFor="exampleInputEmail1"
                         className="form-label"
                       >
-                        Numero de Reunion
+                        Número de Reunion
                       </label>
                       <input
                         type="number"

@@ -127,7 +127,7 @@ const Solicitudes = ({ currentRecords, length }) => {
                 aria-expanded="false"
                 aria-controls={"collapse" + index}
               >
-                Solicitud de creación de cuenta numero {index + 1}
+                Solicitud de creación de cuenta número {index + 1}
               </button>
             </h2>
             <div
@@ -140,10 +140,10 @@ const Solicitudes = ({ currentRecords, length }) => {
                   <div className="accordion-body">
                     <ul className="list-group">
                       <li className="list-group-item">{`Nombre: ${record.Nombre} ${record.Apellido}`}</li>
-                      <li className="list-group-item">{`Numero de documento: ${record.NumeroDocumento}`}</li>
+                      <li className="list-group-item">{`Número de documento: ${record.NumeroDocumento}`}</li>
                       <li className="list-group-item">{`Teléfono: ${record.Teléfono}`}</li>
                       <li className="list-group-item">{`Correo: ${record.Correo}`}</li>
-                      <li className="list-group-item">{`Codigo de vivienda: ${record.CodigoVivienda}`}</li>
+                      <li className="list-group-item">{`Código de vivienda: ${record.CodigoVivienda}`}</li>
                     </ul>
                   </div>
                 </div>

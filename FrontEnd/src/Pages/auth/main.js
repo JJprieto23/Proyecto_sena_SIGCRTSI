@@ -11,7 +11,7 @@ const Main = () => {
       <header className="header">
         <div className="header-logo">
           <img src={myImg} alt="Logo del conjunto residencial" className="logo-img" />
-          <h1>Conjunto Torres de Sante Isabel</h1>
+          <h1>Conjunto Torres de Santa Isabel</h1>
         </div>
       </header>
 

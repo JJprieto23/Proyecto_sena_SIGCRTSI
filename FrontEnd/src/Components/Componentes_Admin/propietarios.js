@@ -412,7 +412,7 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                                       htmlFor="exampleInputPassword1"
                                       className="form-label"
                                     >
-                                      Numero de Documento
+                                      Número de Documento
                                     </label>
                                     <input
                                       type="number"
@@ -435,7 +435,7 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                                       htmlFor="exampleInputEmail1"
                                       className="form-label"
                                     >
-                                      Codigo de Vivienda
+                                      Código de Vivienda
                                     </label>
                                     <input
                                       type="text"

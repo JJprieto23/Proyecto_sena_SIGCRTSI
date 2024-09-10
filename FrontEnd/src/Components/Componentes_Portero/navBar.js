@@ -70,7 +70,7 @@ export const NavBar = ({ children }) => {
                       className="btn btn-outline-light"
                       to="/"
                     >
-                      Cerrar Sesion
+                      Cerrar Sesión
                     </Link>
                   </li>
                 </ul>
@@ -193,24 +193,24 @@ export const NavBar = ({ children }) => {
               item={
                 currentTable === "Propietarios"
                   ? [
-                      "Codigo de vivienda",
+                      "Código de vivienda",
                       "Nombre",
                       "Teléfono",
                       "Correo",
-                      "Numero de Documento",
+                      "Número de Documento",
                       "Meses Atrasados",
                     ]
                   : currentTable === "Parqueadero"
-                  ? ["Numero de Espacio", "Tipo de Espacio", "Estado"]
+                  ? ["Número de Espacio", "Tipo de Espacio", "Estado"]
                   : currentTable === "Invitados"
                   ? [
                       "Nombre",
-                      "Numero de Documento",
+                      "Número de Documento",
                       "Teléfono",
                       "Correo",
-                      "Numero de parqueadero",
+                      "Número de parqueadero",
                       "Costo",
-                      "Codigo de Vivienda",
+                      "Código de Vivienda",
                       "Acciones",
                     ]
                   : ["Nombre", "Numero de Documento", "Teléfono", "Correo"]

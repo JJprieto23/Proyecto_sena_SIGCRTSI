@@ -79,7 +79,7 @@ export function NavBar() {
                   className="dropdown-item text-danger"
                   to="/"
                 >
-                  Cerrar Sesion
+                  Cerrar Sesión
                 </Link>
               </li>
             </ul>
