@@ -5,17 +5,29 @@ import { NavBar } from "../../../Components/Componentes_Portero/navBar";
 import './InvitadoDetalle.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faStop, faRedo } from '@fortawesome/free-solid-svg-icons';
+import { useUser } from "../../../userContext";
 
 const InvitadoDetalle = () => {
   const { id } = useParams(); // Obtener el ID del invitado desde la URL
   const navigate = useNavigate(); // Hook para navegar
   const [guest, setGuest] = useState(null);
-  const [countdown, setCountdown] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
+  
+  const {
+    hours,
+    setHours: setContextHours,
+    minutes,
+    setMinutes: setContextMinutes,
+    seconds,
+    setSeconds: setContextSeconds,
+    handleStartCountdown,
+    handlePauseCountdown,
+    handleStopCountdown,
+    handleResetCountdown,
+    formatTime,
+    countdown,
+    isRunning,
+    isPaused
+  } = useUser();
 
   useEffect(() => {
     const fetchGuestDetails = async () => {
@@ -30,55 +42,8 @@ const InvitadoDetalle = () => {
     fetchGuestDetails();
   }, [id]);
 
-  useEffect(() => {
-    let timer;
-    if (countdown > 0 && isRunning && !isPaused) {
-      timer = setInterval(() => {
-        setCountdown(prevCountdown => prevCountdown - 1);
-      }, 1000);
-    } else if (countdown === 0) {
-      setIsRunning(false);
-    }
-
-    return () => clearInterval(timer);
-  }, [countdown, isRunning, isPaused]);
-
-  const handleStartCountdown = () => {
-    const timeInSeconds = (hours * 3600) + (minutes * 60) + seconds;
-    if (timeInSeconds > 0) {
-      setCountdown(timeInSeconds);
-      setIsRunning(true);
-      setIsPaused(false);
-    }
-  };
-
-  const handlePauseCountdown = () => {
-    if (isRunning) {
-      setIsPaused(!isPaused);
-    }
-  };
-
-  const handleStopCountdown = () => {
-    setCountdown(0);
-    setIsRunning(false);
-    setIsPaused(false);
-  };
-
-  const handleResetCountdown = () => {
-    setCountdown((hours * 3600) + (minutes * 60) + seconds);
-    setIsPaused(false);
-    setIsRunning(false);
-  };
-
   const handleGoBack = () => {
     navigate(-1); // Navega a la página anterior
-  };
-
-  const formatTime = (seconds) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   };
 
   if (!guest) {
@@ -105,7 +70,7 @@ const InvitadoDetalle = () => {
                   id="hours"
                   type="number"
                   value={hours}
-                  onChange={(e) => setHours(parseInt(e.target.value, 10) || 0)}
+                  onChange={(e) => setContextHours(parseInt(e.target.value, 10))}
                   className="time-input"
                   placeholder="Horas"
                 />
@@ -116,7 +81,7 @@ const InvitadoDetalle = () => {
                   id="minutes"
                   type="number"
                   value={minutes}
-                  onChange={(e) => setMinutes(parseInt(e.target.value, 10) || 0)}
+                  onChange={(e) => setContextMinutes(parseInt(e.target.value, 10))}
                   className="time-input"
                   placeholder="Minutos"
                 />
@@ -127,7 +92,7 @@ const InvitadoDetalle = () => {
                   id="seconds"
                   type="number"
                   value={seconds}
-                  onChange={(e) => setSeconds(parseInt(e.target.value, 10) || 0)}
+                  onChange={(e) => setContextSeconds(parseInt(e.target.value, 10))}
                   className="time-input"
                   placeholder="Segundos"
                 />

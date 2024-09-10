@@ -21,6 +21,16 @@ const Tabla = ({ item, apiS }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [guestToEdit, setGuestToEdit] = useState(null);
   const navigate = useNavigate();
+  const [invitadoCronometro, setInvitadoCronometro] = useState({
+    Nombre: "",
+    NumeroDocumento: 0,
+    Teléfono: 0,
+    Correo: "",
+    NumeroParqueadero: 0,
+    Costo: 30000,
+    CodigoVivienda: 0,
+    id: ""
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -104,20 +114,30 @@ const Tabla = ({ item, apiS }) => {
             {apiS === "Parqueadero" && (
               <>
                 <button
-                  className={`filter-btn me-2 ${filterAvailable ? 'active' : ''}`}
+                  className={`filter-btn me-2 ${
+                    filterAvailable ? "active" : ""
+                  }`}
                   onClick={() => setFilterAvailable(!filterAvailable)}
                 >
                   {filterAvailable ? "Ver Todos" : "Disponibles"}
                 </button>
                 <button
-                  className={`filter-btn me-2 ${filterType === "Carro" ? 'active' : ''}`}
-                  onClick={() => setFilterType(filterType === "Carro" ? "" : "Carro")}
+                  className={`filter-btn me-2 ${
+                    filterType === "Carro" ? "active" : ""
+                  }`}
+                  onClick={() =>
+                    setFilterType(filterType === "Carro" ? "" : "Carro")
+                  }
                 >
                   {filterType === "Carro" ? "Ver Todos" : "Carros"}
                 </button>
                 <button
-                  className={`filter-btn ${filterType === "Moto" ? 'active' : ''}`}
-                  onClick={() => setFilterType(filterType === "Moto" ? "" : "Moto")}
+                  className={`filter-btn ${
+                    filterType === "Moto" ? "active" : ""
+                  }`}
+                  onClick={() =>
+                    setFilterType(filterType === "Moto" ? "" : "Moto")
+                  }
                 >
                   {filterType === "Moto" ? "Ver Todos" : "Motos"}
                 </button>
@@ -142,7 +162,9 @@ const Tabla = ({ item, apiS }) => {
               <thead className="table-light">
                 <tr>
                   {item.map((header, index) => (
-                    <th className="text-center text-light bg-dark" key={index}>{header}</th>
+                    <th className="text-center text-light bg-dark" key={index}>
+                      {header}
+                    </th>
                   ))}
                 </tr>
               </thead>
@@ -177,24 +199,36 @@ const Tabla = ({ item, apiS }) => {
                         <td>{record.Costo}</td>
                         <td>{record.CodigoVivienda}</td>
                         <td className="text-center">
-                          <FontAwesomeIcon 
-                            icon={faClock} 
-                            className="text-info" 
+                          <FontAwesomeIcon
+                            icon={faClock}
+                            className="text-info"
                             role="button"
-                            onClick={() => handleClockClick(record.id)}  // Redirige con el ID del invitado
+                            onClick={() => {
+                              setInvitadoCronometro((prevUsuario) => ({
+                                ...prevUsuario,
+                                Nombre: record.Nombre,
+                                NumeroDocumento: record.NumeroDocumento,
+                                Teléfono: record.Teléfono,
+                                Correo: record.Correo,
+                                NumeroParqueadero: record.NumeroParqueadero,
+                                Costo: record.Costo,
+                                CodigoVivienda: record.CodigoVivienda,
+                                id: record.id,
+                              })); handleClockClick(invitadoCronometro);}
+                            } // Redirige con el ID del invitado
                           />
                         </td>
                         <td className="text-center">
-                          <FontAwesomeIcon 
-                            icon={faTrash} 
-                            className="mr-3 text-danger" 
-                            role="button" 
-                            onClick={() => handleDelete(record.id)} 
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className="mr-3 text-danger"
+                            role="button"
+                            onClick={() => handleDelete(record.id)}
                           />
-                          <FontAwesomeIcon 
-                            icon={faPenToSquare} 
-                            className="text-warning" 
-                            role="button" 
+                          <FontAwesomeIcon
+                            icon={faPenToSquare}
+                            className="text-warning"
+                            role="button"
                             onClick={() => handleOpenEditModal(record)} // Aquí abrimos el modal de edición
                           />
                         </td>
@@ -208,16 +242,16 @@ const Tabla = ({ item, apiS }) => {
                         <td>{record.Correo}</td>
                         <td>{record.TipoTurno}</td>
                         <td className="text-center">
-                          <FontAwesomeIcon 
-                            icon={faTrash} 
-                            className="me-2" 
-                            role="button" 
-                            onClick={() => handleDelete(record.id)} 
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className="me-2"
+                            role="button"
+                            onClick={() => handleDelete(record.id)}
                           />
-                          <FontAwesomeIcon 
-                            icon={faPenToSquare} 
-                            role="button" 
-                            onClick={() => handleOpenEditModal(record)} 
+                          <FontAwesomeIcon
+                            icon={faPenToSquare}
+                            role="button"
+                            onClick={() => handleOpenEditModal(record)}
                           />
                         </td>
                       </tr>
@@ -226,7 +260,9 @@ const Tabla = ({ item, apiS }) => {
               <tfoot className="table-light">
                 <tr>
                   {item.map((header, index) => (
-                    <th className="text-center text-light bg-dark" key={index}>{header}</th>
+                    <th className="text-center text-light bg-dark" key={index}>
+                      {header}
+                    </th>
                   ))}
                 </tr>
               </tfoot>
@@ -234,20 +270,24 @@ const Tabla = ({ item, apiS }) => {
           </div>
           <nav className="d-flex justify-content-center mt-3">
             <ul className="pagination">
-              {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
-                <li
-                  key={pageNumber}
-                  className={`page-item ${currentPage === pageNumber ? "active" : ""}`}
-                >
-                  <Link
-                    to="#"
-                    className="page-link"
-                    onClick={() => handlePageChange(pageNumber)}
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+                (pageNumber) => (
+                  <li
+                    key={pageNumber}
+                    className={`page-item ${
+                      currentPage === pageNumber ? "active" : ""
+                    }`}
                   >
-                    {pageNumber}
-                  </Link>
-                </li>
-              ))}
+                    <Link
+                      to="#"
+                      className="page-link"
+                      onClick={() => handlePageChange(pageNumber)}
+                    >
+                      {pageNumber}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
           {apiS === "Invitados" && (
@@ -262,8 +302,16 @@ const Tabla = ({ item, apiS }) => {
           )}
         </div>
       </div>
-      <AddGuestModal showModal={showAddModal} handleClose={handleCloseAddModal} />
-      <EditGuestModal showModal={showEditModal} handleClose={handleCloseEditModal} guestToEdit={guestToEdit} refreshData={refreshData} />
+      <AddGuestModal
+        showModal={showAddModal}
+        handleClose={handleCloseAddModal}
+      />
+      <EditGuestModal
+        showModal={showEditModal}
+        handleClose={handleCloseEditModal}
+        guestToEdit={guestToEdit}
+        refreshData={refreshData}
+      />
     </div>
   );
 };
