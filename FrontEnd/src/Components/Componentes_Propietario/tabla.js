@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useUser } from "../../userContext";
 import Calendario from "./calendario"; // Asegúrate de que la ruta sea correcta
-
-// Añadir iconos a la librería
-library.add(faTrash, faPenToSquare);
 
 const Tabla = ({ apiS }) => {
   const [currentPageMoto, setCurrentPageMoto] = useState(1);
@@ -16,6 +10,10 @@ const Tabla = ({ apiS }) => {
   const { user, setUser } = useUser();
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+
+  const [searchTermMoto, setSearchTermMoto] = useState("");
+  
+  const [searchTermCarro, setSearchTermCarro] = useState("");// Estado para el término de búsqueda
 
   const recordsPerPage = 12;
 
@@ -58,6 +56,7 @@ const Tabla = ({ apiS }) => {
   const currentRecordsMoto = dataMoto
     .filter((record) => record.Estado === "Disponible")
     .slice(indexOfFirstRecordMoto, indexOfLastRecordMoto);
+
   const totalPagesMoto = Math.ceil(
     dataMoto.filter((record) => record.Estado === "Disponible").length /
       recordsPerPage
@@ -143,6 +142,60 @@ const Tabla = ({ apiS }) => {
     }
   };
 
+  const handleSearchMoto = (e) => {
+    e.preventDefault();
+    fetchFilteredRecordsMoto(searchTermMoto);
+  };
+
+  const handleSearchCarro = (e) => {
+    e.preventDefault();
+    fetchFilteredRecordsCarro(searchTermCarro);
+  };
+
+  const fetchFilteredRecordsMoto = async (term) => {
+    try {
+      if (term) {
+        const response = await axios.get(
+          `http://localhost:4000/${apiS}?NumeroEspacio=${term}`
+        );
+        if (response.status === 200) {
+          if (response.data[0].TipoEspacio === "Moto") {
+            setDataMoto(response.data);
+          } else {
+            setDataMoto([]);
+          }
+        }
+      } else {
+        setDataMoto(dataMoto);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Ocurrió un error al filtrar los registros");
+    }
+  };
+
+  const fetchFilteredRecordsCarro = async (term) => {
+    try {
+      if (term) {
+        const response = await axios.get(
+          `http://localhost:4000/${apiS}?NumeroEspacio=${term}`
+        );
+        if (response.status === 200) {
+          if (response.data[0].TipoEspacio === "Carro") {
+            setDataCarro(response.data);
+          } else {
+            setDataCarro([]);
+          }
+        }
+      } else {
+        setDataCarro(dataMoto);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Ocurrió un error al filtrar los registros");
+    }
+  };
+
   return (
     <div className="w-100 h-100">
       {showAlert && (
@@ -172,12 +225,15 @@ const Tabla = ({ apiS }) => {
           <div className="d-flex flex-row">
             {/* Moto Section */}
             <div className="px-3 w-50">
-              <form className="d-flex" role="search">
+              <form className="d-flex" onSubmit={handleSearchMoto}>
                 <input
                   className="form-control me-2"
                   type="search"
                   placeholder="Buscar"
                   aria-label="Buscar"
+                  required
+                  value={searchTermMoto}
+                  onChange={(e) => setSearchTermMoto(e.target.value)}
                 />
                 <button className="btn btn-success py-1" type="submit">
                   Buscar
@@ -281,12 +337,15 @@ const Tabla = ({ apiS }) => {
 
             {/* Carro Section */}
             <div className="px-3 w-50">
-              <form className="d-flex" role="search">
+              <form className="d-flex" onSubmit={handleSearchCarro}>
                 <input
                   className="form-control me-2"
                   type="search"
                   placeholder="Buscar"
                   aria-label="Buscar"
+                  required
+                  value={searchTermCarro}
+                  onChange={(e) => setSearchTermCarro(e.target.value)}
                 />
                 <button className="btn btn-success py-1" type="submit">
                   Buscar

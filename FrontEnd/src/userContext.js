@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
     };
 
     fetchUser();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     let timer;
