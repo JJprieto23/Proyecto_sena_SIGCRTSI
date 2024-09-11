@@ -8,8 +8,11 @@ import Modal from "../../Components/Componentes_Main/modal";
 
 /* Creación del componente Main */
 const Main = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [modalContent, setModalContent] = useState({ show: false, title: '', content: '' });
-  
+
+  const slides = [myImg, Fondo1]; // Imagenes para el carrusel
+
   const openModal = (title, content) => {
     setModalContent({ show: true, title, content });
   };
@@ -17,7 +20,15 @@ const Main = () => {
   const closeModal = () => {
     setModalContent({ show: false, title: '', content: '' });
   };
-  
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
     <div className="home">
       <header className="header">
@@ -80,6 +91,17 @@ const Main = () => {
         </div>
       </div>
 
+      {/* Carrusel antes del card */}
+      <div className="carousel-container">
+        <button className="carousel-control prev" onClick={prevSlide}>
+          &#10094;
+        </button>
+        <img src={slides[currentSlide]} alt={`Slide ${currentSlide + 1}`} className="carousel-image" />
+        <button className="carousel-control next" onClick={nextSlide}>
+          &#10095;
+        </button>
+      </div>
+
       <div className="cards-container">
         <div className="card-perfil">
           <img src={Perfil} alt="Foto de la Cara" />
@@ -129,27 +151,30 @@ const Main = () => {
                 </ul>
               </div>
             </div>
+
+            <div className="col-lg-4">
+              <div className="footer-map">
+                <h3>Ubicación</h3>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.745002814836!2d-122.41941808468157!3d37.7749292797591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808ef7e8a469%3A0x35dfd48918480f3d!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1612764172152!5m2!1sen!2sus"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="Mapa de ubicación"
+                ></iframe>
+              </div>
+            </div>
           </div>
 
-          <div className="footer-map">
-            <h3>Ubicación</h3>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.745002814836!2d-122.41941808468157!3d37.7749292797591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808ef7e8a469%3A0x35dfd48918480f3d!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1612764172152!5m2!1sen!2sus"
-              width="600"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              title="Mapa de ubicación"
-            ></iframe>
-          </div>
           <Modal
-          show={modalContent.show}
-          handleClose={closeModal}
-          title={modalContent.title}
-          content={modalContent.content}
-        />
-        </div>   
+            show={modalContent.show}
+            handleClose={closeModal}
+            title={modalContent.title}
+            content={modalContent.content}
+          />
+        </div>
       </footer>
     </div>
   );

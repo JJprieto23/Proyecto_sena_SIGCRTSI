@@ -154,7 +154,7 @@
   }
   
   .footer-map {
-    max-width: 50%;
+    max-width: 150%;
   }
   
   .footer-map iframe {
@@ -251,4 +251,40 @@
   top: 10px;
   font-size: 24px;
   cursor: pointer;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.carousel-image {
+  width: 100%;
+  border-radius: 10px;
+  height: 500px;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.carousel-control.prev {
+  left: 0px;
+}
+
+.carousel-control.next {
+  right: 0px;
 }
