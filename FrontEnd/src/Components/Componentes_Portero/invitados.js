@@ -2,7 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPenToSquare, faTrash, faSquarePlus, faXmark, faCheck, faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faTrash,
+  faSquarePlus,
+  faXmark,
+  faCheck,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
 import { useTable } from "./navBar";
 
 /* Añadir iconos a la librería */
@@ -92,7 +99,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           Costo: invitados.Costo,
           CodigoVivienda: invitados.CodigoVivienda,
           HoraInicio: invitados.HoraInicio,
-          Tiempo: invitados.Tiempo
+          Tiempo: invitados.Tiempo,
         });
         if (response.status === 201) {
           setStatus(response.status);
@@ -212,7 +219,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           </div>
         </div>
       ) : null}
-      
+
       {/* Barra de búsqueda */}
       <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
         <input
@@ -494,17 +501,17 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                                 Cerrar
                               </button>
                               <button
-                                data-bs-dismiss="modal"
+                                data-bs-dismiss={accion === "" ? "modal" : ""}
                                 type="submit"
                                 className={
                                   accion === "Actualizar"
                                     ? "btn btn-warning"
                                     : accion === "Insertar"
                                     ? "btn btn-success w-25 m-0 ms-1 h-100"
-                                    : null
+                                    : "btn btn-primary w-25 m-0 ms-1 h-100"
                                 }
                               >
-                                {accion}
+                                {accion === "" ? "Volver" : accion}
                               </button>
                             </div>
                           </form>
@@ -743,17 +750,17 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                       Cerrar
                     </button>
                     <button
-                      data-bs-dismiss="modal"
+                      data-bs-dismiss={accion === "" ? "modal" : ""}
                       type="submit"
                       className={
                         accion === "Actualizar"
                           ? "btn btn-warning"
                           : accion === "Insertar"
-                          ? "btn btn-success w-25 m-0"
-                          : null
+                          ? "btn btn-success w-25 m-0 ms-1 h-100"
+                          : "btn btn-primary w-25 m-0 ms-1 h-100"
                       }
                     >
-                      {accion}
+                      {accion === "" ? "Volver" : accion}
                     </button>
                   </div>
                 </form>
