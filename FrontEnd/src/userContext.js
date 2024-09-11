@@ -10,8 +10,6 @@ export const UserProvider = ({ children }) => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [countdown, setCountdown] = useState([]);
-  // const [isPaused, setIsPaused] = useState(false);
-  // const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -126,26 +124,7 @@ export const UserProvider = ({ children }) => {
     };
 
     fetchUser();
-  }, [user]);
-
-  // const updateGuests = async (invitado, timeInSeconds) => {
-  //   const hora = new Date().getHours();
-  //   const min = new Date().getMinutes();
-  //   const sec = new Date().getSeconds();
-  //   console.log(`${hora}${min}${sec}`);
-  //   const seconSum = (hora * 3600) + (min * 60) + sec
-  //   try {
-  //     const response = await axios.patch(
-  //       `http://localhost:4000/Invitados/${invitado}`,
-  //       {
-  //         Tiempo: timeInSeconds,
-  //         HoraInicio: seconSum,
-  //       }
-  //     ); // Actualiza con el ID correcto
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  }, []);
 
   return (
     <UserContext.Provider

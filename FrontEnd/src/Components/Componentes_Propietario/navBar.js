@@ -77,7 +77,6 @@ export function NavBar() {
                 <Link
                   onClick={() => setContextUser(null)}
                   className="dropdown-item text-danger"
-                  to="/"
                 >
                   Cerrar Sesión
                 </Link>
