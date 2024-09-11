@@ -36,6 +36,8 @@ const Invitados = ({ item, currentRecords, apiS }) => {
     NumeroParqueadero: "",
     Costo: "",
     CodigoVivienda: "",
+    HoraInicio: "",
+    Tiempo: "",
     id: "",
   });
 
@@ -100,6 +102,8 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           NumeroParqueadero: invitados.NumeroParqueadero,
           Costo: invitados.Costo,
           CodigoVivienda: invitados.CodigoVivienda,
+          HoraInicio: invitados.HoraInicio,
+          Tiempo: invitados.Tiempo
         });
         console.log(response.status);
         if (response.status === 201) {
@@ -277,7 +281,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                           icon={faClock}
                           role="button"
                           onClick={() => {
-                            setContextInvitado(() => (record.id));
+                            setContextInvitado(() => record.id);
                             setCurrentContextTabla("Clock");
                           }} // Redirige con el ID del invitado
                         />
@@ -746,6 +750,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                       Cerrar
                     </button>
                     <button
+                      data-bs-dismiss="modal"
                       type="submit"
                       className={
                         accion === "Actualizar"

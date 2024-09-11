@@ -243,30 +243,6 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                   <td>{record.Correo}</td>
                   <td>{record.NumeroDocumento}</td>
                   <td>{record.MesesAtrasados}</td>
-                  <td>
-                    <div className="d-flex flex-row">
-                      <div className="mx-2">
-                        <form className="p-0" onSubmit={enviar}>
-                          <button
-                            type="button"
-                            className="btn btn-secondary btn-sm p-0 m-0"
-                            data-bs-toggle="modal"
-                            data-bs-target="#myModal"
-                            onClick={() => {
-                              setPropietarios({
-                                ...propietarios,
-                                ...record,
-                              });
-                              setAccion("Actualizar");
-                            }}
-                            style={{ width: "30px", height: "30px" }}
-                          >
-                            <FontAwesomeIcon icon={faPenToSquare} />
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </td>
                 </tr>
               ))}
         </tbody>

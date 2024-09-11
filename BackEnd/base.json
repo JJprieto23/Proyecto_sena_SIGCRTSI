@@ -167,7 +167,7 @@
       "EspacioParqueadero": 0,
       "User": "Valery1014667051",
       "Pass": "1014667051",
-      "EstadoEnvio": "No enviado"
+      "EstadoEnvio": "Enviado"
     },
     {
       "id": "5c1e",
@@ -417,314 +417,28 @@
   ],
   "Invitados": [
     {
-      "Nombre": "Mateo",
-      "NumeroDocumento": 1548952136,
-      "Teléfono": 325654785,
-      "Correo": "mateo.martinez@gmail.com",
-      "NumeroParqueadero": 1,
-      "Costo": 30000,
-      "CodigoVivienda": 1101,
-      "id": "1a16"
-    },
-    {
-      "Nombre": "Ana Pérez",
-      "NumeroDocumento": 1548952137,
-      "Teléfono": 326543876,
-      "Correo": "ana.perez@gmail.com",
-      "NumeroParqueadero": 2,
-      "Costo": 30000,
-      "CodigoVivienda": 1102,
-      "id": "c0ae"
-    },
-    {
-      "Nombre": "Luis Gómez",
-      "NumeroDocumento": 1548952138,
-      "Teléfono": 327654987,
-      "Correo": "luis.gomez@gmail.com",
-      "NumeroParqueadero": 3,
-      "Costo": 30000,
-      "CodigoVivienda": 1103,
-      "id": "6e3f"
-    },
-    {
-      "Nombre": "Sofía Rodríguez",
-      "NumeroDocumento": 1548952139,
-      "Teléfono": 328765432,
-      "Correo": "sofia.rodriguez@gmail.com",
-      "NumeroParqueadero": 4,
-      "Costo": 30000,
-      "CodigoVivienda": 1104,
-      "id": "d05b"
-    },
-    {
-      "Nombre": "Carlos Martínez",
-      "NumeroDocumento": 1548952140,
-      "Teléfono": 329876543,
-      "Correo": "carlos.martinez@gmail.com",
-      "NumeroParqueadero": 5,
-      "Costo": 30000,
-      "CodigoVivienda": 1105,
-      "id": "384c"
-    },
-    {
-      "Nombre": "Laura Fernández",
-      "NumeroDocumento": 1548952141,
-      "Teléfono": 321987654,
-      "Correo": "laura.fernandez@gmail.com",
-      "NumeroParqueadero": 6,
-      "Costo": 30000,
-      "CodigoVivienda": 1106,
-      "id": "97c2"
-    },
-    {
-      "Nombre": "Pedro Jiménez",
-      "NumeroDocumento": 1548952142,
-      "Teléfono": 322876543,
-      "Correo": "pedro.jimenez@gmail.com",
-      "NumeroParqueadero": 7,
-      "Costo": 30000,
-      "CodigoVivienda": 1107,
-      "id": "fa35"
-    },
-    {
-      "Nombre": "Claudia Moreno",
-      "NumeroDocumento": 1548952143,
-      "Teléfono": 323765432,
-      "Correo": "claudia.moreno@gmail.com",
-      "NumeroParqueadero": 8,
-      "Costo": 30000,
-      "CodigoVivienda": 1108,
-      "id": "ef32"
-    },
-    {
-      "Nombre": "Miguel Ángel",
-      "NumeroDocumento": 1548952144,
-      "Teléfono": 324654321,
-      "Correo": "miguel.angel@gmail.com",
-      "NumeroParqueadero": 9,
-      "Costo": 30000,
-      "CodigoVivienda": 1109,
-      "id": "c563"
-    },
-    {
-      "Nombre": "Natalia Torres",
-      "NumeroDocumento": 1548952145,
-      "Teléfono": 325543210,
-      "Correo": "natalia.torres@gmail.com",
-      "NumeroParqueadero": 10,
-      "Costo": 30000,
-      "CodigoVivienda": 1110,
-      "id": "4eca"
-    },
-    {
-      "Nombre": "Andrés Vega",
-      "NumeroDocumento": 1548952146,
-      "Teléfono": 326432109,
-      "Correo": "andres.vega@gmail.com",
-      "NumeroParqueadero": 11,
-      "Costo": 30000,
-      "CodigoVivienda": 1111,
-      "id": "7f41"
-    },
-    {
-      "Nombre": "Gabriela Guzmán",
-      "NumeroDocumento": 1548952147,
-      "Teléfono": 327321098,
-      "Correo": "gabriela.guzman@gmail.com",
-      "NumeroParqueadero": 12,
-      "Costo": 30000,
-      "CodigoVivienda": 1112,
-      "id": "5829"
-    },
-    {
-      "Nombre": "Ricardo Morales",
-      "NumeroDocumento": 1548952148,
-      "Teléfono": 328210987,
-      "Correo": "ricardo.morales@gmail.com",
-      "NumeroParqueadero": 13,
-      "Costo": 30000,
-      "CodigoVivienda": 1113,
-      "id": "6414"
-    },
-    {
-      "Nombre": "Valeria López",
-      "NumeroDocumento": 1548952149,
-      "Teléfono": 329109876,
-      "Correo": "valeria.lopez@gmail.com",
-      "NumeroParqueadero": 14,
-      "Costo": 30000,
-      "CodigoVivienda": 1114,
-      "id": "d892"
-    },
-    {
-      "Nombre": "Fernando Castro",
-      "NumeroDocumento": 1548952150,
-      "Teléfono": 321098765,
-      "Correo": "fernando.castro@gmail.com",
-      "NumeroParqueadero": 15,
-      "Costo": 30000,
-      "CodigoVivienda": 1115,
-      "id": "815f"
-    },
-    {
-      "Nombre": "Isabel Ruiz",
-      "NumeroDocumento": 1548952151,
-      "Teléfono": 322987654,
-      "Correo": "isabel.ruiz@gmail.com",
-      "NumeroParqueadero": 16,
-      "Costo": 30000,
-      "CodigoVivienda": 1116,
-      "id": "1044"
-    },
-    {
-      "Nombre": "Tomás Fernández",
-      "NumeroDocumento": 1548952152,
-      "Teléfono": 323876543,
-      "Correo": "tomas.fernandez@gmail.com",
-      "NumeroParqueadero": 17,
-      "Costo": 30000,
-      "CodigoVivienda": 1117,
-      "id": "c8dc"
-    },
-    {
-      "Nombre": "Lucía Ramírez",
-      "NumeroDocumento": 1548952153,
-      "Teléfono": 324765432,
-      "Correo": "lucia.ramirez@gmail.com",
-      "NumeroParqueadero": 18,
-      "Costo": 30000,
-      "CodigoVivienda": 1118,
-      "id": "c82e"
-    },
-    {
-      "Nombre": "Juan Rodríguez",
-      "NumeroDocumento": 1548952154,
-      "Teléfono": 325654321,
-      "Correo": "juan.rodriguez@gmail.com",
-      "NumeroParqueadero": 19,
-      "Costo": 30000,
-      "CodigoVivienda": 1119,
-      "id": "8532"
-    },
-    {
-      "Nombre": "María Jiménez",
-      "NumeroDocumento": 1548952155,
-      "Teléfono": 326543210,
-      "Correo": "maria.jimenez@gmail.com",
-      "NumeroParqueadero": 20,
-      "Costo": 30000,
-      "CodigoVivienda": 1120,
-      "id": "9f27"
-    },
-    {
-      "Nombre": "Andrés Martínez",
-      "NumeroDocumento": 1548952156,
-      "Teléfono": 327432109,
-      "Correo": "andres.martinez@gmail.com",
-      "NumeroParqueadero": 21,
-      "Costo": 30000,
-      "CodigoVivienda": 1121,
-      "id": "7c85"
-    },
-    {
-      "Nombre": "Gabriela Moreno",
-      "NumeroDocumento": 1548952157,
-      "Teléfono": 328321098,
-      "Correo": "gabriela.moreno@gmail.com",
-      "NumeroParqueadero": 22,
-      "Costo": 30000,
-      "CodigoVivienda": 1122,
-      "id": "0cef"
-    },
-    {
-      "Nombre": "Ricardo Torres",
-      "NumeroDocumento": 1548952158,
-      "Teléfono": 329210987,
-      "Correo": "ricardo.torres@gmail.com",
-      "NumeroParqueadero": 23,
-      "Costo": 30000,
-      "CodigoVivienda": 1123,
-      "id": "ea0f"
-    },
-    {
-      "Nombre": "Valeria López",
-      "NumeroDocumento": 1548952159,
-      "Teléfono": 321109876,
-      "Correo": "valeria.lopez@gmail.com",
-      "NumeroParqueadero": 24,
-      "Costo": 30000,
-      "CodigoVivienda": 1124,
-      "id": "64a5"
-    },
-    {
-      "Nombre": "Fernando Díaz",
-      "NumeroDocumento": 1548952160,
-      "Teléfono": 322098765,
-      "Correo": "fernando.diaz@gmail.com",
-      "NumeroParqueadero": 25,
-      "Costo": 30000,
-      "CodigoVivienda": 1125,
-      "id": "0101"
-    },
-    {
-      "Nombre": "Isabel González",
-      "NumeroDocumento": 1548952161,
-      "Teléfono": 323987654,
-      "Correo": "isabel.gonzalez@gmail.com",
-      "NumeroParqueadero": 26,
-      "Costo": 30000,
-      "CodigoVivienda": 1126,
-      "id": "c1f6"
-    },
-    {
-      "Nombre": "Tomás Hernández",
-      "NumeroDocumento": 1548952162,
-      "Teléfono": 324876543,
-      "Correo": "tomas.hernandez@gmail.com",
-      "NumeroParqueadero": 27,
-      "Costo": 30000,
-      "CodigoVivienda": 1127,
-      "id": "8ae2"
-    },
-    {
-      "Nombre": "Lucía Fernández",
-      "NumeroDocumento": 1548952163,
-      "Teléfono": 325765432,
-      "Correo": "lucia.fernandez@gmail.com",
-      "NumeroParqueadero": 28,
-      "Costo": 30000,
-      "CodigoVivienda": 1128,
-      "id": "1fb1"
-    },
-    {
-      "Nombre": "Juan Gómez",
-      "NumeroDocumento": 1548952164,
-      "Teléfono": 326654321,
-      "Correo": "juan.gomez@gmail.com",
-      "NumeroParqueadero": 29,
-      "Costo": 30000,
-      "CodigoVivienda": 1129,
-      "id": "8513"
-    },
-    {
-      "id": "7d07",
-      "Nombre": "Rojelio Arango",
-      "NumeroDocumento": "548652045",
-      "Teléfono": "3224557896",
-      "Correo": "rojelio@gmail.com",
-      "NumeroParqueadero": "25",
-      "Costo": "23000",
-      "CodigoVivienda": "1102"
-    },
-    {
-      "id": "e8be",
-      "Nombre": "Angelica",
-      "NumeroDocumento": "132654987",
-      "Teléfono": "12457896",
-      "Correo": "ange@gmail.com",
+      "id": "0ade",
+      "Nombre": "Denys Fontecha",
+      "NumeroDocumento": "1022564897",
+      "Teléfono": "3224459871",
+      "Correo": "denys@gmail.com",
       "NumeroParqueadero": "1",
       "Costo": "30000",
-      "CodigoVivienda": "1101"
+      "CodigoVivienda": "1101",
+      "HoraInicio": 82340,
+      "Tiempo": 3600
+    },
+    {
+      "id": "3c75",
+      "Nombre": "Mateo Martinez",
+      "NumeroDocumento": "1044587965",
+      "Teléfono": "3224896578",
+      "Correo": "mateo@gmail.com",
+      "NumeroParqueadero": "2",
+      "Costo": "30000",
+      "CodigoVivienda": "1102",
+      "HoraInicio": 72325,
+      "Tiempo": 60
     }
   ],
   "Porteros": [
@@ -1012,15 +726,6 @@
     }
   ],
   "Solicitudes": [
-    {
-      "id": "654",
-      "Nombre": "asd",
-      "Apellido": "asd",
-      "NumeroDocumento": "654",
-      "Teléfono": "654",
-      "Correo": "asd@sad",
-      "CodigoVivienda": "1104"
-    },
     {
       "id": "654",
       "Nombre": "asd",

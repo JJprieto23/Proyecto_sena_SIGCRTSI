@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useUser } from '../../userContext';
-import { useNavigate } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import './profile.css';
 
 const Profile = () => {
   const { user } = useUser();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [telefono, setTelefono] = useState('');
   const [correo, setCorreo] = useState('');
@@ -32,10 +30,6 @@ const Profile = () => {
       return () => clearTimeout(timer);
     }
   }, [showAlert]);
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
 
   const handleSaveClick = async () => {
     try {

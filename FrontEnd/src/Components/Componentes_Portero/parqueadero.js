@@ -69,18 +69,6 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
             setFilteredAtt("NumeroEspacio");
           }}
         />
-        <select
-          className="form-select"
-          aria-label="Default select example"
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setFilteredAtt("TipoEspacio");
-          }}
-        >
-          <option selected>Open this select menu</option>
-          <option value={"Moto"}>Moto</option>
-          <option value={"Carro"}>Carro</option>
-        </select>
         <button className="btn btn-success ms-2 py-1" type="submit">
           Search
         </button>

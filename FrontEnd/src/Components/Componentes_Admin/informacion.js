@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const Info = ({ currentRecords, apiS, data }) => {
   const [estado, setEstado] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
   const [status, setStatus] = useState("");
 
   const [propietarios, setPropietarios] = useState({

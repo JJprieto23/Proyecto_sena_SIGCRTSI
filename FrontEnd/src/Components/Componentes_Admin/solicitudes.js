@@ -15,8 +15,6 @@ const Solicitudes = ({ currentRecords, length }) => {
     Pass: "",
     id: "",
   });
-
-  const [showAlert, setShowAlert] = useState(false);
   const [status, setStatus] = useState("");
 
   const enviar = async (e) => {

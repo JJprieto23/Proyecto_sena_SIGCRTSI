@@ -9,65 +9,96 @@ export const UserProvider = ({ children }) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [countdown, setCountdown] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
+  const [countdown, setCountdown] = useState([]);
+  // const [isPaused, setIsPaused] = useState(false);
+  // const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        if(user){
-          const response = await axios.get(
-          `http://localhost:4000/Propietarios/${user.id}`
-        ); // Actualiza con el ID correcto
-        setUser(response.data);
-        }
-      } catch (error) {
-        console.error("Error al obtener el usuario:", error);
-      }
-    };
+    const interval = setInterval(() => {
+      setCountdown((prevTimers) =>
+        prevTimers
+          .filter((timer) => !(timer.countdown === 0 && timer.isRunning))
+          .map((timer) => {
+            if (timer.isRunning && !timer.isPaused && timer.countdown > 0) {
+              return { ...timer, countdown: timer.countdown - 1 };
+            }
+            return timer;
+          })
+      );
+    }, 1000);
 
-    fetchUser();
-  }, [user]);
+    return () => clearInterval(interval);
+  }, [countdown]);
 
-  useEffect(() => {
-    let timer;
-    if (countdown > 0 && isRunning && !isPaused) {
-      timer = setInterval(() => {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
-    } else if (countdown === 0) {
-      setIsRunning(false);
-    }
-
-    return () => clearInterval(timer);
-  }, [countdown, isRunning, isPaused]);
-
-  const handleStartCountdown = () => {
+  const handleStartCountdown = (invitado) => {
     const timeInSeconds = hours * 3600 + minutes * 60 + seconds;
     if (timeInSeconds > 0) {
-      setCountdown(timeInSeconds);
-      setIsRunning(true);
-      setIsPaused(false);
+      const result = countdown.find(
+        (timer) => timer.invitado === invitado && timer.countdown !== 0
+      );
+      if (result) {
+        setCountdown((prevTimers) =>
+          prevTimers.filter((timer) => !(timer.invitado === invitado))
+        );
+        const newTimer = {
+          invitado,
+          countdown: result.countdown,
+          isRunning: true,
+          isPaused: false,
+        };
+
+        setCountdown((prevTimers) => [...prevTimers, newTimer]);
+      } else {
+        const newTimer = {
+          invitado,
+          countdown: timeInSeconds,
+          isRunning: true,
+          isPaused: false,
+        };
+        setCountdown((prevTimers) =>
+          prevTimers.filter((timer) => !(timer.countdown === 0))
+        );
+
+        setCountdown((prevTimers) => [...prevTimers, newTimer]);
+      }
     }
+    console.log(countdown);
   };
 
-  const handlePauseCountdown = () => {
-    if (isRunning) {
-      setIsPaused(!isPaused);
-    }
+  const handlePauseCountdown = (invitado) => {
+    setCountdown((prevTimers) =>
+      prevTimers.map((timer) =>
+        timer.invitado === invitado
+          ? { ...timer, isPaused: !timer.isPaused }
+          : timer
+      )
+    );
   };
 
-  const handleStopCountdown = () => {
-    setCountdown(0);
-    setIsRunning(false);
-    setIsPaused(false);
+  const handleStopCountdown = (invitado) => {
+    setCountdown((prevTimers) =>
+      prevTimers.map((timer) =>
+        timer.invitado === invitado
+          ? { ...timer, countdown: 0, isRunning: false, isPaused: false }
+          : timer
+      )
+    );
   };
 
-  const handleResetCountdown = () => {
-    setCountdown(hours * 3600 + minutes * 60 + seconds);
-    setIsPaused(false);
-    setIsRunning(false);
+  const handleResetCountdown = (invitado) => {
+    const timeInSeconds = hours * 3600 + minutes * 60 + seconds;
+    setCountdown((prevTimers) =>
+      prevTimers.map((timer) =>
+        timer.invitado === invitado
+          ? {
+              ...timer,
+              countdown: timeInSeconds,
+              isPaused: false,
+              isRunning: false,
+            }
+          : timer
+      )
+    );
   };
 
   const formatTime = (seconds) => {
@@ -79,6 +110,42 @@ export const UserProvider = ({ children }) => {
       "0"
     )}:${String(secs).padStart(2, "0")}`;
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        if (user) {
+          const response = await axios.get(
+            `http://localhost:4000/Propietarios/${user.id}`
+          ); // Actualiza con el ID correcto
+          setUser(response.data);
+        }
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
+
+    fetchUser();
+  }, [user]);
+
+  // const updateGuests = async (invitado, timeInSeconds) => {
+  //   const hora = new Date().getHours();
+  //   const min = new Date().getMinutes();
+  //   const sec = new Date().getSeconds();
+  //   console.log(`${hora}${min}${sec}`);
+  //   const seconSum = (hora * 3600) + (min * 60) + sec
+  //   try {
+  //     const response = await axios.patch(
+  //       `http://localhost:4000/Invitados/${invitado}`,
+  //       {
+  //         Tiempo: timeInSeconds,
+  //         HoraInicio: seconSum,
+  //       }
+  //     ); // Actualiza con el ID correcto
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <UserContext.Provider
@@ -98,8 +165,6 @@ export const UserProvider = ({ children }) => {
         formatTime,
         countdown,
         setCountdown,
-        isRunning,
-        isPaused
       }}
     >
       {children}
