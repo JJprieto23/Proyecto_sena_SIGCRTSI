@@ -164,3 +164,47 @@
 .footer-map h3 {
     color: #fff;
 }
+
+.cards-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente los cards */
+  flex-wrap: wrap; /* Permite que los cards se ajusten en varias filas si no caben en una sola */
+  gap: 20px; /* Añade espacio entre los cards */
+  margin: 0 auto; /* Centra el contenedor en la página */
+  background-color:#333;
+}
+
+.card-perfil {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 250px;
+  padding: 16px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+.card-perfil img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.card-perfil h1 {
+  color: #000;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.card-perfil h2 {
+  color: #000;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.card-perfil p {
+  color: #666; /* Estilo para el color del texto en el p dentro del card */
+  font-size: 14px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import myImg from "../../img/logo2.png"; /* Importación logo del conjunto */
 import Fondo1 from "../../img/fondo1.png"; /* Importación de la imagen de fondo */
+import Perfil from "../../img/Usuario.png"
 import "../../styles/main.css";
 
 /* Creación del componente Main */
@@ -15,8 +16,8 @@ const Main = () => {
         </div>
       </header>
 
-      <div 
-        className="welcome-background" 
+      <div
+        className="welcome-background"
         style={{
           backgroundImage: `url(${Fondo1})`, // Imagen de fondo importada
           backgroundSize: 'cover',
@@ -28,8 +29,8 @@ const Main = () => {
           filter: 'brightness(90%)' // Oscurecer la imagen de fondo
         }}
       >
-        <div 
-          className="welcome-content" 
+        <div
+          className="welcome-content"
           style={{
             textAlign: 'center',
             color: '#fff',
@@ -40,8 +41,8 @@ const Main = () => {
         >
           <h2>Bienvenid@</h2>
           <p>Antes de ingresar desea ingresar como:</p>
-          <div 
-            className="welcome-buttons" 
+          <div
+            className="welcome-buttons"
             style={{
               display: 'flex',
               justifyContent: 'center',
@@ -68,26 +69,69 @@ const Main = () => {
         </div>
       </div>
 
-      <footer className="footer">
-        <div className="footer-contact">
-          <h3>Contactos</h3>
-          <ul>
-            <li>Email: admin@conjuntotorres.com</li>
-            <li>Teléfono: +123 456 7890</li>
-            <li>Dirección: Calle Ejemplo 123, Ciudad</li>
-          </ul>
+      <div className="cards-container">
+        <div className="card-perfil">
+          <img src={Perfil} alt="Foto de la Cara" />
+          <h1>Mario Alfonso Guerra</h1>
+          <p>Cargo: Administrador</p>
+          <h2>Hola, soy el administrador de este conjunto residencial y los quiero invitar a comprartir con nosotros</h2>
         </div>
-        <div className="footer-map">
-          <h3>Ubicación</h3>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.745002814836!2d-122.41941808468157!3d37.7749292797591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808ef7e8a469%3A0x35dfd48918480f3d!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1612764172152!5m2!1sen!2sus"
-            width="600" 
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            title="Mapa de ubicación"
-          ></iframe>
+        <div className="card-perfil">
+          <img src={Perfil} alt="Foto de la Cara" />
+          <h1>Ana María Araque</h1>
+          <p>Cargo: Secretaria</p>
+          <h2>Estoy aquí para ayudarte con cualquier duda o inquietud que tengas</h2>
+        </div>
+        <div className="card-perfil">
+          <img src={Perfil} alt="Foto de la Cara" />
+          <h1>Julian Andrés López</h1>
+          <p>Cargo: Coordinador de eventos</p>
+          <h2>Conmigo podras organizar diferentes eventos privados y publicos haciendo uso de nuestras instalaciones</h2>
+          <p>Telefono: 3138345761</p>
+        </div>
+      </div>
+
+      <footer className="footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="footer-contact">
+                <h3>Contacto</h3>
+                <ul className="list-unstyled links">
+                  <li>Calle Ejemplo 123, Ciudad</li>
+                  <li><a href="tel://11234567890">601 747 9393</a></li>
+                  <li><a href="mailto:uralitasigloxxi@gmail.com">uralitasigloxxi@gmail.com</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="col-lg-4">
+              <div className="footer-contact">
+                <h3>Nosotros</h3>
+                <ul className="list-unstyled float-start links">
+                  <li><a href="#">Acerca de</a></li>
+                  <li><a href="#">Servicios</a></li>
+                  <li><a href="#">Visión</a></li>
+                  <li><a href="#">Misión</a></li>
+                  <li><a href="#">Terminos</a></li>
+                  <li><a href="#">Privacidad</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-map">
+            <h3>Ubicación</h3>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.745002814836!2d-122.41941808468157!3d37.7749292797591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808ef7e8a469%3A0x35dfd48918480f3d!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1612764172152!5m2!1sen!2sus"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              title="Mapa de ubicación"
+            ></iframe>
+          </div>
         </div>
       </footer>
     </div>
