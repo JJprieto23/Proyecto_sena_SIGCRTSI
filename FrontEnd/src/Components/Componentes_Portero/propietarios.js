@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash, faPenToSquare, faSquarePlus, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-/* Añadir iconos a la libraria */
+/* Añadir iconos a la librería */
 library.add(faTrash);
 library.add(faPenToSquare);
 library.add(faSquarePlus);
@@ -55,7 +55,6 @@ const Propietario = ({ item, currentRecords, apiS }) => {
               id: propietarios.id,
             }
           );
-          console.log(response.status);
           if (response.status === 200) {
             setStatus(response.status);
             setAccion("");
@@ -81,7 +80,6 @@ const Propietario = ({ item, currentRecords, apiS }) => {
           User: propietarios.User,
           Pass: propietarios.Pass,
         });
-        console.log(response.status);
         if (response.status === 201) {
           setStatus(response.status);
           setAccion("");
@@ -107,8 +105,9 @@ const Propietario = ({ item, currentRecords, apiS }) => {
   const fetchFilteredRecords = async (term) => {
     try {
       if (term) {
+        // Modificar la consulta para que busque por nombre, documento o código de vivienda
         const response = await axios.get(
-          `http://localhost:4000/${apiS}?NumeroDocumento=${term}`
+          `http://localhost:4000/${apiS}?Nombre=${term}&NumeroDocumento=${term}&CodigoVivienda=${term}`
         );
         if (response.status === 200) {
           setFilteredRecords(response.data);
@@ -187,7 +186,7 @@ const Propietario = ({ item, currentRecords, apiS }) => {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Buscar por Nombre"
           aria-label="Search"
           required
           value={searchTerm}

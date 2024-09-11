@@ -49,9 +49,6 @@ const InvitadoDetalle = ({ id }) => {
     fetchGuestDetails();
   }, [invitado]);
 
-  const handleGoBack = () => {
-    navigate(-1); // Navega a la página anterior
-  };
 
   if (!invitado) {
     return <div className="loading">Cargando detalles del invitado...</div>;
@@ -66,9 +63,6 @@ const InvitadoDetalle = ({ id }) => {
         <div className="details-container">
           <div className="headerr">
             <h2>Detalles del Invitado</h2>
-            <button className="btn btn-secondary" onClick={handleGoBack}>
-              Volver
-            </button>
           </div>
           <div className="countdown-section">
             <h3>Cuenta Regresiva</h3>

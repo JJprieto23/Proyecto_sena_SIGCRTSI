@@ -7,25 +7,28 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
   const [filteredAtt, setFilteredAtt] = useState("");
   const [filterAvailable, setFilterAvailable] = useState(false);
   const [filterType, setFilterType] = useState("");
+  const [searchPerformed, setSearchPerformed] = useState(false); // Nueva variable para mantener el paginado
 
   useEffect(() => {
-    // Actualizar la lista filtrada cada vez que se cambia el filtro
-    const applyFilters = () => {
-      let records = currentRecords;
+    if (!searchPerformed) {
+      // Solo aplicar filtros si no se ha hecho una búsqueda
+      const applyFilters = () => {
+        let records = currentRecords;
 
-      if (filterAvailable) {
-        records = records.filter(record => record.Estado === "Disponible");
-      }
+        if (filterAvailable) {
+          records = records.filter((record) => record.Estado === "Disponible");
+        }
 
-      if (filterType) {
-        records = records.filter(record => record.TipoEspacio === filterType);
-      }
+        if (filterType) {
+          records = records.filter((record) => record.TipoEspacio === filterType);
+        }
 
-      setFilteredRecords(records);
-    };
+        setFilteredRecords(records);
+      };
 
-    applyFilters();
-  }, [filterAvailable, filterType, currentRecords]);
+      applyFilters();
+    }
+  }, [filterAvailable, filterType, currentRecords, searchPerformed]);
 
   const fetchFilteredRecords = async (term, att) => {
     try {
@@ -35,9 +38,11 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
         );
         if (response.status === 200) {
           setFilteredRecords(response.data);
+          setSearchPerformed(true); // Indicar que se ha realizado una búsqueda
         }
       } else {
         setFilteredRecords(currentRecords);
+        setSearchPerformed(false); // Si no hay término de búsqueda, reiniciar
       }
     } catch (error) {
       console.error(error);
@@ -52,21 +57,17 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
 
   return (
     <>
-      
-
-
-
       {/* Formulario de búsqueda */}
       <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Buscar por Número de Espacio"
           aria-label="Search"
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setFilteredAtt("NumeroEspacio");
+            setFilteredAtt("NumeroEspacio"); // Buscar por número de espacio
           }}
         />
         <button className="btn btn-success ms-2 py-1" type="submit">
@@ -74,24 +75,39 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
         </button>
       </form>
 
-          {/* Botones de filtrado */}
+      {/* Botones de filtrado */}
       <div className="mb-3 mt-5">
         <button
-          className={`btn me-2 ${filterAvailable ? "btn btn-primary" : " btn btn-dark"}`}
-          onClick={() => setFilterAvailable(!filterAvailable)}
+          className={`btn me-2 ${
+            filterAvailable ? "btn btn-primary" : " btn btn-dark"
+          }`}
+          onClick={() => {
+            setFilterAvailable(!filterAvailable);
+            setSearchPerformed(false); // Resetea la búsqueda al aplicar filtro
+          }}
         >
           {filterAvailable ? "Ver Todos" : "Disponibles"}
         </button>
         <button
           type="button"
-          className={`btn me-2 ${filterType === "Carro" ? "btn btn-primary" : " btn btn-dark"}`}
-          onClick={() => setFilterType(filterType === "Carro" ? "" : "Carro")}
+          className={`btn me-2 ${
+            filterType === "Carro" ? "btn btn-primary" : " btn btn-dark"
+          }`}
+          onClick={() => {
+            setFilterType(filterType === "Carro" ? "" : "Carro");
+            setSearchPerformed(false); // Resetea la búsqueda al aplicar filtro
+          }}
         >
           {filterType === "Carro" ? "Ver Todos" : "Carros"}
         </button>
         <button
-          className={`btn ${filterType === "Moto" ? "btn btn-primary" : " btn btn-dark"}`}
-          onClick={() => setFilterType(filterType === "Moto" ? "" : "Moto")}
+          className={`btn ${
+            filterType === "Moto" ? "btn btn-primary" : " btn btn-dark"
+          }`}
+          onClick={() => {
+            setFilterType(filterType === "Moto" ? "" : "Moto");
+            setSearchPerformed(false); // Resetea la búsqueda al aplicar filtro
+          }}
         >
           {filterType === "Moto" ? "Ver Todos" : "Motos"}
         </button>

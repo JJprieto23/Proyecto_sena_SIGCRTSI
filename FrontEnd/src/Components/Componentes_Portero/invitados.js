@@ -2,20 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { useTable } from "./navBar"; 
-/* Añadir iconos a la libraria */
-library.add(faTrash);
-library.add(faPenToSquare);
-library.add(faSquarePlus);
-library.add(faXmark);
-library.add(faCheck);
-library.add(faClock);
+import { faPenToSquare, faTrash, faSquarePlus, faXmark, faCheck, faClock } from "@fortawesome/free-solid-svg-icons";
+import { useTable } from "./navBar";
+
+/* Añadir iconos a la librería */
+library.add(faTrash, faPenToSquare, faSquarePlus, faXmark, faCheck, faClock);
 
 const Invitados = ({ item, currentRecords, apiS }) => {
   const [accion, setAccion] = useState("");
@@ -63,7 +54,6 @@ const Invitados = ({ item, currentRecords, apiS }) => {
               id: invitados.id,
             }
           );
-          console.log(response.status);
           if (response.status === 200) {
             setStatus(response.status);
             setAccion("");
@@ -81,7 +71,6 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           const response = await axios.delete(
             `http://localhost:4000/${apiS}/${invitados.id}`
           );
-          console.log(response.status);
           if (response.status === 200) {
             setShowAlert(false);
             setStatus(response.status);
@@ -105,7 +94,6 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           HoraInicio: invitados.HoraInicio,
           Tiempo: invitados.Tiempo
         });
-        console.log(response.status);
         if (response.status === 201) {
           setStatus(response.status);
           setAccion("");
@@ -138,11 +126,12 @@ const Invitados = ({ item, currentRecords, apiS }) => {
     setAccion(() => "Eliminar");
   };
 
+  // Modificación: Búsqueda por nombre en lugar de documento
   const fetchFilteredRecords = async (term) => {
     try {
       if (term) {
         const response = await axios.get(
-          `http://localhost:4000/${apiS}?NumeroDocumento=${term}`
+          `http://localhost:4000/${apiS}?Nombre=${term}`
         );
         if (response.status === 200) {
           setFilteredRecords(response.data);
@@ -170,13 +159,13 @@ const Invitados = ({ item, currentRecords, apiS }) => {
             role="alert"
             style={{ marginInlineEnd: "35%" }}
           >
-            Esta seguro de eliminar este registro ?
+            ¿Está seguro de eliminar este registro?
             <form className="p-0" onSubmit={enviar}>
               <div className="d-flex flex-row mt-3 justify-content-end">
                 <div>
                   <button
                     type="submit"
-                    class="btn btn-danger p-0 m-0"
+                    className="btn btn-danger p-0 m-0"
                     onClick={() => {
                       eliminar();
                     }}
@@ -189,7 +178,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
                 <div className="ms-3">
                   <button
                     type="submit"
-                    class="btn btn-success p-0 m-0"
+                    className="btn btn-success p-0 m-0"
                     onClick={() => {
                       eliminar(eliminarRecord);
                     }}
@@ -223,11 +212,13 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           </div>
         </div>
       ) : null}
+      
+      {/* Barra de búsqueda */}
       <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Buscar por Nombre"
           aria-label="Search"
           required
           value={searchTerm}
@@ -241,6 +232,8 @@ const Invitados = ({ item, currentRecords, apiS }) => {
           Search
         </button>
       </form>
+
+      {/* Tabla de invitados */}
       <table
         id="example2"
         className="table table-bordered table-hover table-sm"
@@ -774,7 +767,7 @@ const Invitados = ({ item, currentRecords, apiS }) => {
             <th rowSpan="1" colSpan="1" className="sorting text-light bg-dark">
               <button
                 type="button"
-                className="btn btn-success p-0 m-0 w-50 "
+                className="btn btn-success p-0 m-0 w-50"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 onClick={() => {
