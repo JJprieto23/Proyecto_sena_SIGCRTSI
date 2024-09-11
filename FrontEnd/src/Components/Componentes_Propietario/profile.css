@@ -1,19 +1,19 @@
 .profile-container {
     background-color: #f8f9fa; 
     padding: 20px;
-    border-radius: 20px; /* Ajustado para un radio más sutil */
-    border: 1px solid #007bff; /* Color azul más suave */
+    border-radius: 20px; 
+    border: 1px solid #007bff;
     max-width: 800px;
     margin: 100px auto; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    text-align: center; /* Centra todo el texto en el contenedor */
+    text-align: center; 
 }
 
 .profile-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px; 
-    color: #007bff; /* Color azul para el título */
+    color: #007bff; 
     font-weight: bold; 
 }
 
@@ -21,12 +21,7 @@
     padding: 10px; 
 }
 
-.profile-info p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 10px 0;
-    color: #495057; 
-}
+
 
 .profile-info p strong {
     font-weight: bold;

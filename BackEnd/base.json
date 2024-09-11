@@ -214,17 +214,6 @@
   ],
   "ReservaSalon": [
     {
-      "id": "6a2a",
-      "Nombre": "Andres",
-      "NumeroDocumento": "1019763603",
-      "Telefono": "27735326",
-      "CodigoVivienda": "1101",
-      "HoraInicio": "09:52",
-      "HoraFin": "23:52",
-      "Motivo": "I dont know",
-      "Fecha": "2024-09-10"
-    },
-    {
       "id": "fc97",
       "Nombre": "Joan",
       "NumeroDocumento": "1019763603",
@@ -752,17 +741,7 @@
       "id": "a7ce"
     }
   ],
-  "Solicitudes": [
-    {
-      "id": "654",
-      "Nombre": "asd",
-      "Apellido": "asd",
-      "NumeroDocumento": "654",
-      "Teléfono": "654",
-      "Correo": "asd@asd",
-      "CodigoVivienda": "1101"
-    }
-  ],
+  "Solicitudes": [],
   "Reuniones": [
     {
       "id": "9465",

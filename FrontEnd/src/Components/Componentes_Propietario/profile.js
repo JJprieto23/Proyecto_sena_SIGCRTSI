@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useUser } from '../../userContext';
-import { FaEdit } from 'react-icons/fa';
-import './profile.css';
+import React, { useEffect, useState } from "react";
+import { useUser } from "../../userContext";
+import { FaEdit } from "react-icons/fa";
+import "./profile.css";
 
 const Profile = () => {
-  const { user, logout } = useUser();
+  const { user } = useUser();
   const [loading, setLoading] = useState(true);
-  const [telefono, setTelefono] = useState('');
-  const [correo, setCorreo] = useState('');
+  const [telefono, setTelefono] = useState("");
+  const [correo, setCorreo] = useState("");
   const [isEditingTelefono, setIsEditingTelefono] = useState(false);
   const [isEditingCorreo, setIsEditingCorreo] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -33,29 +33,32 @@ const Profile = () => {
 
   const handleSaveClick = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/Propietarios/${user.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          Teléfono: telefono,
-          Correo: correo,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:4000/Propietarios/${user.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Teléfono: telefono,
+            Correo: correo,
+          }),
+        }
+      );
 
       if (response.ok) {
-        setAlertMessage('Datos actualizados correctamente.');
+        setAlertMessage("Datos actualizados correctamente.");
         setShowAlert(true);
         setIsEditingTelefono(false);
         setIsEditingCorreo(false);
       } else {
-        setAlertMessage('Error al actualizar los datos.');
+        setAlertMessage("Error al actualizar los datos.");
         setShowAlert(true);
       }
     } catch (error) {
-      console.error('Error al actualizar:', error);
-      setAlertMessage('Error al actualizar los datos.');
+      console.error("Error al actualizar:", error);
+      setAlertMessage("Error al actualizar los datos.");
       setShowAlert(true);
     }
   };
@@ -75,75 +78,82 @@ const Profile = () => {
   return (
     <>
       <div className="profile-container">
-        <div className="profile-info">
-          <p>
-            <strong>Nombre:</strong> {user.Nombre}
-          </p>
-          <p className="profile-field">
-            <strong>Teléfono:</strong>
-            {isEditingTelefono ? (
-              <input
-                type="text"
-                value={telefono}
-                onChange={(e) => setTelefono(e.target.value)}
-                className="profile-input"
-                onBlur={handleSaveClick}
-              />
-            ) : (
-              <>
-                <span>{telefono}</span>
-                <FaEdit
-                  className="edit-icon"
-                  onClick={() => setIsEditingTelefono(true)}
+        <div className="p-5 d-flex flex-row justify-content-around">
+          <div>
+            <p className="text-start">
+              <strong>Nombre:</strong> {user.Nombre}
+            </p>
+            <p className="text-start">
+              <strong>Teléfono:</strong>
+              {isEditingTelefono ? (
+                <input
+                  type="text"
+                  value={telefono}
+                  onChange={(e) => setTelefono(e.target.value)}
+                  className="profile-input"
+                  onBlur={handleSaveClick}
                 />
-              </>
-            )}
-          </p>
-          <p className="profile-field">
-            <strong>Correo:</strong>
-            {isEditingCorreo ? (
-              <input
-                type="email"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-                className="profile-input"
-                onBlur={handleSaveClick}
-              />
-            ) : (
-              <>
-                <span>{correo}</span>
-                <FaEdit
-                  className="edit-icon"
-                  onClick={() => setIsEditingCorreo(true)}
+              ) : (
+                <>
+                  <span>{telefono}</span>
+                  <FaEdit
+                    className="edit-icon"
+                    onClick={() => setIsEditingTelefono(true)}
+                  />
+                </>
+              )}
+            </p>
+            <p className="text-start">
+              <strong>Correo:</strong>
+              {isEditingCorreo ? (
+                <input
+                  type="email"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  className="profile-input"
+                  onBlur={handleSaveClick}
                 />
-              </>
-            )}
-          </p>
-          <p>
-            <strong>Número Documento:</strong> {user.NumeroDocumento}
-          </p>
-          <p>
-            <strong>Meses Atrasados:</strong> {user.MesesAtrasados}
-          </p>
-          <p>
-            <strong>Espacios Parqueadero</strong>
-          </p>
-          <p>
-            <strong>Moto:</strong> {espacioMoto}
-          </p>
-          <p>
-            <strong>Carro:</strong> {espacioCarro}
-          </p>
-          <p>
-            <strong>Código Vivienda:</strong> {user.CodigoVivienda}
-          </p>
+              ) : (
+                <>
+                  <span>{correo}</span>
+                  <FaEdit
+                    className="edit-icon"
+                    onClick={() => setIsEditingCorreo(true)}
+                  />
+                </>
+              )}
+            </p>
+            <p className="text-start">
+              <strong>Número Documento:</strong> {user.NumeroDocumento}
+            </p>
+            <p className="text-start">
+              <strong>Meses Atrasados:</strong> {user.MesesAtrasados}
+            </p>
+          </div>
+
+          <div>
+            <p className="text-start">
+              <strong>Espacios Parqueadero</strong>
+            </p>
+            <p className="text-start">
+              <strong>Moto:</strong> {espacioMoto}
+            </p>
+            <p className="text-start">
+              <strong>Carro:</strong> {espacioCarro}
+            </p>
+            <p className="text-start" >
+              <strong>Código Vivienda:</strong> {user.CodigoVivienda}
+            </p>
+          </div>
         </div>
       </div>
 
       {showAlert && (
         <div
           className={`alert ${
-            alertMessage.includes("correctamente") ? "alert-success" : "alert-danger"
+            alertMessage.includes("correctamente")
+              ? "alert-success"
+              : "alert-danger"
           } alert-dismissible fade show`}
           role="alert"
           style={{
