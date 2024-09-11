@@ -198,6 +198,12 @@
   margin: 8px 0;
 }
 
+.card-perfil h2 {
+  color: #000;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
 .card-perfil p {
   color: #666; /* Estilo para el color del texto en el p dentro del card */
   font-size: 14px;
