@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import myImg from "../../img/logo2.png"; /* Importación logo del conjunto */
 import Fondo1 from "../../img/fondo1.png"; /* Importación de la imagen de fondo */
 import Perfil from "../../img/Usuario.png"
 import "../../styles/main.css";
+import Modal from "../../Components/Componentes_Main/modal";
 
 /* Creación del componente Main */
 const Main = () => {
+  const [modalContent, setModalContent] = useState({ show: false, title: '', content: '' });
+  
+  const openModal = (title, content) => {
+    setModalContent({ show: true, title, content });
+  };
+
+  const closeModal = () => {
+    setModalContent({ show: false, title: '', content: '' });
+  };
+  
   return (
     <div className="home">
       <header className="header">
@@ -109,12 +120,12 @@ const Main = () => {
               <div className="footer-contact">
                 <h3>Nosotros</h3>
                 <ul className="list-unstyled float-start links">
-                  <li><a href="#">Acerca de</a></li>
-                  <li><a href="#">Servicios</a></li>
-                  <li><a href="#">Visión</a></li>
-                  <li><a href="#">Misión</a></li>
-                  <li><a href="#">Terminos</a></li>
-                  <li><a href="#">Privacidad</a></li>
+                  <li><a href="#" onClick={() => openModal('Acerca de', 'Información sobre nosotros')}>Acerca de</a></li>
+                  <li><a href="#" onClick={() => openModal('Servicios', 'Estos son nuestros servicios...')}>Servicios</a></li>
+                  <li><a href="#" onClick={() => openModal('Visión', 'Nuestra visión para el futuro')}>Visión</a></li>
+                  <li><a href="#" onClick={() => openModal('Misión', 'Esta es nuestra misión')}>Misión</a></li>
+                  <li><a href="#" onClick={() => openModal('Términos', 'Estos son los términos y condiciones')}>Términos</a></li>
+                  <li><a href="#" onClick={() => openModal('Privacidad', 'Política de privacidad...')}>Privacidad</a></li>
                 </ul>
               </div>
             </div>
@@ -132,7 +143,13 @@ const Main = () => {
               title="Mapa de ubicación"
             ></iframe>
           </div>
-        </div>
+          <Modal
+          show={modalContent.show}
+          handleClose={closeModal}
+          title={modalContent.title}
+          content={modalContent.content}
+        />
+        </div>   
       </footer>
     </div>
   );
