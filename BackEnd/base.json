@@ -134,6 +134,11 @@
       "CodigoVivienda": 1128,
       "NumeroParqueadero": 28,
       "id": "c9bx"
+    },
+    {
+      "id": "6fd2",
+      "CodigoVivienda": "1129",
+      "NumeroParqueadero": "0"
     }
   ],
   "Propietarios": [
@@ -206,7 +211,7 @@
   ],
   "Parqueadero": [
     {
-      "NumeroEspacio": "1",
+      "NumeroEspacio": 1,
       "TipoEspacio": "Carro",
       "Estado": "Disponible",
       "id": "0bbe"
@@ -1026,7 +1031,22 @@
       "CodigoVivienda": "1101"
     }
   ],
-  "Cronometro": [
-    
+  "Reuniones": [
+    {
+      "id": "9465",
+      "NumeroReunion": "1",
+      "Motivo": "Dia Emergencia",
+      "Fecha": "2024-09-11",
+      "HoraInicio": "12:46",
+      "HoraFin": "17:50"
+    },
+    {
+      "id": "ed7c",
+      "NumeroReunion": "2",
+      "Motivo": "No lo se",
+      "Fecha": "2024-09-13",
+      "HoraInicio": "13:50",
+      "HoraFin": "12:50"
+    }
   ]
 }

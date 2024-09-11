@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { NavBar } from "../../../Components/Componentes_Portero/navBar";
 import './InvitadoDetalle.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faStop, faRedo } from '@fortawesome/free-solid-svg-icons';
