@@ -9,7 +9,7 @@ import Footer from '../../Components/Footer/Footer';
 const Main = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slides = [myImg, Fondo1]; // Imagenes para el carrusel
+  const slides = [Fondo1]; // Imagenes para el carrusel
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
