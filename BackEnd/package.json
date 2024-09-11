@@ -1,8 +1,9 @@
 {
   "dependencies": {
-    "json-server": "^1.0.0-beta.1"
+    "json-server": "^1.0.0-beta.1",
+    "npm": "^10.8.3"
   },
   "scripts": {
-    "start-api":"json-server --watch base.json --port 4000"
+    "start-api": "json-server --watch base.json --port 4000"
   }
 }
