@@ -73,19 +73,18 @@ export function NavBar() {
                   Ver perfil
                 </Link>
               </li>
-              <li>
-                <Link
-                  onClick={() => setContextUser(null)}
-                  className="dropdown-item text-danger"
-                >
-                  Cerrar Sesión
-                </Link>
-              </li>
+              <Link
+                onClick={() => setContextUser(null)}
+                className="dropdown-item text-danger"
+                to="/"
+              >
+                Cerrar Sesión
+              </Link>
             </ul>
           </div>
         </div>
       </nav>
-      {/* SideBar y contenido */}            
+      {/* SideBar y contenido */}
       <div className="d-flex flex-row h-100">
         <div
           class="offcanvas offcanvas-start show"

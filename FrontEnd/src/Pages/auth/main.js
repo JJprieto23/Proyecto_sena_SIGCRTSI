@@ -7,6 +7,17 @@ import "../../styles/main.css";
 import Footer from '../../Components/Footer/Footer';
 /* Creación del componente Main */
 const Main = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [myImg, Fondo1]; // Imagenes para el carrusel
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   
   return (
@@ -71,6 +82,17 @@ const Main = () => {
         </div>
       </div>
 
+      {/* Carrusel antes del card */}
+      <div className="carousel-container">
+        <button className="carousel-control prev" onClick={prevSlide}>
+          &#10094;
+        </button>
+        <img src={slides[currentSlide]} alt={`Slide ${currentSlide + 1}`} className="carousel-image" />
+        <button className="carousel-control next" onClick={nextSlide}>
+          &#10095;
+        </button>
+      </div>
+
       <div className="cards-container">
         <div className="card-perfil">
           <img src={Perfil} alt="Foto de la Cara" />
@@ -92,7 +114,7 @@ const Main = () => {
           <p>Telefono: 3138345761</p>
         </div>
       </div>
-    <Footer />
+      <Footer />
     </div>
   );
 }
