@@ -7,7 +7,7 @@
     },
     {
       "CodigoVivienda": 1102,
-      "NumeroParqueadero": 3,
+      "NumeroParqueadero": "3",
       "id": "d4c8"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "CodigoVivienda": 1108,
-      "NumeroParqueadero": 8,
+      "NumeroParqueadero": "8",
       "id": "i9hd"
     },
     {
@@ -139,6 +139,21 @@
       "id": "6fd2",
       "CodigoVivienda": "1129",
       "NumeroParqueadero": "0"
+    },
+    {
+      "id": "4773",
+      "CodigoVivienda": "1130",
+      "NumeroParqueadero": "0"
+    },
+    {
+      "id": "b81b",
+      "CodigoVivienda": "1131",
+      "NumeroParqueadero": "0"
+    },
+    {
+      "id": "dd88",
+      "CodigoVivienda": "1132",
+      "NumeroParqueadero": "0"
     }
   ],
   "Propietarios": [
@@ -148,13 +163,14 @@
       "Nombre": "Joan",
       "Teléfono": "2456",
       "Correo": "vgas@asbd",
-      "EstadoEnvio": "Enviado",
+      "EstadoEnvio": "",
       "NumeroDocumento": 1019763603,
       "MesesAtrasados": 0,
       "User": "joan",
       "Pass": "27h",
       "espacioMoto": 25,
-      "espacioCarro": 16
+      "espacioCarro": 16,
+      "EspacioParqueadero": "0"
     },
     {
       "id": "70f7",
@@ -199,7 +215,7 @@
   "ReservaSalon": [
     {
       "id": "6a2a",
-      "Nombre": "Joan",
+      "Nombre": "Andres",
       "NumeroDocumento": "1019763603",
       "Telefono": "27735326",
       "CodigoVivienda": "1101",
@@ -429,7 +445,7 @@
   "Invitados": [
     {
       "id": "0ade",
-      "Nombre": "Denys Fontecha",
+      "Nombre": "Denysss",
       "NumeroDocumento": "1022564897",
       "Teléfono": "3224459871",
       "Correo": "denys@gmail.com",

@@ -451,9 +451,15 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
                                 Cerrar
                               </button>
                               <button
-                                data-bs-dismiss="modal"
+                                data-bs-dismiss={accion === "" ? "modal" : ""}
                                 type="submit"
-                                className="btn btn-warning"
+                                className={
+                                  accion === "Actualizar"
+                                    ? "btn btn-warning"
+                                    : accion === "Insertar"
+                                    ? "btn btn-success w-25 m-0 ms-1 h-100"
+                                    : "btn btn-primary w-25 m-0 ms-1 h-100"
+                                }
                                 onClick={() => setCurrentAccion("Actualizar")}
                               >
                                 Guardar cambios

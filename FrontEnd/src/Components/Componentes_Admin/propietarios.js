@@ -547,17 +547,17 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                                 Cerrar
                               </button>
                               <button
-                                data-bs-dismiss="modal"
+                                data-bs-dismiss={accion === "" ? "modal" : ""}
                                 type="submit"
                                 className={
                                   accion === "Actualizar"
                                     ? "btn btn-warning"
                                     : accion === "Insertar"
                                     ? "btn btn-success w-25 m-0 ms-1 h-100"
-                                    : null
+                                    : "btn btn-primary w-25 m-0 ms-1 h-100"
                                 }
                               >
-                                {accion}
+                                {accion === "" ? "Volver" : accion}
                               </button>
                             </div>
                           </form>
@@ -845,16 +845,17 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                       Cerrar
                     </button>
                     <button
+                      data-bs-dismiss={accion === "" ? "modal" : ""}
                       type="submit"
                       className={
                         accion === "Actualizar"
                           ? "btn btn-warning"
                           : accion === "Insertar"
-                          ? "btn btn-success w-25 m-0"
-                          : null
+                          ? "btn btn-success w-25 m-0 ms-1 h-100"
+                          : "btn btn-primary w-25 m-0 ms-1 h-100"
                       }
                     >
-                      {accion}
+                      {accion === "" ? "Volver" : accion}
                     </button>
                   </div>
                 </form>

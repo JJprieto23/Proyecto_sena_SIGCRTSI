@@ -4,7 +4,7 @@ import { FaEdit } from 'react-icons/fa';
 import './profile.css';
 
 const Profile = () => {
-  const { user } = useUser();
+  const { user, logout } = useUser();
   const [loading, setLoading] = useState(true);
   const [telefono, setTelefono] = useState('');
   const [correo, setCorreo] = useState('');
