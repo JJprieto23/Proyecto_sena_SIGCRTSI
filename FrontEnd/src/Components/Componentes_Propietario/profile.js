@@ -78,6 +78,8 @@ const Profile = () => {
   return (
     <>
       <div className="profile-container">
+        <h1 className="profile-title">Mi Perfil</h1>
+        
         <div className="p-5 d-flex flex-row justify-content-around">
           <div>
             <p className="text-start">
@@ -141,7 +143,7 @@ const Profile = () => {
             <p className="text-start">
               <strong>Carro:</strong> {espacioCarro}
             </p>
-            <p className="text-start" >
+            <p className="text-start">
               <strong>Código Vivienda:</strong> {user.CodigoVivienda}
             </p>
           </div>

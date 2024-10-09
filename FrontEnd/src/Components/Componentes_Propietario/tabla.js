@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../../userContext";
-import Calendario from "./calendario"; // Asegúrate de que la ruta sea correcta
+import Calendario from "./calendario"; 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch} from "@fortawesome/free-solid-svg-icons";
+
 
 const Tabla = ({ apiS }) => {
   const [currentPageMoto, setCurrentPageMoto] = useState(1);
@@ -229,14 +232,13 @@ const Tabla = ({ apiS }) => {
                 <input
                   className="form-control me-2"
                   type="search"
-                  placeholder="Buscar"
                   aria-label="Buscar"
                   required
                   value={searchTermMoto}
                   onChange={(e) => setSearchTermMoto(e.target.value)}
                 />
                 <button className="btn btn-success py-1" type="submit">
-                  Buscar
+                <FontAwesomeIcon icon={faSearch} />
                 </button>
               </form>
               <h2 className="text-center">Moto</h2>
@@ -341,14 +343,14 @@ const Tabla = ({ apiS }) => {
                 <input
                   className="form-control me-2"
                   type="search"
-                  placeholder="Buscar"
+
                   aria-label="Buscar"
                   required
                   value={searchTermCarro}
                   onChange={(e) => setSearchTermCarro(e.target.value)}
                 />
                 <button className="btn btn-success py-1" type="submit">
-                  Buscar
+                <FontAwesomeIcon icon={faSearch} />
                 </button>
               </form>
               <h2 className="text-center">Carro</h2>
