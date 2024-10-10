@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import "./Logins.css";
 import myImg from "../../../img/logo2.png";
 import { useUser } from "../../../userContext";
@@ -30,19 +32,20 @@ const LoginPropietario = () => {
           setContextUser(usuario); // Actualizar el contexto con el usuario
           navigate("/MainPropietario");
         } else {
-          setShowAlert("pass");
+          toast.danger("Contraseña incorrecta");
         }
       } else {
-        setShowAlert("user");
+        toast.warning("Usuario no encontrado");
       }
     } catch (error) {
       console.error(error);
-      alert("Ocurrió un error al intentar iniciar sesión");
+      toast.error("Contraseña incorrecta. Intentelo Nuevamente.");
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div
         className="login-page"
         style={{
@@ -93,10 +96,13 @@ const LoginPropietario = () => {
               {/* Nombre y Apellido */}
               <div className="d-flex flex-row">
                 <div className="me-4 w-50">
+                <label className="text-start w-100 fw-normal" for="username">
+                    Nombre de usuario
+                  </label>
                   <input
+                    id="username"
                     type="text"
                     className="form-control"
-                    placeholder="Usuario"
                     name="Username"
                     required
                     value={Username}
@@ -104,10 +110,13 @@ const LoginPropietario = () => {
                   />
                 </div>
                 <div className="w-50">
+                <label className="text-start w-100 fw-normal" for="pass">
+                    Contraseña
+                  </label>
                   <input
+                    id="pass"
                     type="password"
                     className="form-control"
-                    placeholder="Contraseña"
                     name="Pass"
                     required
                     value={Password}

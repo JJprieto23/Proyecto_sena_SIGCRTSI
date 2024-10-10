@@ -4,19 +4,16 @@ import axios from "axios";
 import { useUser } from "../../userContext";
 import Calendario from "./calendario"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
-
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Tabla = ({ apiS }) => {
   const [currentPageMoto, setCurrentPageMoto] = useState(1);
   const [currentPageCarro, setCurrentPageCarro] = useState(1);
   const { user, setUser } = useUser();
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-
   const [searchTermMoto, setSearchTermMoto] = useState("");
-  
-  const [searchTermCarro, setSearchTermCarro] = useState("");// Estado para el término de búsqueda
+  const [searchTermCarro, setSearchTermCarro] = useState("");
 
   const recordsPerPage = 12;
 
@@ -40,15 +37,6 @@ const Tabla = ({ apiS }) => {
 
     fetchEspacios();
   }, [apiS]);
-
-  useEffect(() => {
-    if (showAlert) {
-      const timer = setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showAlert]);
 
   const indexOfLastRecordMoto = currentPageMoto * recordsPerPage;
   const indexOfFirstRecordMoto = indexOfLastRecordMoto - recordsPerPage;
@@ -83,8 +71,7 @@ const Tabla = ({ apiS }) => {
 
   const rentSpace = async (spaceId, EspacioParqueadero, espacioNumero) => {
     if (!user) {
-      setAlertMessage("Error: Usuario no autenticado.");
-      setShowAlert(true);
+      toast.error("Error: Usuario no autenticado.");
       return;
     }
 
@@ -95,10 +82,7 @@ const Tabla = ({ apiS }) => {
       (EspacioParqueadero === "Moto" && espacioMoto) ||
       (EspacioParqueadero === "Carro" && espacioCarro)
     ) {
-      setAlertMessage(
-        "Error: Solo puedes rentar un espacio de moto y un espacio de carro."
-      );
-      setShowAlert(true);
+      toast.error("Error: Solo puedes rentar un espacio de moto y un espacio de carro.");
       return;
     }
 
@@ -136,12 +120,10 @@ const Tabla = ({ apiS }) => {
 
       setUser(updatedUser);
 
-      setAlertMessage("Usted rentó un espacio de parqueadero exitosamente");
-      setShowAlert(true);
+      toast.success("Usted rentó un espacio de parqueadero exitosamente");
     } catch (error) {
       console.error("Error al rentar el espacio:", error);
-      setAlertMessage("Error al rentar el espacio");
-      setShowAlert(true);
+      toast.error("Error al rentar el espacio");
     }
   };
 
@@ -162,7 +144,7 @@ const Tabla = ({ apiS }) => {
           `http://localhost:4000/${apiS}?NumeroEspacio=${term}`
         );
         if (response.status === 200) {
-          if (response.data[0].TipoEspacio === "Moto") {
+          if (response.data.TipoEspacio === "Moto") {
             setDataMoto(response.data);
           } else {
             setDataMoto([]);
@@ -173,7 +155,7 @@ const Tabla = ({ apiS }) => {
       }
     } catch (error) {
       console.error(error);
-      alert("Ocurrió un error al filtrar los registros");
+      toast.error("Ocurrió un error al filtrar los registros");
     }
   };
 
@@ -184,7 +166,7 @@ const Tabla = ({ apiS }) => {
           `http://localhost:4000/${apiS}?NumeroEspacio=${term}`
         );
         if (response.status === 200) {
-          if (response.data[0].TipoEspacio === "Carro") {
+          if (response.data.TipoEspacio === "Carro") {
             setDataCarro(response.data);
           } else {
             setDataCarro([]);
@@ -195,7 +177,7 @@ const Tabla = ({ apiS }) => {
       }
     } catch (error) {
       console.error(error);
-      alert("Ocurrió un error al filtrar los registros");
+      toast.error("Este espacio no se encuentra disponible.");
     }
   };
   const hasRentedMoto = user && user.espacioMoto;
@@ -203,45 +185,37 @@ const Tabla = ({ apiS }) => {
 
   return (
     <div className="w-100 h-100">
-      {showAlert && (
-        <div
-          className={`alert ${
-            alertMessage.includes("exitosamente")
-              ? "alert-success"
-              : "alert-danger"
-          } alert-dismissible fade show`}
-          role="alert"
-          style={{
-            position: "fixed",
-            top: "10%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "30%",
-            zIndex: 1000,
-            textAlign: "center",
-          }}
-        >
-          {alertMessage}
-        </div>
-      )}
+      <ToastContainer />
 
 <div className="card m-0 h-100">
     {apiS === "Parqueadero" ? (
       <div className="d-flex flex-row">
         {/* Moto Section */}
         <div className="px-3 w-50">
-          <form className="d-flex" onSubmit={handleSearchMoto}>
-            <input
-              className="form-control me-2"
-              type="search"
-              aria-label="Buscar"
-              required
-              value={searchTermMoto}
-              onChange={(e) => setSearchTermMoto(e.target.value)}
-            />
+  <form 
+    className="d-flex flex-column mb-3 align-items-start" 
+    role="search" 
+    onSubmit={handleSearchMoto}
+  >
+    <label className="text-start w-100 fw-normal mb-2" htmlFor="searchParam">
+      Buscar por espacio de parqueadero de Moto
+    </label>
+
+    <div className="d-flex w-100">
+      <input
+        id="searchParam"
+        className="form-control me-2"
+        type="search"
+        placeholder="Ejemplo -> 29"
+        aria-label="Search"
+        required
+        value={searchTermMoto}
+        onChange={(e) => setSearchTermMoto(e.target.value)}
+      />
             <button className="btn btn-success py-1" type="submit">
               <FontAwesomeIcon icon={faSearch} />
             </button>
+            </div>
           </form>
           <h2 className="text-center">Moto</h2>
           {hasRentedMoto ? (
@@ -356,11 +330,20 @@ const Tabla = ({ apiS }) => {
 
             {/* Carro Section */}
             <div className="px-3 w-50">
-              <form className="d-flex" onSubmit={handleSearchCarro}>
+              <form 
+             className="d-flex flex-column mb-3 align-items-start" 
+              role="search"
+              onSubmit={handleSearchCarro}>
+                <label className="text-start w-100 fw-normal mb-2" htmlFor="searchParam">
+      Buscar por espacio de parqueadero de Carro
+    </label>
+              <div className="d-flex w-100">
                 <input
+                  id="searchParam"
                   className="form-control me-2"
                   type="search"
-                  aria-label="Buscar"
+                  placeholder="Ejemplo -> 12"
+                  aria-label="Seacrh"
                   required
                   value={searchTermCarro}
                   onChange={(e) => setSearchTermCarro(e.target.value)}
@@ -368,6 +351,7 @@ const Tabla = ({ apiS }) => {
                 <button className="btn btn-success py-1" type="submit">
                   <FontAwesomeIcon icon={faSearch} />
                 </button>
+                </div>
               </form>
               <h2 className="text-center">Carro</h2>
               {hasRentedCarro ? (
