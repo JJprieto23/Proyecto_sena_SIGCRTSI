@@ -198,6 +198,8 @@ const Tabla = ({ apiS }) => {
       alert("Ocurrió un error al filtrar los registros");
     }
   };
+  const hasRentedMoto = user && user.espacioMoto;
+  const hasRentedCarro = user && user.espacioCarro;
 
   return (
     <div className="w-100 h-100">
@@ -223,25 +225,31 @@ const Tabla = ({ apiS }) => {
         </div>
       )}
 
-      <div className="card m-0 h-100">
-        {apiS === "Parqueadero" ? (
-          <div className="d-flex flex-row">
-            {/* Moto Section */}
-            <div className="px-3 w-50">
-              <form className="d-flex" onSubmit={handleSearchMoto}>
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  aria-label="Buscar"
-                  required
-                  value={searchTermMoto}
-                  onChange={(e) => setSearchTermMoto(e.target.value)}
-                />
-                <button className="btn btn-success py-1" type="submit">
-                <FontAwesomeIcon icon={faSearch} />
-                </button>
-              </form>
-              <h2 className="text-center">Moto</h2>
+<div className="card m-0 h-100">
+    {apiS === "Parqueadero" ? (
+      <div className="d-flex flex-row">
+        {/* Moto Section */}
+        <div className="px-3 w-50">
+          <form className="d-flex" onSubmit={handleSearchMoto}>
+            <input
+              className="form-control me-2"
+              type="search"
+              aria-label="Buscar"
+              required
+              value={searchTermMoto}
+              onChange={(e) => setSearchTermMoto(e.target.value)}
+            />
+            <button className="btn btn-success py-1" type="submit">
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </form>
+          <h2 className="text-center">Moto</h2>
+          {hasRentedMoto ? (
+            <p className="text-center text-danger">
+              Ya has rentado un espacio de moto. 
+            </p>
+          ) : (
+            <>
               <div className="d-flex flex-wrap mt-3">
                 {currentRecordsMoto.map((record, index) => (
                   <div
@@ -263,6 +271,8 @@ const Tabla = ({ apiS }) => {
                   </div>
                 ))}
               </div>
+
+              {/* Pagination and Record Info for Moto */}
               <div className="card-body">
                 <div className="dataTables_wrapper dt-bootstrap4">
                   <div className="row">
@@ -305,7 +315,9 @@ const Tabla = ({ apiS }) => {
                               }`}
                             >
                               <button
-                                onClick={() => handlePageChangeMoto(index + 1)}
+                                onClick={() =>
+                                  handlePageChangeMoto(index + 1)
+                                }
                                 className="page-link"
                               >
                                 {index + 1}
@@ -335,7 +347,12 @@ const Tabla = ({ apiS }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </>
+          )}
+        </div>
+
+          
+            
 
             {/* Carro Section */}
             <div className="px-3 w-50">
@@ -343,110 +360,119 @@ const Tabla = ({ apiS }) => {
                 <input
                   className="form-control me-2"
                   type="search"
-
                   aria-label="Buscar"
                   required
                   value={searchTermCarro}
                   onChange={(e) => setSearchTermCarro(e.target.value)}
                 />
                 <button className="btn btn-success py-1" type="submit">
-                <FontAwesomeIcon icon={faSearch} />
+                  <FontAwesomeIcon icon={faSearch} />
                 </button>
               </form>
               <h2 className="text-center">Carro</h2>
-              <div className="d-flex flex-wrap mt-3">
-                {currentRecordsCarro.map((record, index) => (
-                  <div
-                    key={index}
-                    className="d-flex flex-column border border-primary rounded-4 w-25 p-2"
-                  >
-                    <span className="fs-3 fw-bolder">
-                      {record.NumeroEspacio}
-                    </span>
-                    <button
-                      type="button"
-                      className="btn bg-success btn-sm p-1"
-                      onClick={() =>
-                        rentSpace(record.id, "Carro", record.NumeroEspacio)
-                      }
-                    >
-                      Rentar
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <div className="card-body">
-                <div className="dataTables_wrapper dt-bootstrap4">
-                  <div className="row">
-                    <div className="col-sm-12 col-md-5">
+              {hasRentedCarro ? (
+                <p className="text-center text-danger">
+                  Ya has rentado un espacio de carro.
+                </p>
+              ) : (
+                <>
+                  <div className="d-flex flex-wrap mt-3">
+                    {currentRecordsCarro.map((record, index) => (
                       <div
-                        className="dataTables_info"
-                        role="status"
-                        aria-live="polite"
+                        key={index}
+                        className="d-flex flex-column border border-primary rounded-4 w-25 p-2"
                       >
-                        Mostrando {indexOfFirstRecordCarro + 1} a{" "}
-                        {indexOfLastRecordCarro > dataCarro.length
-                          ? dataCarro.length
-                          : indexOfLastRecordCarro}{" "}
-                        de {dataCarro.length} registros
+                        <span className="fs-3 fw-bolder">
+                          {record.NumeroEspacio}
+                        </span>
+                        <button
+                          type="button"
+                          className="btn bg-success btn-sm p-1"
+                          onClick={() =>
+                            rentSpace(record.id, "Carro", record.NumeroEspacio)
+                          }
+                        >
+                          Rentar
+                        </button>
                       </div>
-                    </div>
-                    <div className="col-sm-12 col-md-7">
-                      <div className="dataTables_paginate paging_simple_numbers">
-                        <ul className="pagination">
-                          <li
-                            className={`paginate_button page-item previous ${
-                              currentPageCarro === 1 ? "disabled" : ""
-                            }`}
+                    ))}
+                  </div>
+
+                  {/* Pagination and Record Info for Carro */}
+                  <div className="card-body">
+                    <div className="dataTables_wrapper dt-bootstrap4">
+                      <div className="row">
+                        <div className="col-sm-12 col-md-5">
+                          <div
+                            className="dataTables_info"
+                            role="status"
+                            aria-live="polite"
                           >
-                            <Link
-                              onClick={() =>
-                                handlePageChangeCarro(currentPageCarro - 1)
-                              }
-                              to="#"
-                              className="page-link"
-                            >
-                              Anterior
-                            </Link>
-                          </li>
-                          {[...Array(totalPagesCarro)].map((_, index) => (
-                            <li
-                              key={index}
-                              className={`paginate_button page-item ${
-                                currentPageCarro === index + 1 ? "active" : ""
-                              }`}
-                            >
-                              <button
-                                onClick={() => handlePageChangeCarro(index + 1)}
-                                className="page-link"
+                            Mostrando {indexOfFirstRecordCarro + 1} a{" "}
+                            {indexOfLastRecordCarro > dataCarro.length
+                              ? dataCarro.length
+                              : indexOfLastRecordCarro}{" "}
+                            de {dataCarro.length} registros
+                          </div>
+                        </div>
+                        <div className="col-sm-12 col-md-7">
+                          <div className="dataTables_paginate paging_simple_numbers">
+                            <ul className="pagination">
+                              <li
+                                className={`paginate_button page-item previous ${
+                                  currentPageCarro === 1 ? "disabled" : ""
+                                }`}
                               >
-                                {index + 1}
-                              </button>
-                            </li>
-                          ))}
-                          <li
-                            className={`paginate_button page-item next ${
-                              currentPageCarro === totalPagesCarro
-                                ? "disabled"
-                                : ""
-                            }`}
-                          >
-                            <Link
-                              onClick={() =>
-                                handlePageChangeCarro(currentPageCarro + 1)
-                              }
-                              to="#"
-                              className="page-link"
-                            >
-                              Siguiente
-                            </Link>
-                          </li>
-                        </ul>
+                                <Link
+                                  onClick={() =>
+                                    handlePageChangeCarro(currentPageCarro - 1)
+                                  }
+                                  to="#"
+                                  className="page-link"
+                                >
+                                  Anterior
+                                </Link>
+                              </li>
+                              {[...Array(totalPagesCarro)].map((_, index) => (
+                                <li
+                                  key={index}
+                                  className={`paginate_button page-item ${
+                                    currentPageCarro === index + 1 ? "active" : ""
+                                  }`}
+                                >
+                                  <button
+                                    onClick={() => handlePageChangeCarro(index + 1)}
+                                    className="page-link"
+                                  >
+                                    {index + 1}
+                                  </button>
+                                </li>
+                              ))}
+                              <li
+                                className={`paginate_button page-item next ${
+                                  currentPageCarro === totalPagesCarro
+                                    ? "disabled"
+                                    : ""
+                                }`}
+                              >
+                                <Link
+                                  onClick={() =>
+                                    handlePageChangeCarro(currentPageCarro + 1)
+                                  }
+                                  to="#"
+                                  className="page-link"
+                                >
+                                  Siguiente
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
           </div>
         ) : (
