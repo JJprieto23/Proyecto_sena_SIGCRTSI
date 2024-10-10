@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -11,6 +12,8 @@ import Reunion from "./reuniones";
 import Porteros from "./porteros";
 import Info from "./informacion";
 import Reporte from "./reporte";
+import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Tabla = ({ item, apiS }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -152,7 +155,7 @@ const Tabla = ({ item, apiS }) => {
                           tabIndex="0"
                           className="page-link"
                         >
-                          Anterior
+                          <FontAwesomeIcon icon={faAnglesLeft} />
                         </Link>
                       </li>
                       {[...Array(totalPages)].map((_, index) => (
@@ -184,7 +187,7 @@ const Tabla = ({ item, apiS }) => {
                           tabIndex="0"
                           className="page-link"
                         >
-                          Siguiente
+                          <FontAwesomeIcon icon={faAnglesRight} />
                         </Link>
                       </li>
                     </ul>

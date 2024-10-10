@@ -7,6 +7,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 /* Añadir iconos a la libraria */
 library.add(faTrash);
 library.add(faPenToSquare);
@@ -49,7 +50,6 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
           console.log(response.status);
           if (response.status === 200) {
             setStatus(response.status);
-            setAccion("");
             setTimeout(() => {
               setStatus("");
             }, 5000);
@@ -68,7 +68,6 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
           if (response.status === 200) {
             setShowAlert(false);
             setStatus(response.status);
-            setAccion("");
             setTimeout(() => {
               setStatus("");
             }, 5000);
@@ -85,7 +84,6 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
         console.log(response.status);
         if (response.status === 201) {
           setStatus(response.status);
-          setAccion("");
           setTimeout(() => {
             setStatus("");
           }, 5000);
@@ -200,27 +198,37 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
           </div>
         </div>
       ) : null}
-      <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setFilteredAtt("NumeroEspacio");
-          }}
-        />
+      <form
+        className="d-flex mb-3 align-items-end"
+        role="search"
+        onSubmit={handleSearch}
+      >
+        <div className="w-100 me-5">
+          <label className="text-start w-100 fw-normal" for="searchParam1">
+            Buscar por número de espacio
+          </label>
+          <input
+            id="searchParam1"
+            className="form-control me-2"
+            type="search"
+            placeholder="Ejemplo -> 1"
+            aria-label="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setFilteredAtt("NumeroEspacio");
+            }}
+          />
+        </div>
         <select
-          class="form-select"
+          className="form-select me-5"
           aria-label="Default select example"
           onChange={(e) => {
             setSearchTerm(e.target.value);
             setFilteredAtt("TipoEspacio");
           }}
         >
-          <option selected>Open this select menu</option>
+          <option selected>Buscar por tipo de espacio</option>
           <option value={"Moto"}>Moto</option>
           <option value={"Carro"}>Carro</option>
         </select>
@@ -229,7 +237,7 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
           className="btn btn-success ms-2 py-1"
           type="submit"
         >
-          Search
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </form>
       <table
@@ -313,7 +321,7 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
                       aria-hidden="true"
                     >
                       <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content w-100">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">
                               {accion} Parqueadero
@@ -407,10 +415,10 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
                                     ? "btn btn-warning"
                                     : accion === "Insertar"
                                     ? "btn btn-success w-25 m-0 ms-1 h-100"
-                                    : "btn btn-primary w-25 m-0 ms-1 h-100"
+                                    : ""
                                 }
                               >
-                                {accion === "" ? "Volver" : accion}
+                                {accion}
                               </button>
                             </div>
                           </form>
@@ -426,7 +434,7 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
                   <td>{record.TipoEspacio}</td>
                   <td>{record.Estado}</td>
                   <td>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row justify-content-center">
                       <div className="mx-2">
                         <form className="p-0" onSubmit={enviar}>
                           <button
@@ -441,7 +449,7 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
                       <div className="mx-2">
                         <button
                           type="button"
-                          className="btn btn-warning px-2 py-1"
+                          className="btn btn-warning px-2"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
                           onClick={() => {
@@ -469,8 +477,8 @@ const Parqueadero = ({ item, currentRecords, apiS }) => {
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog">
-              <div class="modal-content">
+            <div class="modal-dialog p-0 rounded rounded-4">
+              <div class="modal-content mx-0 my-5 w-100">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
                     {accion} Parqueadero

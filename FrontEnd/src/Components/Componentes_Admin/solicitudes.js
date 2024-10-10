@@ -146,58 +146,53 @@ const Solicitudes = ({ currentRecords, length }) => {
                   </div>
                 </div>
                 <div className="d-flex flex-row justify-content-end">
-                  <div className="mb-3 mx-4">
-                    <a
-                      href="/certificado.pdf"
-                      download={`cretificado ${record.Nombre} ${record.Apellido}`}
-                      className="btn btn-primary m-0"
+                  <form className="mx-2 my-2" onSubmit={cancelarEnviar}>
+                    <button
+                      onClick={() =>
+                        setDatos((prevUsuario) => ({
+                          ...prevUsuario,
+                          NumeroDocumento: record.NumeroDocumento,
+                          id: record.NumeroDocumento,
+                        }))
+                      }
+                      type="submit"
+                      className="btn bg-danger-subtle border border-danger text-danger"
                     >
-                      Ver documento de verificación
-                    </a>
-                  </div>
-                  <div className="mb-3 mx-2">
-                    <form onSubmit={enviar}>
-                      <button
-                        onClick={() =>
-                          setDatos((prevUsuario) => ({
-                            ...prevUsuario,
-                            CodigoVivienda: record.CodigoVivienda,
-                            Nombre: record.Nombre,
-                            Apellido: record.Apellido,
-                            Teléfono: record.Teléfono,
-                            Correo: record.Correo,
-                            NumeroDocumento: record.NumeroDocumento,
-                            MesesAtrasados: 0,
-                            EspacioParqueadero: 0,
-                            User: record.Nombre + record.NumeroDocumento,
-                            Pass: record.NumeroDocumento,
-                            id: record.NumeroDocumento,
-                          }))
-                        }
-                        type="submit"
-                        className="btn btn-success m-0"
-                      >
-                        Aprobar
-                      </button>
-                    </form>
-                  </div>
-                  <div className="mx-4">
-                    <form onSubmit={cancelarEnviar}>
-                      <button
-                        onClick={() =>
-                          setDatos((prevUsuario) => ({
-                            ...prevUsuario,
-                            NumeroDocumento: record.NumeroDocumento,
-                            id: record.NumeroDocumento,
-                          }))
-                        }
-                        type="submit"
-                        className="btn btn-danger"
-                      >
-                        Cancelar
-                      </button>
-                    </form>
-                  </div>
+                      Cancelar
+                    </button>
+                  </form>
+                  <a
+                    href="/certificado.pdf"
+                    download={`certificado ${record.Nombre} ${record.Apellido}`}
+                    className="btn mx-2 my-2 bg-primary-subtle border border-primary text-primary"
+                  >
+                    Ver documento de verificación
+                  </a>
+
+                  <form className="mx-2 my-2" onSubmit={enviar}>
+                    <button
+                      onClick={() =>
+                        setDatos((prevUsuario) => ({
+                          ...prevUsuario,
+                          CodigoVivienda: record.CodigoVivienda,
+                          Nombre: record.Nombre,
+                          Apellido: record.Apellido,
+                          Teléfono: record.Teléfono,
+                          Correo: record.Correo,
+                          NumeroDocumento: record.NumeroDocumento,
+                          MesesAtrasados: 0,
+                          EspacioParqueadero: 0,
+                          User: record.Nombre + record.NumeroDocumento,
+                          Pass: record.NumeroDocumento,
+                          id: record.NumeroDocumento,
+                        }))
+                      }
+                      type="submit"
+                      className="btn btn-success m-0"
+                    >
+                      Aprobar
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

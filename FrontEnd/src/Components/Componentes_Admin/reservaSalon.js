@@ -209,8 +209,8 @@ const ReservaSalon = ({ currentRecords, length, apiS }) => {
           </div>
         ) : (
           currentRecords.map((record, index) => (
-            <div key={index} class="card mb-3">
-              <div class="card-body">
+            <div key={index} class="card p-0">
+              <div class="card-body p-2">
                 <div className="d-flex flex-row justify-content-start align-items-center">
                   <div className="w-75">
                     <ul class="list-group list-group-flush">

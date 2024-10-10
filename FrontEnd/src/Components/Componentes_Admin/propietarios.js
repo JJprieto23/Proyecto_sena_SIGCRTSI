@@ -7,6 +7,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 /* Añadir iconos a la libraria */
 library.add(faTrash);
 library.add(faPenToSquare);
@@ -62,7 +63,6 @@ const Propietario = ({ item, currentRecords, apiS }) => {
           console.log(response.status);
           if (response.status === 200) {
             setStatus(response.status);
-            setAccion("");
             setTimeout(() => {
               setStatus("");
             }, 5000);
@@ -81,7 +81,6 @@ const Propietario = ({ item, currentRecords, apiS }) => {
           if (response.status === 200) {
             setShowAlert(false);
             setStatus(response.status);
-            setAccion("");
             setTimeout(() => {
               setStatus("");
             }, 5000);
@@ -105,7 +104,6 @@ const Propietario = ({ item, currentRecords, apiS }) => {
         console.log(response.status);
         if (response.status === 201) {
           setStatus(response.status);
-          setAccion("");
           setTimeout(() => {
             setStatus("");
           }, 5000);
@@ -220,22 +218,33 @@ const Propietario = ({ item, currentRecords, apiS }) => {
           </div>
         </div>
       ) : null}
-      <form className="d-flex mb-3" role="search" onSubmit={handleSearch}>
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          required
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <form
+        className="d-flex mb-3 align-items-end"
+        role="search"
+        onSubmit={handleSearch}
+      >
+        <div className="w-100 me-5">
+          <label className="text-start w-100 fw-normal" for="searchParam">
+            Buscar por número de identidad
+          </label>
+          <input
+            id="searchParam"
+            className="form-control me-2"
+            type="search"
+            placeholder="Ejemplo -> 1056798564"
+            aria-label="Search"
+            required
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         <button
           onClick={() => setCurrentAccion("Consultar")}
           className="btn btn-success py-1"
           type="submit"
         >
-          Search
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </form>
       <table
@@ -328,7 +337,7 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                       aria-hidden="true"
                     >
                       <div class="modal-dialog w-50">
-                        <div className="modal-content">
+                        <div className="modal-content mx-0 my-5 w-100">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">
                               {accion} Propietario
@@ -547,17 +556,16 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                                 Cerrar
                               </button>
                               <button
-                                data-bs-dismiss={accion === "" ? "modal" : ""}
                                 type="submit"
                                 className={
                                   accion === "Actualizar"
                                     ? "btn btn-warning"
                                     : accion === "Insertar"
                                     ? "btn btn-success w-25 m-0 ms-1 h-100"
-                                    : "btn btn-primary w-25 m-0 ms-1 h-100"
+                                    : ""
                                 }
                               >
-                                {accion === "" ? "Volver" : accion}
+                                {accion}
                               </button>
                             </div>
                           </form>
@@ -576,7 +584,7 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                   <td>{record.NumeroDocumento}</td>
                   <td>{record.MesesAtrasados}</td>
                   <td>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row justify-content-center">
                       <div className="mx-2">
                         <form className="p-0" onSubmit={enviar}>
                           <button
@@ -591,7 +599,7 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                       <div className="mx-2">
                         <button
                           type="button"
-                          className="btn btn-warning px-2 py-1"
+                          className="btn btn-warning px-2"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
                           onClick={() => {
@@ -625,8 +633,8 @@ const Propietario = ({ item, currentRecords, apiS }) => {
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog w-50">
-              <div className="modal-content">
+            <div class="modal-dialog w-50 p-0 rounded rounded-4">
+              <div className="modal-content mx-0 my-5 w-100">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">
                     {accion} Propietario
@@ -852,10 +860,10 @@ const Propietario = ({ item, currentRecords, apiS }) => {
                           ? "btn btn-warning"
                           : accion === "Insertar"
                           ? "btn btn-success w-25 m-0 ms-1 h-100"
-                          : "btn btn-primary w-25 m-0 ms-1 h-100"
+                          : ""
                       }
                     >
-                      {accion === "" ? "Volver" : accion}
+                      {accion}
                     </button>
                   </div>
                 </form>

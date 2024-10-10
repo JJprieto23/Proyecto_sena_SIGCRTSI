@@ -152,26 +152,21 @@
     },
     {
       "id": "dd88",
-      "CodigoVivienda": "1132",
+      "CodigoVivienda": "1133",
+      "NumeroParqueadero": "0"
+    },
+    {
+      "id": "5d41",
+      "CodigoVivienda": "132",
+      "NumeroParqueadero": "0"
+    },
+    {
+      "id": "aaf3",
+      "CodigoVivienda": "1134",
       "NumeroParqueadero": "0"
     }
   ],
   "Propietarios": [
-    {
-      "id": "7c2a",
-      "CodigoVivienda": 1101,
-      "Nombre": "Joan",
-      "Teléfono": "2456",
-      "Correo": "vgas@asbd",
-      "EstadoEnvio": "",
-      "NumeroDocumento": 1019763603,
-      "MesesAtrasados": 0,
-      "User": "joan",
-      "Pass": "27h",
-      "espacioMoto": 25,
-      "espacioCarro": 16,
-      "EspacioParqueadero": "0"
-    },
     {
       "id": "70f7",
       "CodigoVivienda": "1102",
@@ -183,7 +178,7 @@
       "EspacioParqueadero": 0,
       "User": "Valery1014667051",
       "Pass": "1014667051",
-      "EstadoEnvio": "Enviado"
+      "EstadoEnvio": "No enviado"
     },
     {
       "id": "5c1e",
@@ -196,7 +191,7 @@
       "EspacioParqueadero": 0,
       "User": "Denys1245879658",
       "Pass": "1245879658",
-      "EstadoEnvio": "Enviado"
+      "EstadoEnvio": "No enviado"
     },
     {
       "id": "ea2a",
@@ -209,6 +204,21 @@
       "EspacioParqueadero": 0,
       "User": "Gabo549875652",
       "Pass": "549875652",
+      "EstadoEnvio": "Enviado"
+    },
+    {
+      "id": "322b",
+      "CodigoVivienda": "1130",
+      "Nombre": "Erick Granados",
+      "Teléfono": "8765432",
+      "Correo": "ercik@gmail.com",
+      "NumeroDocumento": "1234567",
+      "MesesAtrasados": 0,
+      "EspacioParqueadero": 0,
+      "User": "Erick1234567",
+      "Pass": "1234567",
+      "espacioMoto": 7,
+      "espacioCarro": 4,
       "EstadoEnvio": "Enviado"
     }
   ],
@@ -223,6 +233,17 @@
       "HoraFin": "17:41",
       "Motivo": "asf",
       "Fecha": "2024-09-12"
+    },
+    {
+      "id": "6919",
+      "Nombre": "Erick",
+      "NumeroDocumento": "1234567",
+      "Telefono": "8765432",
+      "CodigoVivienda": "1130",
+      "HoraInicio": "20:00",
+      "HoraFin": "10:00",
+      "Motivo": "Reunion",
+      "Fecha": "2024-09-13"
     }
   ],
   "Parqueadero": [
@@ -247,7 +268,7 @@
     {
       "NumeroEspacio": 4,
       "TipoEspacio": "Carro",
-      "Estado": "Disponible",
+      "Estado": "Ocupado",
       "id": "0b2c"
     },
     {
@@ -265,7 +286,7 @@
     {
       "NumeroEspacio": 7,
       "TipoEspacio": "Moto",
-      "Estado": "Disponible",
+      "Estado": "Ocupado",
       "id": "e8cd"
     },
     {
@@ -455,6 +476,18 @@
       "CodigoVivienda": "1102",
       "HoraInicio": 72325,
       "Tiempo": 60
+    },
+    {
+      "id": "176e",
+      "Nombre": "Sara",
+      "NumeroDocumento": "123345678",
+      "Teléfono": "12345678",
+      "Correo": "sara@gmail.com",
+      "NumeroParqueadero": "2",
+      "Costo": "5000",
+      "CodigoVivienda": "1102",
+      "HoraInicio": "",
+      "Tiempo": ""
     }
   ],
   "Porteros": [
@@ -741,7 +774,17 @@
       "id": "a7ce"
     }
   ],
-  "Solicitudes": [],
+  "Solicitudes": [
+    {
+      "id": "1033654987",
+      "Nombre": "Joan",
+      "Apellido": "Moreno",
+      "NumeroDocumento": "1033654987",
+      "Teléfono": "3224408917",
+      "Correo": "david@gmail.com",
+      "CodigoVivienda": "1109"
+    }
+  ],
   "Reuniones": [
     {
       "id": "9465",

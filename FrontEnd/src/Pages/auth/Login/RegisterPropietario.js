@@ -128,7 +128,7 @@ const RegisterPropietario = () => {
           </div>
           <div className="ms-5">
             <div className="card-body login-card-body">
-              <form onSubmit={enviar}>
+              <form method="POST" onSubmit={enviar}>
                 {/* Nombre y Apellido */}
                 <div className="d-flex flex-row">
                   <div className="me-4 w-50">

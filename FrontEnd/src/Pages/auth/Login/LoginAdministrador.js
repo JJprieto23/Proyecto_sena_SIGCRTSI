@@ -41,6 +41,15 @@ const LoginAdministrador = () => {
     }
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/");
+      return response
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
   return (
     <>
       <div
@@ -73,7 +82,7 @@ const LoginAdministrador = () => {
             Usuario no encontrado
           </div>
         ) : null}
-        
+
         <div className="login-box rounded-4 p-5 bg-white w-50">
           <div className="login-logo d-flex flex-column align-items-center">
             <Link
@@ -90,14 +99,17 @@ const LoginAdministrador = () => {
             Ingrese como administrador
           </p>
           <div className="card-body login-card-body">
+            {console.log(fetchData)}
             <form onSubmit={enviar}>
-              {/* Nombre y Apellido */}
               <div className="d-flex flex-row">
                 <div className="me-4 w-50">
+                  <label className="text-start w-100 fw-normal" for="username">
+                    Nombre de usuario
+                  </label>
                   <input
+                    id="username"
                     type="text"
                     className="form-control"
-                    placeholder="Usuario"
                     name="Username"
                     required
                     value={Username}
@@ -105,10 +117,13 @@ const LoginAdministrador = () => {
                   />
                 </div>
                 <div className="w-50">
+                  <label className="text-start w-100 fw-normal" for="pass">
+                    Contraseña
+                  </label>
                   <input
+                    id="pass"
                     type="password"
                     className="form-control"
-                    placeholder="Contraseña"
                     name="Pass"
                     required
                     value={Password}
