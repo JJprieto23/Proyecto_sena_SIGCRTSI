@@ -171,14 +171,16 @@
       "id": "70f7",
       "CodigoVivienda": "1102",
       "Nombre": "Valery Zambrano",
-      "Teléfono": "31184827267",
-      "Correo": "valery24@gmail.com",
+      "Teléfono": "3118482726",
+      "Correo": "Valery12345@hotmail.com",
       "NumeroDocumento": "1014667051",
       "MesesAtrasados": 0,
       "EspacioParqueadero": 0,
       "User": "Valery1014667051",
-      "Pass": "1014667051",
-      "EstadoEnvio": "Enviado"
+      "Pass": "Valery12@",
+      "EstadoEnvio": "Enviado",
+      "espacioMoto": 7,
+      "espacioCarro": null
     },
     {
       "id": "5c1e",
@@ -244,6 +246,20 @@
       "HoraFin": "10:00",
       "Motivo": "Reunion",
       "Fecha": "2024-09-13"
+    },
+    {
+      "id": "d48b",
+      "Nombre": "valery",
+      "NumeroDocumento": "1234467",
+      "Telefono": "3432423",
+      "CodigoVivienda": "1102",
+      "HoraInicio": "09:00",
+      "HoraFin": "22:00",
+      "Motivo": "bgvfgcfxvg",
+      "Fecha": [
+        "2024-10-17",
+        "05:00:00.000Z"
+      ]
     }
   ],
   "Parqueadero": [
@@ -268,7 +284,7 @@
     {
       "NumeroEspacio": 4,
       "TipoEspacio": "Carro",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "0b2c"
     },
     {
@@ -298,7 +314,7 @@
     {
       "NumeroEspacio": 9,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "aac5"
     },
     {
