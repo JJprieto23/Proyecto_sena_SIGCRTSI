@@ -171,14 +171,14 @@
       "id": "70f7",
       "CodigoVivienda": "1102",
       "Nombre": "Valery Zambrano",
-      "Teléfono": "3118482726",
-      "Correo": "valery@gmail.com",
+      "Teléfono": "31184827267",
+      "Correo": "valery24@gmail.com",
       "NumeroDocumento": "1014667051",
       "MesesAtrasados": 0,
       "EspacioParqueadero": 0,
       "User": "Valery1014667051",
       "Pass": "1014667051",
-      "EstadoEnvio": "No enviado"
+      "EstadoEnvio": "Enviado"
     },
     {
       "id": "5c1e",
@@ -340,7 +340,7 @@
     {
       "NumeroEspacio": 16,
       "TipoEspacio": "Carro",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "e21e"
     },
     {
@@ -394,7 +394,7 @@
     {
       "NumeroEspacio": 25,
       "TipoEspacio": "Moto",
-      "Estado": "Ocupado",
+      "Estado": "Disponible",
       "id": "766d"
     },
     {

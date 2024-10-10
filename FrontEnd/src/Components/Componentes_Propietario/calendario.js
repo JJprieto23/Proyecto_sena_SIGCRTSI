@@ -80,6 +80,14 @@ const Calendario = () => {
       isValid = false;
     }
 
+    if (name === "HoraInicio" || name === "HoraFin") {
+      const horaValida = validarHora(value, name);
+      if (!horaValida.isValid) {
+        errorMessage = horaValida.message;
+        isValid = false;
+      }
+    }
+
     setFormErrors(prev => ({
       ...prev,
       [name]: errorMessage
@@ -93,12 +101,54 @@ const Calendario = () => {
     }
   };
 
+  const validarHora = (hora, tipo) => {
+    const [hours, minutes] = hora.split(':').map(Number);
+    const horaInicio = 9; // 9:00 AM
+    const horaFin = 1; // 1:00 AM del día siguiente
+
+    if (tipo === "HoraInicio") {
+      if (hours < horaInicio || hours >= 24) {
+        return { isValid: false, message: "La hora de inicio debe estar entre las 9:00 AM y las 11:59 PM." };
+      }
+    } else if (tipo === "HoraFin") {
+      if ((hours > horaFin && hours < horaInicio) || hours >= 24) {
+        return { isValid: false, message: "La hora de fin debe estar entre las 9:00 AM y la 1:00 AM del día siguiente." };
+      }
+    }
+    return { isValid: true, message: "" };
+  };
+
+
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const existingReservation = reservas.some(res => res.Fecha === selectedDate);
 
     if (existingReservation) {
       setFormErrors(prev => ({ ...prev, global: "Este día ya está reservado." }));
+      return;
+    }
+
+    const inicioValido = validarHora(formData.HoraInicio, "HoraInicio");
+    const finValido = validarHora(formData.HoraFin, "HoraFin");
+
+    if (!inicioValido.isValid || !finValido.isValid) {
+      setFormErrors(prev => ({
+        ...prev,
+        HoraInicio: inicioValido.message,
+        HoraFin: finValido.message
+      }));
+      return;
+    }
+
+    const [inicioHora, inicioMinutos] = formData.HoraInicio.split(':').map(Number);
+    const [finHora, finMinutos] = formData.HoraFin.split(':').map(Number);
+
+    const inicioEnMinutos = inicioHora * 60 + inicioMinutos;
+    const finEnMinutos = (finHora === 0 || finHora === 1 ? finHora + 24 : finHora) * 60 + finMinutos;
+
+    if (finEnMinutos <= inicioEnMinutos) {
+      setFormErrors(prev => ({ ...prev, HoraFin: "La hora de fin debe ser posterior a la hora de inicio." }));
       return;
     }
 
@@ -147,7 +197,7 @@ const Calendario = () => {
   return (
     <div>
       <div>
-        <h3 className="calendario-header">Reservar Salón Comunal</h3>
+        <h2 className="calendario-header">Reservar Salón Comunal</h2>
         {formErrors.global && (
           <div
             className={`alert ${formErrors.global.includes("éxito") ? "alert-success" : "alert-danger"} alert-dismissible fade show`}
@@ -250,14 +300,18 @@ const Calendario = () => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3" controlId="HoraInicio">
-                  <Form.Label>Hora de Inicio</Form.Label>
+                <Form.Label>Hora de Inicio </Form.Label>
                   <Form.Control
                     type="time"
                     name="HoraInicio"
                     value={formData.HoraInicio}
                     onChange={handleChange}
                     required
+                    min="09:00"
+                    max="23:59"
+
                   />
+                  {formErrors.HoraInicio && <div className="error-message">{formErrors.HoraInicio}</div>}
                 </Form.Group>
               </Col>
               <Col md={6}>
@@ -269,23 +323,30 @@ const Calendario = () => {
                     value={formData.HoraFin}
                     onChange={handleChange}
                     required
+                     min="09:00"
+                    max="25:00"
                   />
+                  {formErrors.HoraFin && <div className="error-message">{formErrors.HoraFin}</div>}
                 </Form.Group>
               </Col>
             </Row>
             <Form.Group className="mb-3" controlId="Motivo">
-              <Form.Label>Motivo de la Reserva</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="Motivo"
-                placeholder="Escriba el motivo de la reserva"
-                value={formData.Motivo}
-                onChange={handleChange}
-                required
-              />
-              {formErrors.Motivo && <div className="error-message">{formErrors.Motivo}</div>}
-            </Form.Group>
+            <Form.Label>Motivo de la Reserva</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              name="Motivo"
+              placeholder="Escriba el motivo de la reserva (máx. 200 caracteres)"
+              value={formData.Motivo}
+              onChange={handleChange}
+              required
+              maxLength={200} // Establece el límite de caracteres aquí
+            />
+            {formErrors.Motivo && <div className="error-message">{formErrors.Motivo}</div>}
+            <div className="text-end mt-1">
+              {formData.Motivo.length} / 200 {/* Muestra el conteo de caracteres */}
+            </div>
+          </Form.Group>
 
             <div className="d-flex justify-content-end">
               <Button variant="primary" type="submit">

@@ -8,8 +8,10 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [telefono, setTelefono] = useState("");
   const [correo, setCorreo] = useState("");
+  const [pass, setPass]= useState("");
   const [isEditingTelefono, setIsEditingTelefono] = useState(false);
   const [isEditingCorreo, setIsEditingCorreo] = useState(false);
+  const [isEditingPass, setIsEditingPass] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -17,6 +19,7 @@ const Profile = () => {
     if (user) {
       setTelefono(user.Teléfono);
       setCorreo(user.Correo);
+      setPass(user.Pass)
       setLoading(false);
     }
   }, [user]);
@@ -52,6 +55,7 @@ const Profile = () => {
         setShowAlert(true);
         setIsEditingTelefono(false);
         setIsEditingCorreo(false);
+        setIsEditingPass(false);
       } else {
         setAlertMessage("Error al actualizar los datos.");
         setShowAlert(true);
@@ -78,74 +82,96 @@ const Profile = () => {
   return (
     <>
       <div className="profile-container">
+        <h1 className="profile-title">Mi Perfil</h1>
+        
         <div className="p-5 d-flex flex-row justify-content-around">
-          <div>
-            <p className="text-start">
-              <strong>Nombre:</strong> {user.Nombre}
-            </p>
-            <p className="text-start">
-              <strong>Teléfono:</strong>
-              {isEditingTelefono ? (
-                <input
-                  type="text"
-                  value={telefono}
-                  onChange={(e) => setTelefono(e.target.value)}
-                  className="profile-input"
-                  onBlur={handleSaveClick}
-                />
-              ) : (
-                <>
-                  <span>{telefono}</span>
-                  <FaEdit
-                    className="edit-icon"
-                    onClick={() => setIsEditingTelefono(true)}
-                  />
-                </>
-              )}
-            </p>
-            <p className="text-start">
-              <strong>Correo:</strong>
-              {isEditingCorreo ? (
-                <input
-                  type="email"
-                  value={correo}
-                  onChange={(e) => setCorreo(e.target.value)}
-                  className="profile-input"
-                  onBlur={handleSaveClick}
-                />
-              ) : (
-                <>
-                  <span>{correo}</span>
-                  <FaEdit
-                    className="edit-icon"
-                    onClick={() => setIsEditingCorreo(true)}
-                  />
-                </>
-              )}
-            </p>
-            <p className="text-start">
-              <strong>Número Documento:</strong> {user.NumeroDocumento}
-            </p>
-            <p className="text-start">
-              <strong>Meses Atrasados:</strong> {user.MesesAtrasados}
-            </p>
-          </div>
+  <div>
+    <p className="text-start">
+      <strong>Nombre:</strong> {user.Nombre}
+    </p>
+    <p className="text-start">
+      <strong>Teléfono:</strong>
+      {isEditingTelefono ? (
+        <input
+          type="text"
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
+          className="profile-input"
+          onBlur={handleSaveClick}
+        />
+      ) : (
+        <>
+          <span>{telefono}</span>
+          <FaEdit
+            className="edit-icon"
+            onClick={() => setIsEditingTelefono(true)}
+          />
+        </>
+      )}
+    </p>
+    <p className="text-start">
+      <strong>Correo:</strong>
+      {isEditingCorreo ? (
+        <input
+          type="email"
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
+          className="profile-input"
+          onBlur={handleSaveClick}
+        />
+      ) : (
+        <>
+          <span>{correo}</span>
+          <FaEdit
+            className="edit-icon"
+            onClick={() => setIsEditingCorreo(true)}
+          />
+        </>
+      )}
+    </p>
+    <p className="text-start">
+      <strong>Número Documento:</strong> {user.NumeroDocumento}
+    </p>
+    <p className="text-start">
+      <strong>Contraseña:</strong>
+      {isEditingPass ? (
+        <input
+          type="password"
+          value={pass}
+          onChange={(e) => setPass(e.target.value)}
+          className="profile-input"
+          onBlur={handleSaveClick}
+        />
+      ) : (
+        <>
+          <span>{pass}</span>
+          <FaEdit
+            className="edit-icon"
+            onClick={() => setIsEditingPass(true)}
+          />
+        </>
+      )}
+    </p>
+  </div>
 
-          <div>
-            <p className="text-start">
-              <strong>Espacios Parqueadero</strong>
-            </p>
-            <p className="text-start">
-              <strong>Moto:</strong> {espacioMoto}
-            </p>
-            <p className="text-start">
-              <strong>Carro:</strong> {espacioCarro}
-            </p>
-            <p className="text-start" >
-              <strong>Código Vivienda:</strong> {user.CodigoVivienda}
-            </p>
-          </div>
-        </div>
+  <div>
+    <p className="text-start">
+      <strong>Meses Atrasados:</strong> {user.MesesAtrasados}
+    </p>
+    <p className="text-start">
+      <strong>Espacios Parqueadero</strong>
+    </p>
+    <p className="text-start">
+      <strong>Moto:</strong> {espacioMoto}
+    </p>
+    <p className="text-start">
+      <strong>Carro:</strong> {espacioCarro}
+    </p>
+    <p className="text-start">
+      <strong>Código Vivienda:</strong> {user.CodigoVivienda}
+    </p>
+  </div>
+</div>
       </div>
 
       {showAlert && (
