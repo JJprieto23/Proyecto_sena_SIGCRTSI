@@ -23,39 +23,47 @@ const RegisterPropietario = () => {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  const [status, setStatus ] = useState("")
+  const [status, setStatus] = useState("");
 
   const navigate = useNavigate();
 
-  const enviar = async (e) => {
-    e.preventDefault();
+  // const enviar = async (e) => {
+  //   e.preventDefault();
 
+  //   try {
+  //     // Solicitud GET para obtener los datos del usuario
+  //     if (fileName === "No se ha seleccionado archivo") {
+  //       setShowAlert(true);
+  //     } else {
+  //       setShowAlert(false);
+  //       const response = await axios.post(`http://localhost:4000/Solicitudes`, {
+  //         id: propietario.NumeroDocumento,
+  //         Nombre: propietario.Nombre,
+  //         Apellido: propietario.Apellido,
+  //         NumeroDocumento: propietario.NumeroDocumento,
+  //         Teléfono: propietario.Teléfono,
+  //         Correo: propietario.Correo,
+  //         CodigoVivienda: propietario.CodigoVivienda,
+  //       });
+  //       console.log(response.status);
+  //       if (response.status === 201) {
+  //         setStatus(201)
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("Ocurrió un error al intentar iniciar sesión");
+  //   }
+  // };
+
+  const enviar = async (e) => {
     try {
-      // Solicitud GET para obtener los datos del usuario
-      if (fileName === "No se ha seleccionado archivo") {
-        setShowAlert(true);
-      } else {
-        setShowAlert(false);
-        const response = await axios.post(`http://localhost:4000/Solicitudes`, {
-          id: propietario.NumeroDocumento,
-          Nombre: propietario.Nombre,
-          Apellido: propietario.Apellido,
-          NumeroDocumento: propietario.NumeroDocumento,
-          Teléfono: propietario.Teléfono,
-          Correo: propietario.Correo,
-          CodigoVivienda: propietario.CodigoVivienda,
-        });
-        console.log(response.status);
-        if (response.status === 201) {
-          setStatus(201)
-        }
-      }
+      const response = await axios.get("http://localhost:5001/");
+      return response;
     } catch (error) {
-      console.error(error);
-      alert("Ocurrió un error al intentar iniciar sesión");
+      console.error("Error fetching data: ", error);
     }
   };
-
   const [fileName, setFileName] = useState("No se ha seleccionado archivo");
 
   const handleFileChange = (event) => {
@@ -68,9 +76,8 @@ const RegisterPropietario = () => {
   };
 
   const redirect = () => {
-    
-      navigate("/");
-  }
+    navigate("/");
+  };
 
   return (
     <div

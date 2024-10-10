@@ -41,15 +41,6 @@ const LoginAdministrador = () => {
     }
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5001/");
-      return response
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
-
   return (
     <>
       <div
@@ -99,7 +90,6 @@ const LoginAdministrador = () => {
             Ingrese como administrador
           </p>
           <div className="card-body login-card-body">
-            {console.log(fetchData)}
             <form onSubmit={enviar}>
               <div className="d-flex flex-row">
                 <div className="me-4 w-50">
